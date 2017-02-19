@@ -9,20 +9,22 @@ Steps to install:
 
 * Create config/secrets.yml from config/secrets.yml.dist file and add the following items for development
 
-** secret_key_base
+1. secret_key_base
 
-** secret_token
+2. secret_token
 
 * You can use "rake secret" to generate various tokens
 
-bower install
+$>npm install
 
-bundle install
+$>bower install
 
-rake db:create
+$>bin/bundle install
 
-rake db:migrate RAILS_ENV=development
+$>bin/rake db:create
 
-rails server
+$>bin/rake db:migrate RAILS_ENV=development
+
+$>bin/rails server
 
 * Open your browser to localhost:3000
