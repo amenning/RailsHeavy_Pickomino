@@ -9,9 +9,9 @@ Steps to install:
 
 * Create config/secrets.yml from config/secrets.yml.dist file and add the following items for development
 
-1. secret_key_base
+  1. secret_key_base
 
-2. secret_token
+  2. secret_token
 
 * You can use "rake secret" to generate various tokens
 
