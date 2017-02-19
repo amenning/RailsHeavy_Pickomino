@@ -22,3 +22,5 @@ vendor/
 
 # Ignore npm assets
 node_modules/
+
+# Ignore IDE .project files
