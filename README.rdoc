@@ -1,0 +1,28 @@
+Pickomino
+======================
+
+A Rails project 
+
+This project is an implementation of Pickomino dice game using Rails and Angular
+
+Steps to install:
+
+* Create config/secrets.yml from config/secrets.yml.dist file and add the following items for development
+
+** secret_key_base
+
+** secret_token
+
+* You can use "rake secret" to generate various tokens
+
+bower install
+
+bundle install
+
+rake db:create
+
+rake db:migrate RAILS_ENV=development
+
+rails server
+
+* Open your browser to localhost:3000
