@@ -26,5 +26,5 @@
     "karma-spec-reporter": "0.0.26",
     "phantomjs": "^2.1.7"
   },
-  "scripts": {},
+  "scripts": {}
 }
