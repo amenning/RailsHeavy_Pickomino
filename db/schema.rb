@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221030638) do
+ActiveRecord::Schema.define(version: 20170221033528) do
 
   create_table "game_states", force: :cascade do |t|
     t.string   "grillWorms"
@@ -95,10 +95,12 @@ ActiveRecord::Schema.define(version: 20170221030638) do
     t.integer  "value"
     t.integer  "worm_count"
     t.integer  "image_id"
+    t.integer  "theme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "worm_tiles", ["image_id"], name: "index_worm_tiles_on_image_id"
+  add_index "worm_tiles", ["theme_id"], name: "index_worm_tiles_on_theme_id"
 
 end

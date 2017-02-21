@@ -31,6 +31,6 @@ fourWormImage = Image.create(target: 'four worm tile', filename: 'FourWormTile.p
 (21..36).map do |x|
   wormCount = (x-21)/4 + 1
   imageLookupHash = { 1 => oneWormImage, 2 => twoWormImage, 3 => threeWormImage, 4 => fourWormImage }
-  WormTile.create(value: x, worm_count: wormCount, image_id: imageLookupHash[wormCount].id)
+  WormTile.create(value: x, worm_count: wormCount, image_id: imageLookupHash[wormCount].id, theme_id: theme.id)
 end
 

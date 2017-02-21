@@ -8,6 +8,7 @@
       <th>Value</th>
       <th>Worm count</th>
       <th>Image</th>
+      <th>Theme</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= worm_tile.value %></td>
         <td><%= worm_tile.worm_count %></td>
         <td><%= worm_tile.image %></td>
+        <td><%= worm_tile.theme %></td>
         <td><%= link_to 'Show', worm_tile %></td>
         <td><%= link_to 'Edit', edit_worm_tile_path(worm_tile) %></td>
         <td><%= link_to 'Destroy', worm_tile, method: :delete, data: { confirm: 'Are you sure?' } %></td>

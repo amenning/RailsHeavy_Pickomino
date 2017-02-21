@@ -69,6 +69,6 @@ class WormTilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def worm_tile_params
-      params.require(:worm_tile).permit(:value, :worm_count, :image_id)
+      params.require(:worm_tile).permit(:value, :worm_count, :image_id, :theme_id)
     end
 end

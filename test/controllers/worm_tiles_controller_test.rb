@@ -18,7 +18,7 @@ class WormTilesControllerTest < ActionController::TestCase
 
   test "should create worm_tile" do
     assert_difference('WormTile.count') do
-      post :create, worm_tile: { image_id: @worm_tile.image_id, value: @worm_tile.value, worm_count: @worm_tile.worm_count }
+      post :create, worm_tile: { image_id: @worm_tile.image_id, theme_id: @worm_tile.theme_id, value: @worm_tile.value, worm_count: @worm_tile.worm_count }
     end
 
     assert_redirected_to worm_tile_path(assigns(:worm_tile))
@@ -35,7 +35,7 @@ class WormTilesControllerTest < ActionController::TestCase
   end
 
   test "should update worm_tile" do
-    patch :update, id: @worm_tile, worm_tile: { image_id: @worm_tile.image_id, value: @worm_tile.value, worm_count: @worm_tile.worm_count }
+    patch :update, id: @worm_tile, worm_tile: { image_id: @worm_tile.image_id, theme_id: @worm_tile.theme_id, value: @worm_tile.value, worm_count: @worm_tile.worm_count }
     assert_redirected_to worm_tile_path(assigns(:worm_tile))
   end
 

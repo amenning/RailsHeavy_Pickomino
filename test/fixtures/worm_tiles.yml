@@ -4,8 +4,10 @@ one:
   value: 1
   worm_count: 1
   image_id: 
+  theme_id: 
 
 two:
   value: 1
   worm_count: 1
   image_id: 
+  theme_id: 
