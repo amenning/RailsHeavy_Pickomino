@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Grill:</strong>
+  <%= @grill_worm_tile.grill %>
+</p>
+
+<p>
+  <strong>Worm:</strong>
+  <%= @grill_worm_tile.worm %>
+</p>
+
+<p>
+  <strong>Can take:</strong>
+  <%= @grill_worm_tile.can_take %>
+</p>
+
+<p>
+  <strong>Is dead:</strong>
+  <%= @grill_worm_tile.is_dead %>
+</p>
+
+<%= link_to 'Edit', edit_grill_worm_tile_path(@grill_worm_tile) %> |
+<%= link_to 'Back', grill_worm_tiles_path %>

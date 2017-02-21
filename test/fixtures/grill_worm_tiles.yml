@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grill_id: 
+  worm_id: 
+  can_take: 1
+  is_dead: 1
+
+two:
+  grill_id: 
+  worm_id: 
+  can_take: 1
+  is_dead: 1

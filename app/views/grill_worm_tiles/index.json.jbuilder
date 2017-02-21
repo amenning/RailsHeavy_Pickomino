@@ -1,0 +1,1 @@
+json.array! @grill_worm_tiles, partial: 'grill_worm_tiles/grill_worm_tile', as: :grill_worm_tile

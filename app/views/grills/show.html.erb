@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game state:</strong>
+  <%= @grill.game_state %>
+</p>
+
+<p>
+  <strong>Grill worm tiles:</strong>
+  <%= @grill.grill_worm_tiles %>
+</p>
+
+<%= link_to 'Edit', edit_grill_path(@grill) %> |
+<%= link_to 'Back', grills_path %>

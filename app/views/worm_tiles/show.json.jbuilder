@@ -1,0 +1,1 @@
+json.partial! "worm_tiles/worm_tile", worm_tile: @worm_tile

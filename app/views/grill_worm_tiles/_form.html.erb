@@ -1,0 +1,33 @@
+<%= form_for(@grill_worm_tile) do |f| %>
+  <% if @grill_worm_tile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grill_worm_tile.errors.count, "error") %> prohibited this grill_worm_tile from being saved:</h2>
+
+      <ul>
+      <% @grill_worm_tile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :grill_id %><br>
+    <%= f.text_field :grill_id %>
+  </div>
+  <div class="field">
+    <%= f.label :worm_id %><br>
+    <%= f.text_field :worm_id %>
+  </div>
+  <div class="field">
+    <%= f.label :can_take %><br>
+    <%= f.number_field :can_take %>
+  </div>
+  <div class="field">
+    <%= f.label :is_dead %><br>
+    <%= f.number_field :is_dead %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

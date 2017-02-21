@@ -1,0 +1,1 @@
+json.partial! "grill_worm_tiles/grill_worm_tile", grill_worm_tile: @grill_worm_tile

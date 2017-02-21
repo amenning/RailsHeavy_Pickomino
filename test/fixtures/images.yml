@@ -5,11 +5,11 @@ one:
   filename: MyString
   filetype: MyString
   description: MyString
-  theme_id: 
+  theme: one
 
 two:
   target: MyString
   filename: MyString
   filetype: MyString
   description: MyString
-  theme_id: 
+  theme: one

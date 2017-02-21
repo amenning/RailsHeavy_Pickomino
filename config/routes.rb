@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :worm_tiles
+  resources :grill_worm_tiles
+  resources :grill_worm_tiles
+  resources :grills
   resources :images
   resources :themes
   # The priority is based upon order of creation: first created -> highest priority.

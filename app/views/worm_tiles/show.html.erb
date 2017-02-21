@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @worm_tile.value %>
+</p>
+
+<p>
+  <strong>Worm count:</strong>
+  <%= @worm_tile.worm_count %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @worm_tile.image %>
+</p>
+
+<%= link_to 'Edit', edit_worm_tile_path(@worm_tile) %> |
+<%= link_to 'Back', worm_tiles_path %>

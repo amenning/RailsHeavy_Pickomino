@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221021405) do
+ActiveRecord::Schema.define(version: 20170221030638) do
 
   create_table "game_states", force: :cascade do |t|
     t.string   "grillWorms"
@@ -41,6 +41,28 @@ ActiveRecord::Schema.define(version: 20170221021405) do
 
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
+  create_table "grill_worm_tiles", force: :cascade do |t|
+    t.integer  "grill_id"
+    t.integer  "worm_id"
+    t.integer  "can_take"
+    t.integer  "is_dead"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "grill_worm_tiles", ["grill_id"], name: "index_grill_worm_tiles_on_grill_id"
+  add_index "grill_worm_tiles", ["worm_id"], name: "index_grill_worm_tiles_on_worm_id"
+
+  create_table "grills", force: :cascade do |t|
+    t.integer  "game_state_id"
+    t.integer  "grill_worm_tiles_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "grills", ["game_state_id"], name: "index_grills_on_game_state_id"
+  add_index "grills", ["grill_worm_tiles_id"], name: "index_grills_on_grill_worm_tiles_id"
+
   create_table "images", force: :cascade do |t|
     t.string   "target"
     t.string   "filename"
@@ -68,5 +90,15 @@ ActiveRecord::Schema.define(version: 20170221021405) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "worm_tiles", force: :cascade do |t|
+    t.integer  "value"
+    t.integer  "worm_count"
+    t.integer  "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "worm_tiles", ["image_id"], name: "index_worm_tiles_on_image_id"
 
 end

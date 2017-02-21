@@ -39,8 +39,8 @@ class ThemesControllerTest < ActionController::TestCase
     assert_redirected_to theme_path(assigns(:theme))
   end
 
-  test "should destroy theme" do
-    assert_difference('Theme.count', -1) do
+  test "should not be able to destroy theme with child images present" do
+    assert_difference('Theme.count', 0) do
       delete :destroy, id: @theme
     end
 
