@@ -6,7 +6,7 @@ class CreateImages < ActiveRecord::Migration
       t.string :filetype
       t.string :description
       t.belongs_to :theme, index: true, foreign_key: true
-
+      
       t.timestamps null: false
     end
   end

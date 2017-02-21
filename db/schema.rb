@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221014942) do
+ActiveRecord::Schema.define(version: 20170221021405) do
 
   create_table "game_states", force: :cascade do |t|
     t.string   "grillWorms"
