@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Target:</strong>
+  <%= @image.target %>
+</p>
+
+<p>
   <strong>Filename:</strong>
   <%= @image.filename %>
 </p>
@@ -13,6 +18,11 @@
 <p>
   <strong>Description:</strong>
   <%= @image.description %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @image.theme %>
 </p>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |

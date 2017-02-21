@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  target: MyString
   filename: MyString
   filetype: MyString
   description: MyString
+  theme_id: 
 
 two:
+  target: MyString
   filename: MyString
   filetype: MyString
   description: MyString
+  theme_id: 

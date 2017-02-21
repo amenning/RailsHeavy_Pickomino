@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220044007) do
+ActiveRecord::Schema.define(version: 20170221014942) do
 
   create_table "game_states", force: :cascade do |t|
     t.string   "grillWorms"
@@ -42,11 +42,21 @@ ActiveRecord::Schema.define(version: 20170220044007) do
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
   create_table "images", force: :cascade do |t|
+    t.string   "target"
     t.string   "filename"
     t.string   "filetype"
     t.string   "description"
+    t.integer  "theme_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  add_index "images", ["theme_id"], name: "index_images_on_theme_id"
+
+  create_table "themes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
