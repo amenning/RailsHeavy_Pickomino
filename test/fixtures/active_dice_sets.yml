@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game_state_id: 
+  dice_id: 
+  can_freeze: 1
+
+two:
+  game_state_id: 
+  dice_id: 
+  can_freeze: 1

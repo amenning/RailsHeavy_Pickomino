@@ -1,0 +1,1 @@
+json.array! @player_worms, partial: 'player_worms/player_worm', as: :player_worm

@@ -1,0 +1,1 @@
+json.array! @frozen_dice_sets, partial: 'frozen_dice_sets/frozen_dice_set', as: :frozen_dice_set

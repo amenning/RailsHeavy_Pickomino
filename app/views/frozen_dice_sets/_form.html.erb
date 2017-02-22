@@ -1,0 +1,25 @@
+<%= form_for(@frozen_dice_set) do |f| %>
+  <% if @frozen_dice_set.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@frozen_dice_set.errors.count, "error") %> prohibited this frozen_dice_set from being saved:</h2>
+
+      <ul>
+      <% @frozen_dice_set.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :game_state_id %><br>
+    <%= f.text_field :game_state_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dice_id %><br>
+    <%= f.text_field :dice_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

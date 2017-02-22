@@ -1,0 +1,1 @@
+json.partial! "active_dice_sets/active_dice_set", active_dice_set: @active_dice_set

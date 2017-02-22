@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :player_statuses
+  resources :player_worms
+  resources :frozen_dice_statuses
+  resources :frozen_dice_sets
+  resources :active_dice_sets
+  resources :player_options
   resources :grill_worms
   resources :dices
   resources :worms

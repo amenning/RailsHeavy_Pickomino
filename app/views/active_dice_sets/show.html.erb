@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game state:</strong>
+  <%= @active_dice_set.game_state %>
+</p>
+
+<p>
+  <strong>Dice:</strong>
+  <%= @active_dice_set.dice %>
+</p>
+
+<p>
+  <strong>Can freeze:</strong>
+  <%= @active_dice_set.can_freeze %>
+</p>
+
+<%= link_to 'Edit', edit_active_dice_set_path(@active_dice_set) %> |
+<%= link_to 'Back', active_dice_sets_path %>

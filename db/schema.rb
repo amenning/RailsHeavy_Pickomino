@@ -11,13 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222232148) do
+ActiveRecord::Schema.define(version: 20170222233627) do
+
+  create_table "active_dice_sets", force: :cascade do |t|
+    t.integer  "game_state_id"
+    t.integer  "dice_id"
+    t.integer  "can_freeze"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "active_dice_sets", ["dice_id"], name: "index_active_dice_sets_on_dice_id"
+  add_index "active_dice_sets", ["game_state_id"], name: "index_active_dice_sets_on_game_state_id"
 
   create_table "dices", force: :cascade do |t|
     t.integer  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "frozen_dice_sets", force: :cascade do |t|
+    t.integer  "game_state_id"
+    t.integer  "dice_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "frozen_dice_sets", ["dice_id"], name: "index_frozen_dice_sets_on_dice_id"
+  add_index "frozen_dice_sets", ["game_state_id"], name: "index_frozen_dice_sets_on_game_state_id"
+
+  create_table "frozen_dice_statuses", force: :cascade do |t|
+    t.integer  "game_state_id"
+    t.integer  "total"
+    t.integer  "has_worm"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "frozen_dice_statuses", ["game_state_id"], name: "index_frozen_dice_statuses_on_game_state_id"
 
   create_table "game_states", force: :cascade do |t|
     t.integer  "game_id"
@@ -66,6 +97,38 @@ ActiveRecord::Schema.define(version: 20170222232148) do
   end
 
   add_index "images", ["theme_id"], name: "index_images_on_theme_id"
+
+  create_table "player_options", force: :cascade do |t|
+    t.integer  "game_state_id"
+    t.integer  "can_roll"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "player_options", ["game_state_id"], name: "index_player_options_on_game_state_id"
+
+  create_table "player_statuses", force: :cascade do |t|
+    t.integer  "game_state_id"
+    t.integer  "player_id"
+    t.integer  "score"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "player_statuses", ["game_state_id"], name: "index_player_statuses_on_game_state_id"
+  add_index "player_statuses", ["player_id"], name: "index_player_statuses_on_player_id"
+
+  create_table "player_worms", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "game_state_id"
+    t.integer  "worm_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "player_worms", ["game_state_id"], name: "index_player_worms_on_game_state_id"
+  add_index "player_worms", ["player_id"], name: "index_player_worms_on_player_id"
+  add_index "player_worms", ["worm_id"], name: "index_player_worms_on_worm_id"
 
   create_table "players", force: :cascade do |t|
     t.integer  "user_id"

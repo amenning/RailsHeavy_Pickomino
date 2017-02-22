@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game state:</strong>
+  <%= @frozen_dice_status.game_state %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @frozen_dice_status.total %>
+</p>
+
+<p>
+  <strong>Has worm:</strong>
+  <%= @frozen_dice_status.has_worm %>
+</p>
+
+<%= link_to 'Edit', edit_frozen_dice_status_path(@frozen_dice_status) %> |
+<%= link_to 'Back', frozen_dice_statuses_path %>

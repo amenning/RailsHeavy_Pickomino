@@ -1,0 +1,1 @@
+json.partial! "frozen_dice_statuses/frozen_dice_status", frozen_dice_status: @frozen_dice_status

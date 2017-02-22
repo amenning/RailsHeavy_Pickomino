@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Frozen Dice Sets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game state</th>
+      <th>Dice</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @frozen_dice_sets.each do |frozen_dice_set| %>
+      <tr>
+        <td><%= frozen_dice_set.game_state %></td>
+        <td><%= frozen_dice_set.dice %></td>
+        <td><%= link_to 'Show', frozen_dice_set %></td>
+        <td><%= link_to 'Edit', edit_frozen_dice_set_path(frozen_dice_set) %></td>
+        <td><%= link_to 'Destroy', frozen_dice_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Frozen dice set', new_frozen_dice_set_path %>

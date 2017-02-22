@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game state:</strong>
+  <%= @player_option.game_state %>
+</p>
+
+<p>
+  <strong>Can roll:</strong>
+  <%= @player_option.can_roll %>
+</p>
+
+<%= link_to 'Edit', edit_player_option_path(@player_option) %> |
+<%= link_to 'Back', player_options_path %>
