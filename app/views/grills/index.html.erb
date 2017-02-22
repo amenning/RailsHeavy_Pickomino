@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Grills</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game state</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grills.each do |grill| %>
+      <tr>
+        <td><%= grill.game_state %></td>
+        <td><%= link_to 'Show', grill %></td>
+        <td><%= link_to 'Edit', edit_grill_path(grill) %></td>
+        <td><%= link_to 'Destroy', grill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grill', new_grill_path %>

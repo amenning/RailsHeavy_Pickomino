@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :grills
+  resources :game_states
+  resources :games
+  resources :players
+  resources :users
   resources :grill_worm_tiles
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
