@@ -1,1 +1,0 @@
-json.array! @grills, partial: 'grills/grill', as: :grill

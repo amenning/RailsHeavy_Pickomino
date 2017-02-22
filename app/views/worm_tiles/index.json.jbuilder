@@ -1,1 +1,0 @@
-json.array! @worm_tiles, partial: 'worm_tiles/worm_tile', as: :worm_tile
