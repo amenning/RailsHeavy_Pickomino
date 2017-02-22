@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Grill Worms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grill</th>
+      <th>Worm</th>
+      <th>Can take</th>
+      <th>Is dead</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grill_worms.each do |grill_worm| %>
+      <tr>
+        <td><%= grill_worm.grill %></td>
+        <td><%= grill_worm.worm %></td>
+        <td><%= grill_worm.can_take %></td>
+        <td><%= grill_worm.is_dead %></td>
+        <td><%= link_to 'Show', grill_worm %></td>
+        <td><%= link_to 'Edit', edit_grill_worm_path(grill_worm) %></td>
+        <td><%= link_to 'Destroy', grill_worm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grill worm', new_grill_worm_path %>

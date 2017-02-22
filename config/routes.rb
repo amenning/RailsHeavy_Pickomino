@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :grill_worms
+  resources :dices
+  resources :worms
+  resources :images
+  resources :themes
   resources :grills
   resources :game_states
   resources :games
