@@ -14,30 +14,22 @@
 ActiveRecord::Schema.define(version: 20170222015019) do
 
   create_table "game_states", force: :cascade do |t|
-    t.string   "grillWorms"
-    t.string   "deadGrillWorms"
-    t.string   "activeDice"
-    t.string   "frozenDice"
-    t.string   "frozenDiceTotal"
-    t.string   "gameStatus"
-    t.string   "playerMessage"
-    t.string   "playerWorms"
-    t.string   "playerWormsTotals"
-    t.integer  "gameID"
-    t.datetime "created_at",        null: false
     t.integer  "game_id"
+    t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
   add_index "game_states", ["game_id"], name: "index_game_states_on_game_id"
 
   create_table "games", force: :cascade do |t|
-    t.integer  "player_id"
+    t.integer  "player_1_id"
+    t.integer  "player_2_id"
     t.datetime "created_at",  null: false
+    t.integer  "user_id"
     t.datetime "updated_at",  null: false
   end
 
-  add_index "games", ["player_id"], name: "index_games_on_player_id"
+  add_index "games", ["user_id"], name: "index_games_on_user_id"
 
   create_table "grill_worm_tiles", force: :cascade do |t|
     t.integer  "grill_id"
