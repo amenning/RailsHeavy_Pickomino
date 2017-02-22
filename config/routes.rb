@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :players
   resources :worm_tiles
   resources :grill_worm_tiles
   resources :grill_worm_tiles
