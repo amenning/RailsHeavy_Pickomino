@@ -18,7 +18,7 @@ class GrillWormsControllerTest < ActionController::TestCase
 
   test "should create grill_worm" do
     assert_difference('GrillWorm.count') do
-      post :create, grill_worm: { can_take: @grill_worm.can_take, grill_id: @grill_worm.grill_id, is_dead: @grill_worm.is_dead, worm_id: @grill_worm.worm_id }
+      post :create, grill_worm: { can_take: @grill_worm.can_take, is_dead: @grill_worm.is_dead, worm_id: @grill_worm.worm_id }
     end
 
     assert_redirected_to grill_worm_path(assigns(:grill_worm))
@@ -35,7 +35,7 @@ class GrillWormsControllerTest < ActionController::TestCase
   end
 
   test "should update grill_worm" do
-    patch :update, id: @grill_worm, grill_worm: { can_take: @grill_worm.can_take, grill_id: @grill_worm.grill_id, is_dead: @grill_worm.is_dead, worm_id: @grill_worm.worm_id }
+    patch :update, id: @grill_worm, grill_worm: { can_take: @grill_worm.can_take, is_dead: @grill_worm.is_dead, worm_id: @grill_worm.worm_id }
     assert_redirected_to grill_worm_path(assigns(:grill_worm))
   end
 

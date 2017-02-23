@@ -1,0 +1,29 @@
+<%= form_for(@active_dice) do |f| %>
+  <% if @active_dice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@active_dice.errors.count, "error") %> prohibited this active_dice from being saved:</h2>
+
+      <ul>
+      <% @active_dice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :active_dice_set_id %><br>
+    <%= f.text_field :active_dice_set_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dice_id %><br>
+    <%= f.text_field :dice_id %>
+  </div>
+  <div class="field">
+    <%= f.label :can_freeze %><br>
+    <%= f.number_field :can_freeze %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

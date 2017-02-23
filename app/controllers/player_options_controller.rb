@@ -69,6 +69,6 @@ class PlayerOptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_option_params
-      params.require(:player_option).permit(:game_state_id, :can_roll)
+      params.require(:player_option).permit(:game_id, :can_roll)
     end
 end

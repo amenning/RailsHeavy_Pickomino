@@ -1,0 +1,2 @@
+module ActiveDicesHelper
+end

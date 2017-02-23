@@ -1,0 +1,1 @@
+json.partial! "player_worm_sets/player_worm_set", player_worm_set: @player_worm_set

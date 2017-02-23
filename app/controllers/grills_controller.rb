@@ -69,6 +69,6 @@ class GrillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grill_params
-      params.require(:grill).permit(:game_state_id)
+      params.require(:grill).permit(:game_id)
     end
 end

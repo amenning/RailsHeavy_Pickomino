@@ -69,6 +69,6 @@ class PlayerWormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_worm_params
-      params.require(:player_worm).permit(:player_id, :game_state_id, :worm_id)
+      params.require(:player_worm).permit(:player_worm_set_id, :worm_id)
     end
 end

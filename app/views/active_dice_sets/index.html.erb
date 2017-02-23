@@ -5,9 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Game state</th>
-      <th>Dice</th>
-      <th>Can freeze</th>
+      <th>Game</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +13,7 @@
   <tbody>
     <% @active_dice_sets.each do |active_dice_set| %>
       <tr>
-        <td><%= active_dice_set.game_state %></td>
-        <td><%= active_dice_set.dice %></td>
-        <td><%= active_dice_set.can_freeze %></td>
+        <td><%= active_dice_set.game %></td>
         <td><%= link_to 'Show', active_dice_set %></td>
         <td><%= link_to 'Edit', edit_active_dice_set_path(active_dice_set) %></td>
         <td><%= link_to 'Destroy', active_dice_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>

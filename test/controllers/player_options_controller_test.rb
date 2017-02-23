@@ -18,7 +18,7 @@ class PlayerOptionsControllerTest < ActionController::TestCase
 
   test "should create player_option" do
     assert_difference('PlayerOption.count') do
-      post :create, player_option: { can_roll: @player_option.can_roll, game_state_id: @player_option.game_state_id }
+      post :create, player_option: { can_roll: @player_option.can_roll, game_id: @player_option.game_id }
     end
 
     assert_redirected_to player_option_path(assigns(:player_option))
@@ -35,7 +35,7 @@ class PlayerOptionsControllerTest < ActionController::TestCase
   end
 
   test "should update player_option" do
-    patch :update, id: @player_option, player_option: { can_roll: @player_option.can_roll, game_state_id: @player_option.game_state_id }
+    patch :update, id: @player_option, player_option: { can_roll: @player_option.can_roll, game_id: @player_option.game_id }
     assert_redirected_to player_option_path(assigns(:player_option))
   end
 

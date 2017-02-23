@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Player Worm Sets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Game</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @player_worm_sets.each do |player_worm_set| %>
+      <tr>
+        <td><%= player_worm_set.player %></td>
+        <td><%= player_worm_set.game %></td>
+        <td><%= link_to 'Show', player_worm_set %></td>
+        <td><%= link_to 'Edit', edit_player_worm_set_path(player_worm_set) %></td>
+        <td><%= link_to 'Destroy', player_worm_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player worm set', new_player_worm_set_path %>

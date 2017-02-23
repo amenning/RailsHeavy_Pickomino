@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Frozen dice set:</strong>
+  <%= @frozen_dice.frozen_dice_set %>
+</p>
+
+<p>
+  <strong>Dice:</strong>
+  <%= @frozen_dice.dice %>
+</p>
+
+<%= link_to 'Edit', edit_frozen_dice_path(@frozen_dice) %> |
+<%= link_to 'Back', frozen_dices_path %>

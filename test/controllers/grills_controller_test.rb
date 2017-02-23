@@ -18,7 +18,7 @@ class GrillsControllerTest < ActionController::TestCase
 
   test "should create grill" do
     assert_difference('Grill.count') do
-      post :create, grill: { game_state_id: @grill.game_state_id }
+      post :create, grill: { game_id: @grill.game_id }
     end
 
     assert_redirected_to grill_path(assigns(:grill))
@@ -35,7 +35,7 @@ class GrillsControllerTest < ActionController::TestCase
   end
 
   test "should update grill" do
-    patch :update, id: @grill, grill: { game_state_id: @grill.game_state_id }
+    patch :update, id: @grill, grill: { game_id: @grill.game_id }
     assert_redirected_to grill_path(assigns(:grill))
   end
 

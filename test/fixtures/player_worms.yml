@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  player_id: 
-  game_state_id: 
+  player_worm_set_id: 
   worm_id: 
 
 two:
-  player_id: 
-  game_state_id: 
+  player_worm_set_id: 
   worm_id: 

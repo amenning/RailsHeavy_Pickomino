@@ -18,7 +18,7 @@ class ActiveDiceSetsControllerTest < ActionController::TestCase
 
   test "should create active_dice_set" do
     assert_difference('ActiveDiceSet.count') do
-      post :create, active_dice_set: { can_freeze: @active_dice_set.can_freeze, dice_id: @active_dice_set.dice_id, game_state_id: @active_dice_set.game_state_id }
+      post :create, active_dice_set: { game_id: @active_dice_set.game_id }
     end
 
     assert_redirected_to active_dice_set_path(assigns(:active_dice_set))
@@ -35,7 +35,7 @@ class ActiveDiceSetsControllerTest < ActionController::TestCase
   end
 
   test "should update active_dice_set" do
-    patch :update, id: @active_dice_set, active_dice_set: { can_freeze: @active_dice_set.can_freeze, dice_id: @active_dice_set.dice_id, game_state_id: @active_dice_set.game_state_id }
+    patch :update, id: @active_dice_set, active_dice_set: { game_id: @active_dice_set.game_id }
     assert_redirected_to active_dice_set_path(assigns(:active_dice_set))
   end
 

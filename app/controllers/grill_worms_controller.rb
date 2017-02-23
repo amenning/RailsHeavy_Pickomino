@@ -69,6 +69,6 @@ class GrillWormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grill_worm_params
-      params.require(:grill_worm).permit(:grill_id, :worm_id, :can_take, :is_dead)
+      params.require(:grill_worm).permit(:worm_id, :can_take, :is_dead)
     end
 end

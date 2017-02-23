@@ -1,0 +1,2 @@
+module FrozenDicesHelper
+end

@@ -18,7 +18,7 @@ class PlayerStatusesControllerTest < ActionController::TestCase
 
   test "should create player_status" do
     assert_difference('PlayerStatus.count') do
-      post :create, player_status: { game_state_id: @player_status.game_state_id, player_id: @player_status.player_id, score: @player_status.score }
+      post :create, player_status: { game_id: @player_status.game_id, player_id: @player_status.player_id, score: @player_status.score }
     end
 
     assert_redirected_to player_status_path(assigns(:player_status))
@@ -35,7 +35,7 @@ class PlayerStatusesControllerTest < ActionController::TestCase
   end
 
   test "should update player_status" do
-    patch :update, id: @player_status, player_status: { game_state_id: @player_status.game_state_id, player_id: @player_status.player_id, score: @player_status.score }
+    patch :update, id: @player_status, player_status: { game_id: @player_status.game_id, player_id: @player_status.player_id, score: @player_status.score }
     assert_redirected_to player_status_path(assigns(:player_status))
   end
 

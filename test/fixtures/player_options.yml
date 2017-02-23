@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  game_state_id: 
+  game_id: 
   can_roll: 1
 
 two:
-  game_state_id: 
+  game_id: 
   can_roll: 1

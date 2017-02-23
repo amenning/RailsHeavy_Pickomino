@@ -18,7 +18,7 @@ class PlayerWormsControllerTest < ActionController::TestCase
 
   test "should create player_worm" do
     assert_difference('PlayerWorm.count') do
-      post :create, player_worm: { game_state_id: @player_worm.game_state_id, player_id: @player_worm.player_id, worm_id: @player_worm.worm_id }
+      post :create, player_worm: { player_worm_set_id: @player_worm.player_worm_set_id, worm_id: @player_worm.worm_id }
     end
 
     assert_redirected_to player_worm_path(assigns(:player_worm))
@@ -35,7 +35,7 @@ class PlayerWormsControllerTest < ActionController::TestCase
   end
 
   test "should update player_worm" do
-    patch :update, id: @player_worm, player_worm: { game_state_id: @player_worm.game_state_id, player_id: @player_worm.player_id, worm_id: @player_worm.worm_id }
+    patch :update, id: @player_worm, player_worm: { player_worm_set_id: @player_worm.player_worm_set_id, worm_id: @player_worm.worm_id }
     assert_redirected_to player_worm_path(assigns(:player_worm))
   end
 

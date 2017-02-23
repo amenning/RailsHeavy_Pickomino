@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Game state</th>
+      <th>Game</th>
       <th>Player</th>
       <th>Score</th>
       <th colspan="3"></th>
@@ -15,7 +15,7 @@
   <tbody>
     <% @player_statuses.each do |player_status| %>
       <tr>
-        <td><%= player_status.game_state %></td>
+        <td><%= player_status.game %></td>
         <td><%= player_status.player %></td>
         <td><%= player_status.score %></td>
         <td><%= link_to 'Show', player_status %></td>

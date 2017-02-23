@@ -18,7 +18,7 @@ class FrozenDiceStatusesControllerTest < ActionController::TestCase
 
   test "should create frozen_dice_status" do
     assert_difference('FrozenDiceStatus.count') do
-      post :create, frozen_dice_status: { game_state_id: @frozen_dice_status.game_state_id, has_worm: @frozen_dice_status.has_worm, total: @frozen_dice_status.total }
+      post :create, frozen_dice_status: { game_id: @frozen_dice_status.game_id, has_worm: @frozen_dice_status.has_worm, total: @frozen_dice_status.total }
     end
 
     assert_redirected_to frozen_dice_status_path(assigns(:frozen_dice_status))
@@ -35,7 +35,7 @@ class FrozenDiceStatusesControllerTest < ActionController::TestCase
   end
 
   test "should update frozen_dice_status" do
-    patch :update, id: @frozen_dice_status, frozen_dice_status: { game_state_id: @frozen_dice_status.game_state_id, has_worm: @frozen_dice_status.has_worm, total: @frozen_dice_status.total }
+    patch :update, id: @frozen_dice_status, frozen_dice_status: { game_id: @frozen_dice_status.game_id, has_worm: @frozen_dice_status.has_worm, total: @frozen_dice_status.total }
     assert_redirected_to frozen_dice_status_path(assigns(:frozen_dice_status))
   end
 

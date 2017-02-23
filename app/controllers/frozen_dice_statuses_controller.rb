@@ -69,6 +69,6 @@ class FrozenDiceStatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def frozen_dice_status_params
-      params.require(:frozen_dice_status).permit(:game_state_id, :total, :has_worm)
+      params.require(:frozen_dice_status).permit(:game_id, :total, :has_worm)
     end
 end

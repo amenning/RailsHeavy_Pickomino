@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
-  resources :player_statuses
   resources :player_worms
-  resources :frozen_dice_statuses
+  resources :frozen_dices
   resources :frozen_dice_sets
-  resources :active_dice_sets
-  resources :player_options
+  resources :active_dices
   resources :grill_worms
   resources :dices
   resources :worms
+  resources :player_statuses
+  resources :player_worm_sets
+  resources :frozen_dice_statuses
   resources :images
   resources :themes
+  resources :active_dice_sets
+  resources :player_options
   resources :grills
-  resources :game_states
+  resources :gamestates
+  resources :phases
   resources :games
   resources :players
   resources :users
