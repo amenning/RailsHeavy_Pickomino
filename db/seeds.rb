@@ -33,3 +33,12 @@ fourWormImage = Image.create(target: 'four worm tile', filename: 'FourWormTile.p
   Worm.create(value: x, worm_count: wormCount)
 end
 
+# Phases
+Phase.create(name: 'setup')
+Phase.create(name: 'start game')
+Phase.create(name: 'roll')
+Phase.create(name: 'freeze dice')
+Phase.create(name: 'take worm')
+Phase.create(name: 'roll or take worm')
+Phase.create(name: 'bunk')
+Phase.create(name: 'game over')
