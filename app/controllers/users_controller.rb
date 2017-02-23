@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    respond_with nil, location: nil
+    respond_to { |format| format.html { render json: nil, location: nil, status: 404 } }
   end
 
   # GET /users/new
@@ -25,15 +25,13 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |_format|
-      if @user.save
-        session[:user_id] = @user[:id]
-        session[:firstname] = @user[:firstname]
-        respond_with @user, location: nil
-      else
-        respond_with nil, location: nil
-      end
+    @user.password = user_params[:password_digest]
+    if @user.save
+      session[:user_id] = @user[:id]
+      session[:firstname] = @user[:firstname]
+      respond_to { |format| format.html { render json: @user.id, location: nil } }
+    else
+      respond_to { |format| format.html { render json: nil, location: nil } }
     end
   end
 
@@ -50,7 +48,7 @@ class UsersController < ApplicationController
 
   def logout
     reset_session
-    respond_with nil, location: nil
+    respond_to { |format| format.html { render json: nil, location: nil } }
   end
 
   def continue_game
@@ -58,7 +56,7 @@ class UsersController < ApplicationController
     if !game.nil?
       # Work some magic here
     else
-      respond_with nil, location: nil
+      respond_to { |format| format.html { render json: nil, location: nil } }
     end
   end
 
