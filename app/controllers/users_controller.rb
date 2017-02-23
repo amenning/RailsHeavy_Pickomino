@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    respond_with nil, location: nil
   end
 
   # GET /users/new
@@ -18,22 +19,46 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
+    respond_to do |_format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        session[:user_id] = @user[:id]
+        session[:firstname] = @user[:firstname]
+        respond_with @user, location: nil
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_with nil, location: nil
       end
+    end
+  end
+
+  def login
+    @user = User.find_by(username: login_params[:username]).authenticate(login_params[:password_digest])
+    if @user
+      session[:user_id] = @user[:id]
+      session[:firstname] = @user[:firstname]
+      respond_with @user.to_json, location: nil
+    else
+      respond_with nil, location: nil
+    end
+  end
+
+  def logout
+    reset_session
+    respond_with nil, location: nil
+  end
+
+  def continue_game
+    game = Game.where(continue_params).lastname
+    if !game.nil?
+      # Work some magic here
+    else
+      respond_with nil, location: nil
     end
   end
 
@@ -62,13 +87,22 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:firstname, :lastname, :username, :password_digest, :email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:firstname, :lastname, :username, :password_digest, :email)
+  end
+
+  def login_params
+    params.require(:user).permit(:username, :password_digest)
+  end
+
+  def continue_params
+    params.require(:user).permit(:user_id)
+  end
 end
