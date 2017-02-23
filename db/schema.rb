@@ -77,14 +77,17 @@ ActiveRecord::Schema.define(version: 20170223023203) do
   create_table "gamestates", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "phase_id"
+    t.integer  "player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "gamestates", ["game_id"], name: "index_gamestates_on_game_id"
   add_index "gamestates", ["phase_id"], name: "index_gamestates_on_phase_id"
+  add_index "gamestates", ["player_id"], name: "index_gamestates_on_player_id"
 
   create_table "grill_worms", force: :cascade do |t|
+    t.integer  "grill_id"
     t.integer  "worm_id"
     t.integer  "can_take"
     t.integer  "is_dead"
@@ -92,6 +95,7 @@ ActiveRecord::Schema.define(version: 20170223023203) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "grill_worms", ["grill_id"], name: "index_grill_worms_on_grill_id"
   add_index "grill_worms", ["worm_id"], name: "index_grill_worms_on_worm_id"
 
   create_table "grills", force: :cascade do |t|
