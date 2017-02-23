@@ -5,10 +5,10 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:one)
   end
 
-  test 'should get index' do
+  test 'should not get index' do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
+    assert_response 404
+    assert_nil assigns(:users)
   end
 
   test 'should get new' do

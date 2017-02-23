@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    respond_to { |format| format.html { render json: nil, location: nil, status: 404 } }
   end
 
   # GET /users/1
