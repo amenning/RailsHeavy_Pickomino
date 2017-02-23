@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def logout
     reset_session
-    respond_to { |format| format.html { render json: nil, location: nil } }
+    respond_to { |format| format.json { render json: nil, location: nil } }
   end
 
   def continue_game
