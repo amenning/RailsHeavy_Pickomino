@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user[:id]
       session[:firstname] = @user[:firstname]
-      respond_to { |format| format.json { render json: @user.id, location: nil } }
+      respond_to { |format| format.json { render json: { id: @user.id, firstname: @user.firstname }, location: nil } }
     else
       respond_to { |format| format.json { render json: nil, location: nil } }
     end
