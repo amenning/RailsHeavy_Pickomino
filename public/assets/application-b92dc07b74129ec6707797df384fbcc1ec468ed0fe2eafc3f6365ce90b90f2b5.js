@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v2.2.1
+ * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -9,7 +9,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-02-22T19:11Z
+ * Date: 2016-05-20T17:23Z
  */
 
 
@@ -66,7 +66,7 @@ var support = {};
 
 
 var
-	version = "2.2.1",
+	version = "2.2.4",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -277,6 +277,7 @@ jQuery.extend( {
 	},
 
 	isPlainObject: function( obj ) {
+		var key;
 
 		// Not plain objects:
 		// - Any object or value whose internal [[Class]] property is not "[object Object]"
@@ -286,14 +287,18 @@ jQuery.extend( {
 			return false;
 		}
 
+		// Not own constructor property must be Object
 		if ( obj.constructor &&
-				!hasOwn.call( obj.constructor.prototype, "isPrototypeOf" ) ) {
+				!hasOwn.call( obj, "constructor" ) &&
+				!hasOwn.call( obj.constructor.prototype || {}, "isPrototypeOf" ) ) {
 			return false;
 		}
 
-		// If the function hasn't returned already, we're confident that
-		// |obj| is a plain object, created by {} or constructed with new Object
-		return true;
+		// Own properties are enumerated firstly, so to speed up,
+		// if last one is own, then all properties are own
+		for ( key in obj ) {}
+
+		return key === undefined || hasOwn.call( obj, key );
 	},
 
 	isEmptyObject: function( obj ) {
@@ -5002,13 +5007,14 @@ jQuery.Event.prototype = {
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
+	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.preventDefault();
 		}
 	},
@@ -5017,7 +5023,7 @@ jQuery.Event.prototype = {
 
 		this.isPropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopPropagation();
 		}
 	},
@@ -5026,7 +5032,7 @@ jQuery.Event.prototype = {
 
 		this.isImmediatePropagationStopped = returnTrue;
 
-		if ( e ) {
+		if ( e && !this.isSimulated ) {
 			e.stopImmediatePropagation();
 		}
 
@@ -5956,19 +5962,6 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
-
-	// Support: IE11 only
-	// In IE 11 fullscreen elements inside of an iframe have
-	// 100x too small dimensions (gh-1764).
-	if ( document.msFullscreenElement && window.top !== window ) {
-
-		// Support: IE11 only
-		// Running getBoundingClientRect on a disconnected node
-		// in IE throws an error.
-		if ( elem.getClientRects().length ) {
-			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
-		}
-	}
 
 	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -7326,6 +7319,12 @@ jQuery.extend( {
 	}
 } );
 
+// Support: IE <=11 only
+// Accessing the selectedIndex property
+// forces the browser to respect setting selected
+// on the option
+// The getter ensures a default option is selected
+// when in an optgroup
 if ( !support.optSelected ) {
 	jQuery.propHooks.selected = {
 		get: function( elem ) {
@@ -7334,6 +7333,16 @@ if ( !support.optSelected ) {
 				parent.parentNode.selectedIndex;
 			}
 			return null;
+		},
+		set: function( elem ) {
+			var parent = elem.parentNode;
+			if ( parent ) {
+				parent.selectedIndex;
+
+				if ( parent.parentNode ) {
+					parent.parentNode.selectedIndex;
+				}
+			}
 		}
 	};
 }
@@ -7528,7 +7537,8 @@ jQuery.fn.extend( {
 
 
 
-var rreturn = /\r/g;
+var rreturn = /\r/g,
+	rspaces = /[\x20\t\r\n\f]+/g;
 
 jQuery.fn.extend( {
 	val: function( value ) {
@@ -7604,9 +7614,15 @@ jQuery.extend( {
 		option: {
 			get: function( elem ) {
 
-				// Support: IE<11
-				// option.value not trimmed (#14858)
-				return jQuery.trim( elem.value );
+				var val = jQuery.find.attr( elem, "value" );
+				return val != null ?
+					val :
+
+					// Support: IE10-11+
+					// option.text throws exceptions (#14686, #14858)
+					// Strip and collapse whitespace
+					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
+					jQuery.trim( jQuery.text( elem ) ).replace( rspaces, " " );
 			}
 		},
 		select: {
@@ -7659,7 +7675,7 @@ jQuery.extend( {
 				while ( i-- ) {
 					option = options[ i ];
 					if ( option.selected =
-							jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
+						jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
 					) {
 						optionSet = true;
 					}
@@ -7837,6 +7853,7 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
+	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -7844,27 +7861,10 @@ jQuery.extend( jQuery.event, {
 			{
 				type: type,
 				isSimulated: true
-
-				// Previously, `originalEvent: {}` was set here, so stopPropagation call
-				// would not be triggered on donor event, since in our own
-				// jQuery.event.stopPropagation function we had a check for existence of
-				// originalEvent.stopPropagation method, so, consequently it would be a noop.
-				//
-				// But now, this "simulate" function is used only for events
-				// for which stopPropagation() is noop, so there is no need for that anymore.
-				//
-				// For the 1.x branch though, guard for "click" and "submit"
-				// events is still used, but was moved to jQuery.event.stopPropagation function
-				// because `originalEvent` should point to the original event for the constancy
-				// with other events and for more focused logic
 			}
 		);
 
 		jQuery.event.trigger( e, null, elem );
-
-		if ( e.isDefaultPrevented() ) {
-			event.preventDefault();
-		}
 	}
 
 } );
@@ -9354,18 +9354,6 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 
 
-// Support: Safari 8+
-// In Safari 8 documents created via document.implementation.createHTMLDocument
-// collapse sibling forms: the second one becomes a child of the first one.
-// Because of that, this security measure has to be disabled in Safari 8.
-// https://bugs.webkit.org/show_bug.cgi?id=137337
-support.createHTMLDocument = ( function() {
-	var body = document.implementation.createHTMLDocument( "" ).body;
-	body.innerHTML = "<form></form><form></form>";
-	return body.childNodes.length === 2;
-} )();
-
-
 // Argument "data" should be string of html
 // context (optional): If specified, the fragment will be created in this context,
 // defaults to document
@@ -9378,12 +9366,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 		keepScripts = context;
 		context = false;
 	}
-
-	// Stop scripts or inline event handlers from being executed immediately
-	// by using document.implementation
-	context = context || ( support.createHTMLDocument ?
-		document.implementation.createHTMLDocument( "" ) :
-		document );
+	context = context || document;
 
 	var parsed = rsingleTag.exec( data ),
 		scripts = !keepScripts && [];
@@ -9465,7 +9448,7 @@ jQuery.fn.load = function( url, params, callback ) {
 		// If it fails, this function gets "jqXHR", "status", "error"
 		} ).always( callback && function( jqXHR, status ) {
 			self.each( function() {
-				callback.apply( self, response || [ jqXHR.responseText, status, jqXHR ] );
+				callback.apply( this, response || [ jqXHR.responseText, status, jqXHR ] );
 			} );
 		} );
 	}
@@ -40400,7 +40383,7 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-// Angular Rails Templates 1.0.0
+// Angular Rails Templates 1.0.2
 //
 // angular_templates.ignore_prefix: ["templates/"]
 // angular_templates.markups: ["erb", "str"]
@@ -47312,6 +47295,12 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
 angular.module('pickominoGame', ['ui.router', 'templates'])
 .config([
 	'$stateProvider',
@@ -47686,6 +47675,9 @@ angular.module('pickominoGame')
 		};
 	}
 ]);	
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
 angular.module('pickominoGame')			
 
 .directive("commonFooter", function() {
@@ -47814,6 +47806,48 @@ angular.module('pickominoGame')
 		templateUrl: "tutorial-board.html"
 	};
 });	
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
 angular.module('pickominoGame')				
 
 .factory("ActiveDiceArray", ['$filter', 'SetDiceImage', function ActiveDiceFactory($filter, SetDiceImage, $scope){
@@ -48656,11 +48690,20 @@ angular.module('pickominoGame')
 			}
 		};
 }]);
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+;
 // Angular Rails Template
 // source: app/assets/templates/common-footer.html
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("common-footer.html", "<div class='footer'>\n	<div class='container'>\n		<div class='row'>\n			<div class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>\n				<h4>Who I Am</h4>\n				<p><i>Carl Andrew Menning</i></p>\n				<p><a href='http://metakata.altervista.org/AngularPickomino/menning.html' target='_blank'>More About Me <i class='glyphicon glyphicon-arrow-right'></i></a></p>\n			</div>\n\n			<div class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>\n				<h4>Links</h4>\n				<ul class='list-unstyled'>\n					<li><a href='http://metakata.altervista.org/AngularPickomino/menning.html' target='_blank'>Home</a></li>\n					<li><a href='http://fathomless-citadel-28363.herokuapp.com/' target='_blank'>Rails-Angular-PG Example</a></li>\n					<li><a href='http://metakata.altervista.org/AngularPickomino/pickomino.php' target='_blank'>PHP-Angular-MySQL Example</a></li>	\n					<li><a href='http://catalysisclubphilly.org/' target=\"_blank\">Webmaster Example</a></li>\n					<li><a href=\"http://metakata.altervista.org/AngularPickomino/random_quotes.html\" target='_blank'>Random Quotes Generator</a></li>\n					<li><a href=\"http://metakata.altervista.org/AngularPickomino/pomodoro_timer.html\" target='_blank'>Pomodoro Timer</a></li>\n				</ul>\n			</div>\n\n			<div class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>\n				<h4>Contact Me</h4>\n				<ul class='list-unstyled'>\n					<li><i class='glyphicon glyphicon-globe'></i> Philadelphia, PA</li>\n					<li><i class=\"fa fa-github\"></i> <a href='https://github.com/metakata' target='_blank'>GitHub</a></li>\n					<li><i class=\"fa fa-linkedin\"></i> <a href='https://www.linkedin.com/pub/carl-andrew-menning/3a/417/74a' target='_blank'>LinkedIn</a></li>\n					<li><i class='glyphicon glyphicon-envelope'></i> <a href='mailto:menning23@gmail.com'>Email</a></li>\n				</ul>\n			</div>\n		</div>\n	</div>\n</div>")
+  $templateCache.put("common-footer.html", "<div class='footer'>\n	<div class='container'>\n		<div class='row'>\n			<div class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>\n				<h4>Who I Am</h4>\n				<p><i>C. Andrew Menning</i></p>\n				<p><a href='http://metakata.altervista.org/AngularPickomino/menning.html' target='_blank'>More About Me <i class='glyphicon glyphicon-arrow-right'></i></a></p>\n			</div>\n\n			<div class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>\n				<h4>Links</h4>\n				<ul class='list-unstyled'>\n					<li><a href='http://metakata.altervista.org/AngularPickomino/menning.html' target='_blank'>Home</a></li>\n					<li><a href='http://fathomless-citadel-28363.herokuapp.com/' target='_blank'>Rails-Angular-PG Example</a></li>\n					<li><a href='http://protected-fjord-30172.herokuapp.com/' target='_blank'>Symfony-Angular-PG Example</a></li>\n					<li><a href='http://catalysisclubphilly.org/' target=\"_blank\">Webmaster Example</a></li>\n					<li><a href=\"http://metakata.altervista.org/AngularPickomino/random_quotes.html\" target='_blank'>Random Quotes Generator</a></li>\n					<li><a href=\"http://metakata.altervista.org/AngularPickomino/pomodoro_timer.html\" target='_blank'>Pomodoro Timer</a></li>\n				</ul>\n			</div>\n\n			<div class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>\n				<h4>Contact Me</h4>\n				<ul class='list-unstyled'>\n					<li><i class='glyphicon glyphicon-globe'></i> New York, NY</li>\n					<li><i class=\"fa fa-github\"></i> <a href='https://github.com/metakata' target='_blank'>GitHub</a></li>\n					<li><i class=\"fa fa-linkedin\"></i> <a href='https://www.linkedin.com/pub/carl-andrew-menning/3a/417/74a' target='_blank'>LinkedIn</a></li>\n					<li><i class='glyphicon glyphicon-envelope'></i> <a href='mailto:menning23@gmail.com'>Email</a></li>\n				</ul>\n			</div>\n		</div>\n	</div>\n</div>")
 }]);
 
 // Angular Rails Template
@@ -48723,7 +48766,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/game-player-options.html
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("game-player-options.html", '<div ng-controller="PlayerOptionsController as optionsCtrl">\n	<div class = \'titles-box\'>\n		<span class = \'titles\' ng-class="{ \'redText\' : optionsCtrl.gameStatus.bunk }">\n			<span ng-hide="optionsCtrl.gameStatus.numPlayers===1 || optionsCtrl.gameStatus.gameOver">\n				Player {{optionsCtrl.gameStatus.activePlayer+1}}: \n			</span>{{optionsCtrl.messageText.info}}\n		</span>\n	</div>	\n	<div class = \'playeroptions outset\'>\n		<button class = \'buttons inset activeButtonHighlight\' ng-click="optionsCtrl.setPlayers(1)" ng-show="optionsCtrl.gameStatus.playerSetup">\n			Solo Play\n		</button>\n		<button class = \'buttons inset activeButtonHighlight\' ng-click="optionsCtrl.setPlayers(2)" ng-show="optionsCtrl.gameStatus.playerSetup">\n			Two Players\n		</button>\n		<button class = \'buttons inset\' ng-click="optionsCtrl.rollDice()" ng-class="{ \'activeButtonHighlight\' : optionsCtrl.gameStatus.roll }" ng-hide="optionsCtrl.gameStatus.playerSetup || optionsCtrl.gameStatus.bunk || optionsCtrl.gameStatus.gameOver">\n			Roll\n		</button>\n		<button class = \'buttons inset bunkButtonHighlight\' ng-show="optionsCtrl.gameStatus.bunk" ng-click="optionsCtrl.bunkPenalty()">\n			Clear Bunk\n		</button>\n		<a href="pickomino.php"><button class = \'buttons inset activeButtonHighlight\' ng-show="optionsCtrl.gameStatus.gameOver">\n			Reset\n		</button></a>\n	</div>\n</div>')
+  $templateCache.put("game-player-options.html", '<div ng-controller="PlayerOptionsController as optionsCtrl">\n	<div class = \'titles-box\'>\n		<span class = \'titles\' ng-class="{ \'redText\' : optionsCtrl.gameStatus.bunk }">\n			<span ng-hide="optionsCtrl.gameStatus.numPlayers===1 || optionsCtrl.gameStatus.gameOver">\n				Player {{optionsCtrl.gameStatus.activePlayer+1}}:\n			</span>{{optionsCtrl.messageText.info}}\n		</span>\n	</div>\n	<div class = \'playeroptions outset\'>\n		<button class = \'buttons inset activeButtonHighlight\' ng-click="optionsCtrl.setPlayers(1)" ng-show="optionsCtrl.gameStatus.playerSetup">\n			Solo Play\n		</button>\n		<button class = \'buttons inset activeButtonHighlight\' ng-click="optionsCtrl.setPlayers(2)" ng-show="optionsCtrl.gameStatus.playerSetup">\n			Two Players\n		</button>\n		<button class = \'buttons inset\' ng-click="optionsCtrl.rollDice()" ng-class="{ \'activeButtonHighlight\' : optionsCtrl.gameStatus.roll }" ng-hide="optionsCtrl.gameStatus.playerSetup || optionsCtrl.gameStatus.bunk || optionsCtrl.gameStatus.gameOver">\n			Roll\n		</button>\n		<button class = \'buttons inset bunkButtonHighlight\' ng-show="optionsCtrl.gameStatus.bunk" ng-click="optionsCtrl.bunkPenalty()">\n			Clear Bunk\n		</button>\n		<a href="/"><button class = \'buttons inset activeButtonHighlight\' ng-show="optionsCtrl.gameStatus.gameOver">\n			Reset\n		</button></a>\n	</div>\n</div>')
 }]);
 
 // Angular Rails Template
