@@ -898,9 +898,9 @@ img {
 
 /* line 266, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .cross {
-  left: -2px;
+  left: -6px;
   position: absolute;
-  top: -35px;
+  top: 10px;
   text-align: center;
   font-size: 90px;
   color: red;
