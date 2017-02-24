@@ -925,7 +925,7 @@ img {
 }
 /* line 1, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 body {
-  background-color: #fff;
+  background-color: transparent;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
