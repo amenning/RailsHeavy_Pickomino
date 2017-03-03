@@ -9,8 +9,7 @@ class FrozenDicesController < ApplicationController
 
   # GET /frozen_dices/1
   # GET /frozen_dices/1.json
-  def show
-  end
+  def show; end
 
   # GET /frozen_dices/new
   def new
@@ -18,8 +17,7 @@ class FrozenDicesController < ApplicationController
   end
 
   # GET /frozen_dices/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /frozen_dices
   # POST /frozen_dices.json
@@ -62,13 +60,14 @@ class FrozenDicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_frozen_dice
-      @frozen_dice = FrozenDice.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def frozen_dice_params
-      params.require(:frozen_dice).permit(:frozen_dice_set_id, :dice_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_frozen_dice
+    @frozen_dice = FrozenDice.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def frozen_dice_params
+    params.require(:frozen_dice).permit(:frozen_dice_set_id)
+  end
 end

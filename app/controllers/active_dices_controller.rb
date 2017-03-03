@@ -9,8 +9,7 @@ class ActiveDicesController < ApplicationController
 
   # GET /active_dices/1
   # GET /active_dices/1.json
-  def show
-  end
+  def show; end
 
   # GET /active_dices/new
   def new
@@ -18,8 +17,7 @@ class ActiveDicesController < ApplicationController
   end
 
   # GET /active_dices/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /active_dices
   # POST /active_dices.json
@@ -62,13 +60,14 @@ class ActiveDicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_active_dice
-      @active_dice = ActiveDice.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def active_dice_params
-      params.require(:active_dice).permit(:active_dice_set_id, :dice_id, :can_freeze)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_active_dice
+    @active_dice = ActiveDice.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def active_dice_params
+    params.require(:active_dice).permit(:active_dice_set_id, :can_freeze)
+  end
 end

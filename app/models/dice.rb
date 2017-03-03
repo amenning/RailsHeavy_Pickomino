@@ -1,4 +1,4 @@
 class Dice < ActiveRecord::Base
-  has_many :active_dice, dependent: :restrict_with_error
-  has_many :frozen_dice, dependent: :restrict_with_error
+  belongs_to :active_dice
+  belongs_to :frozen_dice
 end

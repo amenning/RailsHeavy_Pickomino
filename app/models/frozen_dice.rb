@@ -1,4 +1,4 @@
 class FrozenDice < ActiveRecord::Base
   belongs_to :frozen_dice_set
-  belongs_to :dice
+  has_many :dice, dependent: :restrict_with_error
 end

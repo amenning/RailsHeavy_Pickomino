@@ -2,8 +2,6 @@
 
 one:
   frozen_dice_set_id: 
-  dice_id: 
 
 two:
-  frozen_dice_set_id: 
-  dice_id: 
+  frozen_dice_set_id:

@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  active_dice_set_id: 
-  dice_id: 
+  active_dice_set_id:
   can_freeze: 1
 
 two:
-  active_dice_set_id: 
-  dice_id: 
+  active_dice_set_id:
   can_freeze: 1

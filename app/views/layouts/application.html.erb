@@ -16,7 +16,14 @@
 	<div>
 		<game-header></game-header>
 
-		<%= yield %>
+    <div ng-controller="ActiveDiceController as activeDice">
+    	<div class = 'titles-box'>
+    		<span class = 'titles'>Active Dice Set</span>
+    	</div>
+    	<div class = 'activedice inset'>
+    		<%= yield %>
+    	</div>
+    </div>
 
 		<common-footer></common-footer>
 	</div>
