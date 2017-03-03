@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :frozen_dice_sets
   resources :active_dices
   resources :grill_worms
-  resources :dices
+  resources :dices do
+    collection do
+      get 'random'
+    end
+  end
   resources :worms
   resources :player_statuses
   resources :player_worm_sets
@@ -27,7 +31,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   root to: 'application#angular'
-  
+
   resources :users, only: [:create, :show] do
     collection do
       post :login
@@ -35,10 +39,9 @@ Rails.application.routes.draw do
       post :logout
     end
     resources :games, only: [:create, :show] do
-     resources :game_states, only: [:create, :show] 
+      resources :game_states, only: [:create, :show]
     end
   end
-  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

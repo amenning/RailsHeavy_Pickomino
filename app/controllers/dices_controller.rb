@@ -9,17 +9,27 @@ class DicesController < ApplicationController
 
   # GET /dices/1
   # GET /dices/1.json
-  def show
-  end
+  def show; end
 
   # GET /dices/new
   def new
     @dice = Dice.new
   end
 
-  # GET /dices/1/edit
-  def edit
+  def random
+    @dice = Dice.new
+    respond_to do |format|
+      if @dice.createRandomDice
+        format.html { render :show, notice: 'Dice was successfully created.' }
+      else
+        @dice = Dice.all
+        format.html { render :index }
+      end
+    end
   end
+
+  # GET /dices/1/edit
+  def edit; end
 
   # POST /dices
   # POST /dices.json
@@ -62,13 +72,14 @@ class DicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dice
-      @dice = Dice.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dice_params
-      params.require(:dice).permit(:value)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dice
+    @dice = Dice.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dice_params
+    params.require(:dice).permit(:value)
+  end
 end
