@@ -16,10 +16,10 @@ class DicesController < ApplicationController
     @dice = Dice.new
   end
 
-  def random
+  def create_random
     @dice = Dice.new
     respond_to do |format|
-      if @dice.createRandomDice
+      if @dice.create_random_dice
         format.html { render :show, notice: 'Dice was successfully created.' }
       else
         @dice = Dice.all

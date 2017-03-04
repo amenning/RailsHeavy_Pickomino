@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :grill_worms
   resources :dices do
     collection do
-      get 'random'
+      get 'create_random'
     end
   end
   resources :worms
