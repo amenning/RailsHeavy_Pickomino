@@ -1,0 +1,15 @@
+defaults: &defaults
+  min_dice_value: 1
+  max_dice_value: 6
+  total_dice: 8
+  min_worm_tile: 21
+  max_worm_tile: 36
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
