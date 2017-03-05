@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   resources :grills
   resources :gamestates
   resources :phases
-  resources :games
+  resources :games do
+    collection do
+      get 'first_roll'
+    end
+  end
   resources :players
   resources :users
   resources :grill_worm_tiles

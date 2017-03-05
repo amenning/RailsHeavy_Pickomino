@@ -1,6 +1,18 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
+  def first_roll
+    @dice_set = ActiveDiceSet.new
+    number_of_active_dice = Rails.configuration.x.game_parameters['total_dice']
+    result = Roll.call(dice_set: @dice_set, number_of_active_dice: number_of_active_dice)
+    @dice_set = result.dice_set
+    respond_to do |format|
+      format.json do
+        render json: { values: GamesHelper.get_active_dice_values(@dice_set) }
+      end
+    end
+  end
+
   # GET /games
   # GET /games.json
   def index
@@ -9,8 +21,7 @@ class GamesController < ApplicationController
 
   # GET /games/1
   # GET /games/1.json
-  def show
-  end
+  def show; end
 
   # GET /games/new
   def new
@@ -18,8 +29,7 @@ class GamesController < ApplicationController
   end
 
   # GET /games/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /games
   # POST /games.json
@@ -62,13 +72,14 @@ class GamesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def game_params
-      params.require(:game).permit(:player_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def game_params
+    params.require(:game).permit(:player_id)
+  end
 end
