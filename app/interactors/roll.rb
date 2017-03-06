@@ -3,31 +3,24 @@ class Roll
 
   def call
     @context = context
-    fill_active_dice_set
+    active_dice_set = @context.active_dice_set
+    active_dice_set.save
+    associate_active_dice_with_active_dice_set
+    determine_random_dice_value_and_associate_with_an_active_dice
   end
 
-  def fill_active_dice_set
-    @dice_set = @context.active_dice_set
-    @dice_set.save
-    fill_dice_set_with_random_active_dice
-  end
-
-  def fill_dice_set_with_random_active_dice
+  def associate_active_dice_with_active_dice_set
     @context.active_dice.map do |active_dice|
-      set_active_die(active_dice)
+      active_dice.active_dice_set_id = @context.active_dice_set.id
+      active_dice.save
     end
   end
 
-  def set_active_die(active_dice)
-    active_dice.active_dice_set_id = @dice_set.id
-    active_dice.save
-    set_die_value(active_dice)
-  end
-
-  def set_die_value(active_dice)
-    dice = @context.dice.pop
-    dice.create_random_dice
-    dice.active_dice_id = active_dice.id
-    dice.save
+  def determine_random_dice_value_and_associate_with_an_active_dice
+    @context.dice.each do |dice|
+      dice.create_random_dice
+      dice.active_dice_id = @context.active_dice.pop.id
+      dice.save
+    end
   end
 end
