@@ -3,7 +3,8 @@ class Roll
 
   def call
     @number_of_active_dice = context.number_of_active_dice
-    @dice_set = context.dice_set
+    @dice_set = ActiveDiceSet.new
+    context.dice_set = @dice_set
     create_active_dice_set
   end
 

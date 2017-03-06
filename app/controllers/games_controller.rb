@@ -2,9 +2,8 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def first_roll
-    @dice_set = ActiveDiceSet.new
     number_of_active_dice = Rails.configuration.x.game_parameters['total_dice']
-    result = Roll.call(dice_set: @dice_set, number_of_active_dice: number_of_active_dice)
+    result = Roll.call(number_of_active_dice: number_of_active_dice)
     @dice_set = result.dice_set
     respond_to do |format|
       format.json do
