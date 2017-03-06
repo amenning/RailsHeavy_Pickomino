@@ -3,8 +3,12 @@ class GamesController < ApplicationController
 
   def first_roll
     number_of_active_dice = Rails.configuration.x.game_parameters['total_dice']
-    result = Roll.call(number_of_active_dice: number_of_active_dice)
-    @dice_set = result.dice_set
+    result = Roll.call(
+      active_dice_set: ActiveDiceSet.new,
+      active_dice: GamesHelper.get_array_of_active_dice_objects(number_of_active_dice),
+      dice: GamesHelper.get_array_of_dice_objects(number_of_active_dice)
+    )
+    @dice_set = result.active_dice_set
     respond_to do |format|
       format.json do
         render json: { values: GamesHelper.get_active_dice_values(@dice_set) }

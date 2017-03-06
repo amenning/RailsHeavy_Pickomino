@@ -2,34 +2,32 @@ class Roll
   include Interactor
 
   def call
-    @number_of_active_dice = context.number_of_active_dice
-    @dice_set = ActiveDiceSet.new
-    context.dice_set = @dice_set
-    create_active_dice_set
+    @context = context
+    fill_active_dice_set
   end
 
-  def create_active_dice_set
+  def fill_active_dice_set
+    @dice_set = @context.active_dice_set
     @dice_set.save
     fill_dice_set_with_random_active_dice
   end
 
   def fill_dice_set_with_random_active_dice
-    @number_of_active_dice.times do
-      create_active_die
+    @context.active_dice.map do |active_dice|
+      set_active_die(active_dice)
     end
   end
 
-  def create_active_die
-    @active_dice = ActiveDice.new
-    @active_dice.active_dice_set_id = @dice_set.id
-    @active_dice.save
-    create_die_value
+  def set_active_die(active_dice)
+    active_dice.active_dice_set_id = @dice_set.id
+    active_dice.save
+    set_die_value(active_dice)
   end
 
-  def create_die_value
-    @dice = Dice.new
-    @dice.create_random_dice
-    @dice.active_dice_id = @active_dice.id
-    @dice.save
+  def set_die_value(active_dice)
+    dice = @context.dice.pop
+    dice.create_random_dice
+    dice.active_dice_id = active_dice.id
+    dice.save
   end
 end
