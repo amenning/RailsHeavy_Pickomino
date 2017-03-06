@@ -5,8 +5,8 @@ class GamesController < ApplicationController
     number_of_active_dice = Rails.configuration.x.game_parameters['total_dice']
     result = Roll.call(
       active_dice_set: ActiveDiceSet.new,
-      active_dice: GamesHelper.get_array_of_active_dice_objects(number_of_active_dice),
-      dice: GamesHelper.get_array_of_dice_objects(number_of_active_dice)
+      active_dice_objects: GamesHelper.get_array_of_active_dice_objects(number_of_active_dice),
+      dice_objects: GamesHelper.get_array_of_dice_objects(number_of_active_dice)
     )
     @dice_set = result.active_dice_set
     respond_to do |format|
