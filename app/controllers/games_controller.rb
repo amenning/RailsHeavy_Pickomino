@@ -8,9 +8,10 @@ class GamesController < ApplicationController
       number_of_active_dice: number_of_active_dice
     )
     @dice_set = result.active_dice_set
+    dice_values = GamesHelper.get_active_dice_values(@dice_set)
     respond_to do |format|
       format.json do
-        render json: { values: GamesHelper.get_active_dice_values(@dice_set) }
+        render json: { active_dice: GamesHelper.get_active_dice_values_with_images_hash(dice_values) }
       end
     end
   end
