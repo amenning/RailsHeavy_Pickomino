@@ -13,6 +13,7 @@ class GamesController < ApplicationController
       format.json do
         render json: { active_dice: GamesHelper.get_active_dice_values_with_images_hash(dice_values) }
       end
+      format.html { render :first_roll, locals: { active_dice: GamesHelper.get_active_dice_values_with_images_hash(dice_values) } }
     end
   end
 
