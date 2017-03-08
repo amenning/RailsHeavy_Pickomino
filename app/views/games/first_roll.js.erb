@@ -1,0 +1,4 @@
+$('.testClass').bind('ajax:success', function(){
+  $('#results-form').html("<%= j (render 'results', locals: { active_dice: @active_dice }) %>");
+  $('#results-form').slideDown(350);
+});

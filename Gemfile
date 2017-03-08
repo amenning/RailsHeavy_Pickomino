@@ -18,6 +18,7 @@ gem 'angular_rails_csrf'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'interactor-rails', '~> 2.0'
+gem 'jquery-rails'
 
 ruby '2.3.1'
 

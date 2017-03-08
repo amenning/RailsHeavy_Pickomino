@@ -1,3 +1,6 @@
-<% active_dice.each do |dice| %>
+<% @active_dice.each do |dice| %>
 <p><%= image_tag(dice[:image]) %></p>
 <% end %>
+
+<%= link_to "Test", { action: :first_roll }, method: :get, remote: true, class: 'testClass' %>
+<div id="results-form" style="display:none">Results</div>
