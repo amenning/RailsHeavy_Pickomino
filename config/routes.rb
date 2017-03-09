@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :phases
   resources :games do
     collection do
+      get 'roll'
       get 'first_roll'
     end
   end

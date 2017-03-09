@@ -1,0 +1,3 @@
+$('#roll_button').bind('ajax:success', function(){
+  $('#active_dice').html("<%= j (render 'dice', locals: { active_dice: @active_dice }) %>");
+});

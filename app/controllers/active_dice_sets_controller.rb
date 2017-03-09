@@ -9,8 +9,7 @@ class ActiveDiceSetsController < ApplicationController
 
   # GET /active_dice_sets/1
   # GET /active_dice_sets/1.json
-  def show
-  end
+  def show; end
 
   # GET /active_dice_sets/new
   def new
@@ -18,8 +17,7 @@ class ActiveDiceSetsController < ApplicationController
   end
 
   # GET /active_dice_sets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /active_dice_sets
   # POST /active_dice_sets.json
@@ -62,13 +60,14 @@ class ActiveDiceSetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_active_dice_set
-      @active_dice_set = ActiveDiceSet.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def active_dice_set_params
-      params.require(:active_dice_set).permit(:game_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_active_dice_set
+    @active_dice_set = ActiveDiceSet.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def active_dice_set_params
+    params.require(:active_dice_set).permit(:game_id)
+  end
 end

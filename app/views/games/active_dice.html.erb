@@ -1,0 +1,10 @@
+<div ng-controller="ActiveDiceController as activeDice">
+  <div class = 'titles-box'>
+    <span class = 'titles'>Active Dice Set</span>
+  </div>
+  <div class = 'activedice inset' id="active_dice">
+    <%= render 'dice', locals: { active_dice: @active_dice } %>
+  </div>
+  <br/>
+  <%= link_to "Test", { action: :roll }, method: :get, remote: true, id: 'roll_button' %>
+</div>
