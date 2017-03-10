@@ -5,18 +5,18 @@ class ActiveDiceSetsControllerTest < ActionController::TestCase
     @active_dice_set = active_dice_sets(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:active_dice_sets)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create active_dice_set" do
+  test 'should create active_dice_set' do
     assert_difference('ActiveDiceSet.count') do
       post :create, active_dice_set: { game_id: @active_dice_set.game_id }
     end
@@ -24,26 +24,18 @@ class ActiveDiceSetsControllerTest < ActionController::TestCase
     assert_redirected_to active_dice_set_path(assigns(:active_dice_set))
   end
 
-  test "should show active_dice_set" do
+  test 'should show active_dice_set' do
     get :show, id: @active_dice_set
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @active_dice_set
     assert_response :success
   end
 
-  test "should update active_dice_set" do
+  test 'should update active_dice_set' do
     patch :update, id: @active_dice_set, active_dice_set: { game_id: @active_dice_set.game_id }
     assert_redirected_to active_dice_set_path(assigns(:active_dice_set))
-  end
-
-  test "should destroy active_dice_set" do
-    assert_difference('ActiveDiceSet.count', -1) do
-      delete :destroy, id: @active_dice_set
-    end
-
-    assert_redirected_to active_dice_sets_path
   end
 end

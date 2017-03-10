@@ -2,10 +2,10 @@
 
 one:
   value: 1
-  frozen_dice_id: 1
+  frozen_dice_id:
   active_dice_id: 1
 
 two:
-  value: 1
-  frozen_dice_id: 1
+  value: 2
+  frozen_dice_id:
   active_dice_id: 1

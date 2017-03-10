@@ -38,12 +38,4 @@ class ActiveDicesControllerTest < ActionController::TestCase
     patch :update, id: @active_dice, active_dice: { active_dice_set_id: @active_dice.active_dice_set_id, can_freeze: @active_dice.can_freeze }
     assert_redirected_to active_dice_path(assigns(:active_dice))
   end
-
-  test 'should destroy active_dice' do
-    assert_difference('ActiveDice.count', -1) do
-      delete :destroy, id: @active_dice
-    end
-
-    assert_redirected_to active_dices_path
-  end
 end
