@@ -49,7 +49,7 @@ module GamesHelper
 
   def self.call_setup_board_interactor
     number_of_active_dice = Rails.configuration.x.game_parameters['total_dice']
-    SetupBoard.call(
+    SetupActiveDice.call(
       active_dice_set: ActiveDiceSet.create,
       number_of_active_dice: number_of_active_dice
     )

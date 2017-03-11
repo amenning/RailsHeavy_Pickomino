@@ -1,4 +1,4 @@
-class SetupBoard
+class SetupActiveDice
   include Interactor
 
   def call

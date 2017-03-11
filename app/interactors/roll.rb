@@ -7,6 +7,8 @@ class Roll
     associate_random_active_dice_with_active_dice_set
   end
 
+  private
+
   def associate_random_active_dice_with_active_dice_set
     @number_of_active_dice.times do
       active_dice = @active_dice_set.active_dice.create
