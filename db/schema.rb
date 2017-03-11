@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20_170_223_023_203) do
 
   create_table 'grill_worms', force: :cascade do |t|
     t.integer  'grill_id'
-    t.integer  'worm_id'
     t.integer  'can_take'
     t.integer  'is_dead'
     t.datetime 'created_at', null: false
@@ -96,7 +95,6 @@ ActiveRecord::Schema.define(version: 20_170_223_023_203) do
   end
 
   add_index 'grill_worms', ['grill_id'], name: 'index_grill_worms_on_grill_id'
-  add_index 'grill_worms', ['worm_id'], name: 'index_grill_worms_on_worm_id'
 
   create_table 'grills', force: :cascade do |t|
     t.integer  'game_id'
@@ -156,13 +154,11 @@ ActiveRecord::Schema.define(version: 20_170_223_023_203) do
 
   create_table 'player_worms', force: :cascade do |t|
     t.integer  'player_worm_set_id'
-    t.integer  'worm_id'
     t.datetime 'created_at',         null: false
     t.datetime 'updated_at',         null: false
   end
 
   add_index 'player_worms', ['player_worm_set_id'], name: 'index_player_worms_on_player_worm_set_id'
-  add_index 'player_worms', ['worm_id'], name: 'index_player_worms_on_worm_id'
 
   create_table 'players', force: :cascade do |t|
     t.integer  'user_id'
@@ -191,7 +187,12 @@ ActiveRecord::Schema.define(version: 20_170_223_023_203) do
   create_table 'worms', force: :cascade do |t|
     t.integer  'value'
     t.integer  'worm_count'
+    t.integer  'grill_worm_id'
+    t.integer  'player_worm_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end
+
+  add_index 'worms', ['grill_worm_id'], name: 'index_worms_on_grill_worm_id'
+  add_index 'worms', ['player_worm_id'], name: 'index_worms_on_player_worm_id'
 end

@@ -5,18 +5,18 @@ class GrillsControllerTest < ActionController::TestCase
     @grill = grills(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:grills)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create grill" do
+  test 'should create grill' do
     assert_difference('Grill.count') do
       post :create, grill: { game_id: @grill.game_id }
     end
@@ -24,26 +24,18 @@ class GrillsControllerTest < ActionController::TestCase
     assert_redirected_to grill_path(assigns(:grill))
   end
 
-  test "should show grill" do
+  test 'should show grill' do
     get :show, id: @grill
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @grill
     assert_response :success
   end
 
-  test "should update grill" do
+  test 'should update grill' do
     patch :update, id: @grill, grill: { game_id: @grill.game_id }
     assert_redirected_to grill_path(assigns(:grill))
-  end
-
-  test "should destroy grill" do
-    assert_difference('Grill.count', -1) do
-      delete :destroy, id: @grill
-    end
-
-    assert_redirected_to grills_path
   end
 end

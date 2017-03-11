@@ -36,7 +36,28 @@ five:
   theme_id: 1
 
 six:
-  target: '6 pip die face'
+  target: '6 pip die face, 4 worm tile'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+seven:
+  target: '1 worm tile'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+eight:
+  target: '2 worm tile'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+nine:
+  target: '3 worm tile'
   filename: MyString
   filetype: MyString
   description: MyString

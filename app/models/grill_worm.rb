@@ -1,4 +1,4 @@
 class GrillWorm < ActiveRecord::Base
-  belongs_to :worm
+  has_many :worm, dependent: :restrict_with_error
   belongs_to :grill
 end

@@ -1,3 +1,3 @@
 <% @active_dice.each do |dice| %>
-<%= image_tag dice[:image], class: (dice[:canFreeze] ? 'activeHighlight' : 'inactiveHighlight') %>
+  <%= image_tag dice[:image], class: (dice[:canFreeze] ? 'activeHighlight' : 'inactiveHighlight') %>
 <% end %>

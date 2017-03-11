@@ -1,6 +1,9 @@
-<div class = 'titles-box'>
-	<span class = 'titles'>Worms on the Grill</span>
-</div>
-<div class = 'worms inset' id="grill_worms">
-	<%= render 'dice', locals: { active_dice: @active_dice } %>
-</div>
+<% @grill_worms.each do |worm| %>
+  <%= content_tag :div, 'worm', class: ('worm inset ' + ( worm[:canTake] ? ' activeHighlight ' : '' ) + ( worm[:isDead] ? ' dead ' : '' ) ) do %>
+    <% @worm = worm %>
+    <%= render 'worm', locals: { worm: @worm } %>
+    <% if worm[:isDead] %>
+      <span class="cross">x</span>
+    <% end %>
+  <% end %>
+<% end %>

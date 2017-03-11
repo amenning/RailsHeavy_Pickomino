@@ -4,6 +4,8 @@ defaults: &defaults
   total_dice: 8
   min_worm_tile: 21
   max_worm_tile: 36
+  min_worm_count: 1
+  worm_count_increment: 4
 
 development:
   <<: *defaults
