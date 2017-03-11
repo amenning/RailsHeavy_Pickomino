@@ -1,7 +1,6 @@
 <% @grill_worms.each do |worm| %>
   <%= content_tag :div, 'worm', class: ('worm inset ' + ( worm[:canTake] ? ' activeHighlight ' : '' ) + ( worm[:isDead] ? ' dead ' : '' ) ) do %>
-    <% @worm = worm %>
-    <%= render 'worm', locals: { worm: @worm } %>
+    <%= render 'worm', locals: { worm: @worm = worm } %>
     <% if worm[:isDead] %>
       <span class="cross">x</span>
     <% end %>

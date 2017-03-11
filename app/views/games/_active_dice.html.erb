@@ -2,5 +2,5 @@
   <span class = 'titles'>Active Dice</span>
 </div>
 <div class = 'activedice inset' id="active_dice">
-  <%= render 'dice', locals: { active_dice: @active_dice } %>
+  <%= render 'dice', locals: { dice: @dice = @active_dice } %>
 </div>

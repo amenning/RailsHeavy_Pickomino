@@ -2,5 +2,5 @@
 	<span class = 'titles'>Frozen Dice (Sum: 0)</span>
 </div>
 <div class = 'frozendice inset' id="frozen_dice">
-	<%= render 'dice', locals: { active_dice: @active_dice } %>
+	<%= render 'dice', locals: { dice: @dice = @frozen_dice } %>
 </div>
