@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :grills
   resources :gamestates
   resources :phases
-  resources :games do
+  resources :games, only: [:none] do
     collection do
       get 'roll'
       get 'first_roll'
