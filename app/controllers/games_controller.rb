@@ -1,15 +1,15 @@
 class GamesController < ApplicationController
-  def first_roll
+  def play
     @active_dice = GamesHelper.get_active_dice_hash(true)
     respond_to do |format|
-      format.html { render :active_dice }
+      format.html { render :game_board }
     end
   end
 
   def roll
     @active_dice = GamesHelper.get_active_dice_hash
     respond_to do |format|
-      format.js { render 'active_dice' }
+      format.js { render 'roll' }
     end
   end
 end

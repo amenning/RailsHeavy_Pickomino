@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :games, only: [:none] do
     collection do
       get 'roll'
-      get 'first_roll'
+      get 'play'
     end
   end
   resources :players
