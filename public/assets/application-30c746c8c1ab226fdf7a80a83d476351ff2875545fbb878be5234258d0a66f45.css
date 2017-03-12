@@ -570,17 +570,16 @@ body {
 img {
   height: 40px;
   width: 40px;
-  margin: 5px;
   border-radius: 8px;
 }
 
-/* line 8, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 7, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .logo_img {
   height: 90px;
   border-radius: 0px;
 }
 
-/* line 13, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 12, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .container-game {
   background: url(/assets/BackgroundImage-9ecd20ef9675363c591f29351aa96dbfb86b7fc5e963bf92c6d5bac32c5aced9.png) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -589,7 +588,7 @@ img {
   background-size: cover;
 }
 
-/* line 20, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 19, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .header {
   border: 2px solid #fff;
   border-radius: 4px;
@@ -598,13 +597,13 @@ img {
   background-color: #457f86;
 }
 
-/* line 27, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 26, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .header h2 {
   height: 30px;
   margin: auto;
 }
 
-/* line 31, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 30, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .header h2 {
   font-size: 14px;
   margin: 0 0;
@@ -613,7 +612,7 @@ img {
   text-align: center;
 }
 
-/* line 38, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 37, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .worms {
   display: flex;
   justify-content: center;
@@ -627,7 +626,7 @@ img {
   padding: 5px;
 }
 
-/* line 50, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 49, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .playerWorms {
   display: flex;
   justify-content: center;
@@ -641,19 +640,19 @@ img {
   padding: 5px;
 }
 
-/* line 62, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 61, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .twoPlayerWidth {
   width: 49%;
 }
 
-/* line 65, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 64, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .twoPlayerContainer {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-/* line 70, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 69, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .worm {
   flex: 0 0 auto;
   background: white;
@@ -668,13 +667,13 @@ img {
   text-align: center;
 }
 
-/* line 83, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 82, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .img-center {
   display: inline;
   margin: auto;
 }
 
-/* line 87, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 86, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .activedice {
   display: flex;
   justify-content: center;
@@ -687,7 +686,7 @@ img {
   min-height: 55px;
 }
 
-/* line 98, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 97, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .frozendice {
   display: flex;
   justify-content: center;
@@ -700,7 +699,7 @@ img {
   min-height: 55px;
 }
 
-/* line 109, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 108, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .dice {
   flex: 0 0 auto;
   background: white;
@@ -712,7 +711,7 @@ img {
   text-align: center;
 }
 
-/* line 119, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 118, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .playeroptions {
   display: flex;
   justify-content: center;
@@ -725,7 +724,7 @@ img {
   min-height: 55px;
 }
 
-/* line 130, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 129, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .playerNotification {
   text-align: center;
   background-color: #457f86;
@@ -735,7 +734,7 @@ img {
   font-size: 32px;
 }
 
-/* line 138, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 137, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .login {
   text-align: center;
   background-color: #457f86;
@@ -746,23 +745,23 @@ img {
   padding: 20px;
 }
 
-/* line 147, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 146, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .login input {
   color: #000000;
 }
 
-/* line 150, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 149, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .login a {
   color: #FFFFFF;
 }
 
-/* line 153, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 152, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .login .loginBtn {
   color: #FFFFFF;
   width: 200px;
 }
 
-/* line 157, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 156, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .setup {
   text-align: center;
   background-color: #457f86;
@@ -773,13 +772,13 @@ img {
   padding: 20px;
 }
 
-/* line 166, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 165, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .setup button {
   margin: 20px;
   width: 200px;
 }
 
-/* line 171, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 170, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .registration {
   text-align: center;
   background-color: #457f86;
@@ -790,19 +789,19 @@ img {
   padding: 20px;
 }
 
-/* line 180, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 179, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .registration input {
   color: #000;
 }
 
-/* line 183, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 182, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .registration input[type="submit"] {
   margin: 20px;
   width: 200px;
   color: #fff;
 }
 
-/* line 189, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 188, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .rules {
   text-align: left;
   background-color: #457f86;
@@ -813,7 +812,7 @@ img {
   padding: 20px;
 }
 
-/* line 198, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 197, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .buttons {
   flex: 0 0 auto;
   height: 35px;
@@ -823,26 +822,26 @@ img {
   border-radius: 15px;
 }
 
-/* line 206, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 205, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .foot {
   height: 150px;
   background-color: #457f86;
   border: 2px solid #fff;
 }
 
-/* line 212, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 211, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .logger {
   color: white;
   margin: 10px;
 }
 
-/* line 217, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 216, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .titles {
   color: white;
   margin: 10px;
 }
 
-/* line 221, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 220, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .titles-box {
   text-align: center;
   background-color: #457f86;
@@ -854,41 +853,42 @@ img {
   font-size: 16px;
 }
 
-/* line 232, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 231, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .outset {
   -webkit-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
 }
 
-/* line 238, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 237, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .inset {
   -webkit-box-shadow: inset 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: inset 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
   box-shadow: inset 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
 }
 
-/* line 244, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 243, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .activePlayerHighlight {
   background: #000;
 }
 
-/* line 248, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 247, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .activeHighlight {
   border: 5px solid #78FA89;
   border-radius: 10px;
 }
 
-/* line 253, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 252, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .frozenHighlight {
   border: 5px solid #78FAFE;
   border-radius: 10px;
 }
 
-/* line 258, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 257, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .inactiveHighlight {
   border: 5px solid #FFF;
-  border-radius: 10px;
+  border-radius: 15px;
+  margin: 5px;
 }
 
 /* line 263, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
@@ -900,11 +900,11 @@ img {
 
 /* line 268, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .cross {
-  left: -6px;
+  left: -4px;
   position: absolute;
-  top: 10px;
+  top: 13px;
   text-align: center;
-  font-size: 90px;
+  font-size: 100px;
   color: red;
 }
 
