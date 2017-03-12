@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def play
-    @active_dice = GamesHelper.get_active_dice_hash(true)
+    @active_dice = GamesHelper.get_new_active_dice_hash(true)
     @frozen_dice = {}
     @grill_worms = GamesHelper.get_grill_worms_hash(true)
     @player_worms = {}
@@ -10,7 +10,7 @@ class GamesController < ApplicationController
   end
 
   def roll
-    @active_dice = GamesHelper.get_active_dice_hash
+    @active_dice = GamesHelper.get_new_active_dice_hash
     # Check if bunk
     # Disable roll button
     # @player_options = { roll: false, clearnBunk: true?, message: message }
@@ -20,8 +20,9 @@ class GamesController < ApplicationController
   end
 
   def freeze_dice
+    @frozen_dice = GamesHelper.get_frozen_dice_hash_after_freeze(freeze_dice_params['value'].to_i)
     @active_dice = GamesHelper.get_active_dice_hash_after_freeze
-    @frozen_dice = GamesHelper.get_frozen_dice_hash_after_freeze
+    puts @active_dice.inspect
     # Verify dice number grouping not already frozen
     # Move dice from active set to frozen set
     # Enable worm take action
@@ -75,5 +76,12 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.js { render 'game_over' }
     end
+  end
+
+  private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def freeze_dice_params
+    params.require(:dice).permit(:value)
   end
 end

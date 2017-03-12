@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   resources :phases
   resources :games, only: [:none] do
     collection do
-      get 'roll'
       get 'play'
+      get 'roll'
+      post 'freeze_dice'
     end
   end
   resources :players

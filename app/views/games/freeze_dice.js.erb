@@ -1,0 +1,2 @@
+$('#active_dice').html("<%= j (render 'dice', locals: { dice: @dice = @active_dice }) %>");
+$('#frozen_dice').html("<%= j (render 'dice', locals: { dice: @dice = @frozen_dice }) %>");
