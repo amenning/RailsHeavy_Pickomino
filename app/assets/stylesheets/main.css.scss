@@ -54,15 +54,24 @@ body {
 .navbar a:hover {
   color: #fff;
 }
+
+.dropdown-menu {
+  min-width: 180px;
+}
+
 .nav>li>a:focus,
 .nav>li>a:hover,
-.nav .open>a, 
-.nav .open>a:focus, 
+.nav .open>a,
+.nav .open>a:focus,
 .nav .open>a:hover,
 .dropdown-menu>li>a:focus,
 .dropdown-menu>li>a:hover {
   background-color: #204d74;
   color: #fff;
+}
+
+.navbar-nav>li>.dropdown-menu {
+  padding: 10px;
 }
 
 .dropdown-menu>li>a>i{

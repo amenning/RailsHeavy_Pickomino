@@ -14,11 +14,11 @@
 	<% end %>
 
 	<div>
-		<game-header></game-header>
+		<%= render "layouts/game_header" %>
 
     <%= yield %>
 
-		<common-footer></common-footer>
+		<%= render "layouts/common_footer" %>
 	</div>
 
 	<script>
