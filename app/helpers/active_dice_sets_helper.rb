@@ -1,2 +1,0 @@
-module ActiveDiceSetsHelper
-end
