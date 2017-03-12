@@ -1,1 +1,0 @@
-json.array! @worms, partial: 'worms/worm', as: :worm

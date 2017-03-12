@@ -1,1 +1,0 @@
-json.partial! "worms/worm", worm: @worm

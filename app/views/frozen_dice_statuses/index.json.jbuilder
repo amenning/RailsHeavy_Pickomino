@@ -1,1 +1,0 @@
-json.array! @frozen_dice_statuses, partial: 'frozen_dice_statuses/frozen_dice_status', as: :frozen_dice_status

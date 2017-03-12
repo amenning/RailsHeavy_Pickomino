@@ -1,1 +1,0 @@
-json.array! @player_options, partial: 'player_options/player_option', as: :player_option

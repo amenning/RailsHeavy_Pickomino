@@ -1,1 +1,0 @@
-json.array! @active_dice_sets, partial: 'active_dice_sets/active_dice_set', as: :active_dice_set

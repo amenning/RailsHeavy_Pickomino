@@ -1,25 +1,12 @@
 Rails.application.routes.draw do
-  resources :player_worms
-  resources :frozen_dices
-  resources :frozen_dice_sets
-  resources :active_dices
-  resources :grill_worms
-  resources :dices do
-    collection do
-      get 'create_random'
-    end
-  end
-  resources :worms
-  resources :player_statuses
-  resources :player_worm_sets
-  resources :frozen_dice_statuses
-  resources :images
-  resources :themes
-  resources :active_dice_sets
-  resources :player_options
-  resources :grills
-  resources :gamestates
-  resources :phases
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
+
+  root to: 'games#play'
+
   resources :games, only: [:none] do
     collection do
       get 'play'
@@ -27,16 +14,6 @@ Rails.application.routes.draw do
       post 'freeze_dice'
     end
   end
-  resources :players
-  resources :users
-  resources :grill_worm_tiles
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  root to: 'application#angular'
 
   resources :users, only: [:create, :show] do
     collection do
@@ -44,8 +21,7 @@ Rails.application.routes.draw do
       post :continue_game
       post :logout
     end
-    resources :games, only: [:create, :show] do
-      resources :game_states, only: [:create, :show]
+    resources :games, only: [:none] do
     end
   end
 

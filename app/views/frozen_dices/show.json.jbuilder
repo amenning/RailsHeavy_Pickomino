@@ -1,1 +1,0 @@
-json.partial! "frozen_dices/frozen_dice", frozen_dice: @frozen_dice

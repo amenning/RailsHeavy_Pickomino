@@ -20,7 +20,9 @@ class GamesController < ApplicationController
   end
 
   def freeze_dice
-    @frozen_dice = GamesHelper.get_frozen_dice_hash_after_freeze(freeze_dice_params['value'].to_i)
+    @frozen_dice = GamesHelper.get_frozen_dice_hash_after_freeze(
+      freeze_dice_params['value'].to_i
+    )
     @active_dice = GamesHelper.get_active_dice_hash_after_freeze
     puts @active_dice.inspect
     # Verify dice number grouping not already frozen

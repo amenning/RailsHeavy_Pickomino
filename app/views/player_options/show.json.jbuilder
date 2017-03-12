@@ -1,1 +1,0 @@
-json.partial! "player_options/player_option", player_option: @player_option

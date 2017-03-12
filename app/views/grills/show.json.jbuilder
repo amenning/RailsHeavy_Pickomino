@@ -1,1 +1,0 @@
-json.partial! "grills/grill", grill: @grill
