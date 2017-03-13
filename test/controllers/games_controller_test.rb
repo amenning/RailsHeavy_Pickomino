@@ -1,9 +1,30 @@
 require 'test_helper'
 
 class GamesControllerTest < ActionController::TestCase
-  test 'should get board setup' do
+  test 'play action should accept html format' do
+    get :play, 'Accept' => Mime::HTML
+    assert_response :success
+    assert_equal Mime::HTML, response.content_type
+  end
+
+  test 'roll action should accept js format' do
+    get :roll, format: 'js', 'Accept' => Mime::JS
+    assert_response :success
+    assert_equal Mime::JS, response.content_type
+  end
+
+  test 'freeze_dice action should accept js format' do
+    post :freeze_dice, dice: { value: 3 }, format: 'js', 'Accept' => Mime::JS
+    assert_response :success
+    assert_equal Mime::JS, response.content_type
+  end
+
+  test 'play action should assign new gril worms and active dice' do
     get :play
     assert_response :success
+    assert_not_nil assigns(:grill_worms)
     assert_not_nil assigns(:active_dice)
+    assert_equal({}, assigns(:frozen_dice))
+    assert_equal({}, assigns(:player_worms))
   end
 end

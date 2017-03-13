@@ -24,7 +24,6 @@ class GamesController < ApplicationController
       freeze_dice_params['value'].to_i
     )
     @active_dice = GamesHelper.get_active_dice_hash_after_freeze
-    puts @active_dice.inspect
     # Verify dice number grouping not already frozen
     # Move dice from active set to frozen set
     # Enable worm take action
