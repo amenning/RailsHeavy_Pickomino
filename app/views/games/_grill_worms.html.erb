@@ -1,6 +1,6 @@
 <% @grill_worms.each do |worm| %>
   <%= content_tag :div, 'worm', class: ('worm inset ' + ( worm[:canTake] ? ' activeHighlight ' : '' ) + ( worm[:isDead] ? ' dead ' : '' ) ) do %>
-    <%= render 'worm', locals: { worm: @worm = worm } %>
+    <%= link_to (render 'worm', locals: { worm: @worm = worm }), { controller: :games, action: :take_worm, worm: {value: @worm[:value]} }, method: :post, remote: true, id: 'worm', class: 'img-center' %>
     <% if worm[:isDead] %>
       <span class="cross">x</span>
     <% end %>

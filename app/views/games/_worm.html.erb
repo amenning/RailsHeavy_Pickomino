@@ -1,2 +1,2 @@
 <%= @worm[:value] %>
-<%= link_to (image_tag @worm[:image]), { controller: :games, action: :take_worm, worm: {value: @worm[:value]} }, method: :post, remote: true, id: 'worm', class: 'img-center ' %>
+<%= image_tag @worm[:image] %>
