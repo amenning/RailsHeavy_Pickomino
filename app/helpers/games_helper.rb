@@ -14,4 +14,12 @@ module GamesHelper
   def self.get_frozen_dice_hash_after_freeze(dice_value)
     FrozenDicesHelper.get_frozen_dice_hash_after_freeze(dice_value)
   end
+
+  def self.get_player_worms_hash_after_claim(worm_value)
+    PlayerWormsHelper.get_player_worms_hash_after_claim(worm_value)
+  end
+
+  def self.get_grill_worms_hash_after_claim
+    GrillsHelper.get_grill_worms_hash # _after_claim
+  end
 end

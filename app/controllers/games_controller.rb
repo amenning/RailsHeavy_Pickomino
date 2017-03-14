@@ -3,6 +3,7 @@ class GamesController < ApplicationController
     @active_dice = GamesHelper.get_new_active_dice_hash(true)
     @frozen_dice = {}
     @grill_worms = GamesHelper.get_grill_worms_hash(true)
+    PlayerWormSet.create
     @player_worms = {}
     respond_to do |format|
       format.html { render :game_board }
@@ -37,6 +38,10 @@ class GamesController < ApplicationController
   end
 
   def take_worm
+    @player_worms = GamesHelper.get_player_worms_hash_after_claim(
+      take_worm_params['value'].to_i
+    )
+    @grill_worms = GamesHelper.get_grill_worms_hash_after_claim
     # Verify frozen dice has worm
     # Verify forzen dice total is equal to or greater
     # Move worm from grill set to player worm set
@@ -84,5 +89,9 @@ class GamesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def freeze_dice_params
     params.require(:dice).permit(:value)
+  end
+
+  def take_worm_params
+    params.require(:worm).permit(:value)
   end
 end

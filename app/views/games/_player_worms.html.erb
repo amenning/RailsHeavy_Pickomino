@@ -1,10 +1,12 @@
-<div class = 'titles-box'>
-	<span class = 'titles'>Player's Worms</span>
-</div>
-<div class = 'playerWorms inset'>
-  <% @player_worms.each do |worm| %>
-    <%= content_tag :div, 'worm', class: 'worm inset ' do %>
-      <%= render 'worm', locals: { worm: @worm = worm } %>
+<div  id = "player_worms">
+  <div class = 'titles-box'>
+  	<span class = 'titles'>Player's Worms</span>
+  </div>
+  <div class = 'playerWorms inset'>
+    <% @player_worms.each do |worm| %>
+      <%= content_tag :div, 'worm', class: 'worm inset ' do %>
+        <%= render 'worm', locals: { worm: @worm = worm } %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

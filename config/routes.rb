@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'play'
       get 'roll'
       post 'freeze_dice'
+      post 'take_worm'
     end
   end
 
