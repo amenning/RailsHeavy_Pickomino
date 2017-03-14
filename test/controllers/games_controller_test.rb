@@ -8,13 +8,13 @@ class GamesControllerTest < ActionController::TestCase
   end
 
   test 'roll action should accept js format' do
-    get :roll, format: 'js', 'Accept' => Mime::JS
+    xhr :get, :roll, format: 'js', 'Accept' => Mime::JS, remote: true
     assert_response :success
     assert_equal Mime::JS, response.content_type
   end
 
   test 'freeze_dice action should accept js format' do
-    post :freeze_dice, dice: { value: 3 }, format: 'js', 'Accept' => Mime::JS
+    xhr :post, :freeze_dice, dice: { value: 3 }, format: 'js', 'Accept' => Mime::JS, remote: true
     assert_response :success
     assert_equal Mime::JS, response.content_type
   end
