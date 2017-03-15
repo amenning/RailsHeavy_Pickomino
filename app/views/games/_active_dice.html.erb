@@ -1,6 +1,10 @@
-<div class = 'titles-box'>
-  <span class = 'titles'>Active Dice</span>
-</div>
-<div class = 'activedice inset' id="active_dice">
-  <%= render 'dice', locals: { dice: @dice = @active_dice } %>
+<div id="active_dice">
+  <div class = 'titles-box'>
+    <span class = 'titles'>Active Dice</span>
+  </div>
+  <div class = 'activedice inset'>
+    <% @active_dice.each do |dice| %>
+      <%= link_to (render 'dice', locals: { dice: @dice = dice }), { controller: :games, action: :freeze_dice, dice: {value: dice[:value]} }, method: :post, remote: true, id: 'roll_button', class: (dice[:canFreeze] ? 'activeHighlight' : 'inactiveHighlight') %>
+    <% end %>
+  </div>
 </div>

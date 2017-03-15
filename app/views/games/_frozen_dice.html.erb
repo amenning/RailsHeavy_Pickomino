@@ -3,6 +3,8 @@
   	<span class = 'titles'>Frozen Dice (Sum: <%= @frozen_dice_sum %>)</span>
   </div>
   <div class = 'frozendice inset'>
-  	<%= render 'dice', locals: { dice: @dice = @frozen_dice } %>
+    <% @frozen_dice.each do |dice| %>
+  	  <div class='inactiveHighlight'><%= render 'dice', locals: { dice: @dice = dice } %></div>
+    <% end %>
   </div>
 </div>

@@ -1,3 +1,1 @@
-<% @dice.map do |dice| %>
-  <%= link_to (image_tag dice[:image]), { controller: :games, action: :freeze_dice, dice: {value: dice[:value]} }, method: :post, remote: true, id: 'roll_button', class: (dice[:canFreeze] ? 'activeHighlight' : 'inactiveHighlight') %>
-<% end %>
+<%= image_tag @dice[:image] %>
