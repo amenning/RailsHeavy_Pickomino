@@ -41,7 +41,7 @@ class GamesController < ApplicationController
     @player_worms = GamesHelper.get_player_worms_hash_after_claim(
       take_worm_params['value'].to_i
     )
-    @grill_worms = GamesHelper.get_grill_worms_hash_after_claim
+    @grill_worms = GamesHelper.get_grill_worms_hash
     # Verify frozen dice has worm
     # Verify forzen dice total is equal to or greater
     # Move worm from grill set to player worm set
