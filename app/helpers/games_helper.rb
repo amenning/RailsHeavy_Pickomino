@@ -15,8 +15,9 @@ module GamesHelper
     FrozenDicesHelper.get_frozen_dice_hash_after_freeze(dice_value)
   end
 
-  def self.get_frozen_dice_sum_after_freeze
-    SumFrozenDice.call
+  def self.get_frozen_dice_sum
+    result = SumFrozenDice.call
+    result.frozen_dice_sum
   end
 
   def self.get_player_worms_hash_after_claim(worm_value)

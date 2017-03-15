@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   def play
     @active_dice = GamesHelper.get_new_active_dice_hash(true)
     @frozen_dice = {}
+    @frozen_dice_sum = 0
     @grill_worms = GamesHelper.get_grill_worms_hash(true)
     PlayerWormSet.create
     @player_worms = {}
@@ -25,6 +26,7 @@ class GamesController < ApplicationController
       freeze_dice_params['value'].to_i
     )
     @active_dice = GamesHelper.get_active_dice_hash_after_freeze
+    @frozen_dice_sum = GamesHelper.get_frozen_dice_sum
     # Verify dice number grouping not already frozen
     # Move dice from active set to frozen set
     # Enable worm take action

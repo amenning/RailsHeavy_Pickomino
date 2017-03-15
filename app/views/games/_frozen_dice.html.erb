@@ -1,6 +1,8 @@
-<div class = 'titles-box'>
-	<span class = 'titles'>Frozen Dice (Sum: 0)</span>
-</div>
-<div class = 'frozendice inset' id="frozen_dice">
-	<%= render 'dice', locals: { dice: @dice = @frozen_dice } %>
+<div id="frozen_dice">
+  <div class = 'titles-box'>
+  	<span class = 'titles'>Frozen Dice (Sum: <%= @frozen_dice_sum %>)</span>
+  </div>
+  <div class = 'frozendice inset'>
+  	<%= render 'dice', locals: { dice: @dice = @frozen_dice } %>
+  </div>
 </div>
