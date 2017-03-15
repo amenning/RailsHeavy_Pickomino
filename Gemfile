@@ -12,9 +12,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'angular-rails-templates'
 gem 'responders'
-gem 'angular_rails_csrf'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'interactor-rails', '~> 2.0'

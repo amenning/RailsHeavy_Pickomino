@@ -968,28 +968,28 @@ a:visited {
 }
 /* line 28, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 a:hover {
-  color: #fff;
-  background-color: #000;
+  color: #000;
+  text-decoration: none;
 }
 
-/* line 35, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
+/* line 36, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 div.field, div.actions {
   margin-bottom: 10px;
 }
 
-/* line 40, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
+/* line 41, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 #notice {
   color: green;
 }
 
-/* line 44, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
+/* line 45, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 .field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
 
-/* line 50, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
+/* line 51, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -998,7 +998,7 @@ div.field, div.actions {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-/* line 58, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
+/* line 59, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
@@ -1009,7 +1009,7 @@ div.field, div.actions {
   background-color: #c00;
   color: #fff;
 }
-/* line 69, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
+/* line 70, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/scaffolds.scss */
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
