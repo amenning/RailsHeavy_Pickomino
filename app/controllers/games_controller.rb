@@ -1,10 +1,10 @@
 class GamesController < ApplicationController
   def play
     ActiveRecord::Base.transaction do
-      @active_dice = GamesHelper.get_new_active_dice_hash(true)
+      @active_dice = GamesHelper.new_active_dice_hash(true)
       @frozen_dice = {}
       @frozen_dice_sum = 0
-      @grill_worms = GamesHelper.get_grill_worms_hash(true)
+      @grill_worms = GamesHelper.grill_worms_hash(true)
       PlayerWormSet.create
       @player_worms = {}
     end
@@ -15,7 +15,7 @@ class GamesController < ApplicationController
 
   def roll
     ActiveRecord::Base.transaction do
-      @active_dice = GamesHelper.get_new_active_dice_hash
+      @active_dice = GamesHelper.new_active_dice_hash
     end
     # Check if bunk
     # Disable roll button
@@ -27,11 +27,11 @@ class GamesController < ApplicationController
 
   def freeze_dice
     ActiveRecord::Base.transaction do
-      @frozen_dice = GamesHelper.get_frozen_dice_hash_after_freeze(
+      @frozen_dice = GamesHelper.frozen_dice_hash_after_freeze(
         freeze_dice_params['value'].to_i
       )
-      @active_dice = GamesHelper.get_active_dice_hash_after_freeze
-      @frozen_dice_sum = GamesHelper.get_frozen_dice_sum
+      @active_dice = GamesHelper.active_dice_hash_after_freeze
+      @frozen_dice_sum = GamesHelper.frozen_dice_sum
     end
     # Verify dice number grouping not already frozen
     # Move dice from active set to frozen set
@@ -47,10 +47,10 @@ class GamesController < ApplicationController
 
   def take_worm
     ActiveRecord::Base.transaction do
-      @player_worms = GamesHelper.get_player_worms_hash_after_claim(
+      @player_worms = GamesHelper.player_worms_hash_after_claim(
         take_worm_params['value'].to_i
       )
-      @grill_worms = GamesHelper.get_grill_worms_hash
+      @grill_worms = GamesHelper.grill_worms_hash
     end
     # Verify frozen dice has worm
     # Verify forzen dice total is equal to or greater
