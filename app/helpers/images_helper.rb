@@ -1,6 +1,6 @@
 module ImagesHelper
   def self.get_dice_image(dice_value)
-    @theme ||= ThemesHelper.get_theme
+    @theme ||= ThemesHelper.theme
     dice_image = @theme.image.where(
       'target LIKE ?', '%' + dice_value.to_s + ' pip die face%'
     ).take
@@ -8,7 +8,7 @@ module ImagesHelper
   end
 
   def self.get_worm_tile_image(worm_count)
-    @theme ||= ThemesHelper.get_theme
+    @theme ||= ThemesHelper.theme
     worm_image = @theme.image.where(
       'target LIKE ?', '%' + worm_count.to_s + ' worm tile%'
     ).take
