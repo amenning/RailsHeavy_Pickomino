@@ -96,7 +96,8 @@ class GamesController < ApplicationController
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def freeze_dice_params
     params.require(:dice).permit(:value)
   end

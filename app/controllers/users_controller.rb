@@ -7,14 +7,19 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user[:id]
       session[:firstname] = @user[:firstname]
-      respond_to { |format| format.json { render json: { id: @user.id, firstname: @user.firstname }, location: nil } }
+      respond_to do |format|
+        format.json do
+          render json: { id: @user.id, firstname: @user.firstname }, location: nil
+        end
+      end
     else
       respond_to { |format| format.json { render json: nil, location: nil } }
     end
   end
 
   def login
-    @user = User.find_by(username: login_params[:username]).authenticate(login_params[:password_digest])
+    @user = User.find_by(username: login_params[:username])
+      .authenticate(login_params[:password_digest])
     if @user
       session[:user_id] = @user[:id]
       session[:firstname] = @user[:firstname]
@@ -40,9 +45,11 @@ class UsersController < ApplicationController
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def user_params
-    params.require(:user).permit(:firstname, :lastname, :username, :password_digest, :email)
+    params.require(:user)
+      .permit(:firstname, :lastname, :username, :password_digest, :email)
   end
 
   def login_params
