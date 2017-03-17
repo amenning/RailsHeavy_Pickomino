@@ -1,28 +1,27 @@
 module GrillsHelper
   def self.get_grill_worms_hash(is_new_game = false)
     @is_new_game = is_new_game
-    @grill = is_new_game ? get_new_grill : Grill.last
+    @grill = is_new_game ? new_grill : Grill.last
     create_grill_worm_hash
   end
 
-  private
-
-  def self.get_new_grill
+  private_class_method def self.new_grill
     result = call_setup_grill_interactor if @is_new_game
     result.grill
   end
 
-  def self.call_setup_grill_interactor
+  private_class_method def self.call_setup_grill_interactor
+    game_parameters = Rails.configuration.x.game_parameters
     SetupGrill.call(
-      min_worm_tile: Rails.configuration.x.game_parameters['min_worm_tile'],
-      max_worm_tile: Rails.configuration.x.game_parameters['max_worm_tile'],
-      min_worm_count: Rails.configuration.x.game_parameters['min_worm_count'],
-      worm_count_increment: Rails.configuration.x.game_parameters['worm_count_increment'],
+      min_worm_tile: game_parameters['min_worm_tile'],
+      max_worm_tile: game_parameters['max_worm_tile'],
+      min_worm_count: game_parameters['min_worm_count'],
+      worm_count_increment: game_parameters['worm_count_increment'],
       grill: Grill.create
     )
   end
 
-  def self.create_grill_worm_hash
+  private_class_method def self.create_grill_worm_hash
     grill_worm_hash = Grill.select(:value, :worm_count, :can_take, :is_dead)
       .joins(grill_worm: :worm)
       .where('id' => @grill.id).map do |worm|
