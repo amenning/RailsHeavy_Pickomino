@@ -4,11 +4,11 @@ module GamesHelper
   end
 
   def self.get_new_active_dice_hash(is_new_game = false)
-    ActiveDicesHelper.get_new_active_dice_hash(is_new_game)
+    ActiveDicesHelper.new_active_dice_hash(is_new_game)
   end
 
   def self.get_active_dice_hash_after_freeze
-    ActiveDicesHelper.get_active_dice_hash_after_freeze
+    ActiveDicesHelper.active_dice_hash_after_freeze
   end
 
   def self.get_frozen_dice_hash_after_freeze(dice_value)
