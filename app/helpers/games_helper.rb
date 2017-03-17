@@ -12,7 +12,7 @@ module GamesHelper
   end
 
   def self.get_frozen_dice_hash_after_freeze(dice_value)
-    FrozenDicesHelper.get_frozen_dice_hash_after_freeze(dice_value)
+    FrozenDicesHelper.frozen_dice_hash_after_freeze(dice_value)
   end
 
   def self.get_frozen_dice_sum
