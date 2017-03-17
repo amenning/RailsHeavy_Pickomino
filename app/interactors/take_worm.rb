@@ -11,11 +11,13 @@ class TakeWorm
   private
 
   def move_worm_from_grill_to_player
-    @grill.grill_worm.all.each do |grill_worm|
-      worm = grill_worm.worm.last
-      next unless worm.value == @worm_value
-      create_new_player_worm_and_associate_with_worm(worm)
-      unassociated_grill_worm_and_destroy(grill_worm, worm)
+    ActiveRecord::Base.transaction do
+      @grill.grill_worm.all.each do |grill_worm|
+        worm = grill_worm.worm.last
+        next unless worm.value == @worm_value
+        create_new_player_worm_and_associate_with_worm(worm)
+        unassociated_grill_worm_and_destroy(grill_worm, worm)
+      end
     end
   end
 
