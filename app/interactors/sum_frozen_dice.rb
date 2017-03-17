@@ -3,12 +3,12 @@ class SumFrozenDice
 
   def call
     @frozen_dice_set = FrozenDiceSet.last
-    context.frozen_dice_sum = get_sum_of_frozen_dice
+    context.frozen_dice_sum = frozen_dice_sum
   end
 
   private
 
-  def get_sum_of_frozen_dice
+  def frozen_dice_sum
     @frozen_dice_set.frozen_dice.all.to_a.reduce(0) do |sum, frozen_dice|
       value = frozen_dice.dice.last.value.to_i
       sum + (value == 6 ? 5 : value)
