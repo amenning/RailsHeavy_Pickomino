@@ -36,18 +36,16 @@ module ActiveDicesHelper
 
   def self.create_active_dice_hash
     unless @active_dice_set.active_dice.nil?
-      ActiveRecord::Base.transaction do
-        active_dice_hash = ActiveDiceSet.select(:value, :can_freeze)
-          .joins(active_dice: :dice)
-          .where('id' => @active_dice_set.id).map do |dice|
-            {
-              value: dice.value,
-              image: ImagesHelper.get_dice_image(dice.value),
-              canFreeze: dice.can_freeze
-            }
-          end
-        active_dice_hash.compact
-      end
+      active_dice_hash = ActiveDiceSet.select(:value, :can_freeze)
+        .joins(active_dice: :dice)
+        .where('id' => @active_dice_set.id).map do |dice|
+          {
+            value: dice.value,
+            image: ImagesHelper.get_dice_image(dice.value),
+            canFreeze: dice.can_freeze
+          }
+        end
+      active_dice_hash.compact
     end
   end
 end

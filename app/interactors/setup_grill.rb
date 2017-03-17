@@ -13,12 +13,10 @@ class SetupGrill
   private
 
   def associate_worms_with_grill
-    ActiveRecord::Base.transaction do
-      (@min_worm_tile..@max_worm_tile).each do |value|
-        grill_worm = @grill.grill_worm.create(can_take: 0, is_dead: 0)
-        worm_count = get_worm_count(value)
-        grill_worm.worm.create(value: value, worm_count: worm_count)
-      end
+    (@min_worm_tile..@max_worm_tile).each do |value|
+      grill_worm = @grill.grill_worm.create(can_take: 0, is_dead: 0)
+      worm_count = get_worm_count(value)
+      grill_worm.worm.create(value: value, worm_count: worm_count)
     end
   end
 

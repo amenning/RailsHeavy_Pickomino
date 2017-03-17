@@ -27,13 +27,11 @@ class FreezeDice
   end
 
   def move_dice_from_active_to_frozen
-    ActiveRecord::Base.transaction do
-      @active_dice_set.active_dice.all.to_a.map do |active_dice|
-        dice = active_dice.dice.last
-        next unless dice.value == @dice_value
-        create_new_frozen_dice_and_associate_with_dice(dice)
-        unassociated_active_dice_and_destroy(active_dice, dice)
-      end
+    @active_dice_set.active_dice.all.to_a.map do |active_dice|
+      dice = active_dice.dice.last
+      next unless dice.value == @dice_value
+      create_new_frozen_dice_and_associate_with_dice(dice)
+      unassociated_active_dice_and_destroy(active_dice, dice)
     end
   end
 

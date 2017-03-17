@@ -10,11 +10,9 @@ class SetupActiveDice
   private
 
   def associate_worm_active_dice_with_active_dice_set
-    ActiveRecord::Base.transaction do
-      @number_of_active_dice.times do
-        active_dice = @active_dice_set.active_dice.create
-        active_dice.dice.create(value: 6)
-      end
+    @number_of_active_dice.times do
+      active_dice = @active_dice_set.active_dice.create
+      active_dice.dice.create(value: 6)
     end
   end
 end
