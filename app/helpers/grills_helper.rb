@@ -23,15 +23,16 @@ module GrillsHelper
   end
 
   def self.create_grill_worm_hash
-    grill_worm_hash = @grill.grill_worm.all.to_a.map do |grill_worm|
-      worm_count = grill_worm.worm.last.worm_count
-      {
-        value: grill_worm.worm.last.value,
-        image: ImagesHelper.get_worm_tile_image(worm_count),
-        canTake: grill_worm['can_take'] == 1 ? true : false,
-        isDead: grill_worm['is_dead'] == 1 ? true : false
-      }
-    end
+    grill_worm_hash = Grill.select(:value, :worm_count, :can_take, :is_dead)
+      .joins(grill_worm: :worm)
+      .where('id' => @grill.id).map do |worm|
+        {
+          value: worm.value,
+          image: ImagesHelper.get_worm_tile_image(worm.worm_count),
+          canTake: worm.can_take == 1 ? true : false,
+          isDead: worm.is_dead == 1 ? true : false
+        }
+      end
     grill_worm_hash.compact
   end
 end
