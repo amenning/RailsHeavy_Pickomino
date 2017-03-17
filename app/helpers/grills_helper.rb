@@ -1,5 +1,5 @@
 module GrillsHelper
-  def self.get_grill_worms_hash(is_new_game = false)
+  def self.grill_worms_hash(is_new_game = false)
     @is_new_game = is_new_game
     @grill = is_new_game ? new_grill : Grill.last
     create_grill_worm_hash

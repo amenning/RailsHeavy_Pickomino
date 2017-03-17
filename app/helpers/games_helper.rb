@@ -1,6 +1,6 @@
 module GamesHelper
   def self.grill_worms_hash(is_new_game = false)
-    GrillsHelper.get_grill_worms_hash(is_new_game)
+    GrillsHelper.grill_worms_hash(is_new_game)
   end
 
   def self.new_active_dice_hash(is_new_game = false)
@@ -21,6 +21,6 @@ module GamesHelper
   end
 
   def self.player_worms_hash_after_claim(worm_value)
-    PlayerWormsHelper.get_player_worms_hash_after_claim(worm_value)
+    PlayerWormsHelper.player_worms_hash_after_claim(worm_value)
   end
 end
