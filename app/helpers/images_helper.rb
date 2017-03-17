@@ -15,9 +15,7 @@ module ImagesHelper
     get_filename_with_filetype(worm_image)
   end
 
-  private
-
-  def self.get_filename_with_filetype(image)
+  private_class_method def self.get_filename_with_filetype(image)
     image.filename + '.' + image.filetype
   end
 end
