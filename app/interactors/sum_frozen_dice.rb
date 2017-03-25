@@ -2,7 +2,7 @@ class SumFrozenDice
   include Interactor
 
   def call
-    @frozen_dice_set = FrozenDiceSet.last
+    @frozen_dice_set = context.frozen_dice_set
     context.frozen_dice_sum = frozen_dice_sum
   end
 
