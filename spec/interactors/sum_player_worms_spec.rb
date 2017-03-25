@@ -13,7 +13,7 @@ RSpec.describe SumPlayerWorms, type: :Interactor do
 
     it 'should correctly sum dice values as given' do
       result = call_sum_player_worm_interactor
-      expect(result.player_worm_count).to eq(expected_count)
+      expect(result.player_worms_total_count).to eq(expected_count)
     end
   end
 

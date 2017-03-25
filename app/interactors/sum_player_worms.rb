@@ -3,7 +3,7 @@ class SumPlayerWorms
 
   def call
     @player_worm_values = context.player_worm_values
-    context.player_worm_count = player_worm_count
+    context.player_worms_total_count = player_worm_count
   end
 
   private

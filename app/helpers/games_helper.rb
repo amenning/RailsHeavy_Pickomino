@@ -23,4 +23,9 @@ module GamesHelper
   def self.player_worms_hash_after_claim(worm_value)
     PlayerWormsHelper.player_worms_hash_after_claim(worm_value)
   end
+
+  def self.sum_player_worms(player_worm_values)
+    result = SumPlayerWorms.call(player_worm_values: player_worm_values)
+    result.player_worms_total_count
+  end
 end

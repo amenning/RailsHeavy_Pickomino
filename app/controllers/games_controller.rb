@@ -7,6 +7,7 @@ class GamesController < ApplicationController
       @grill_worms = GamesHelper.grill_worms_hash(true)
       PlayerWormSet.create
       @player_worms = {}
+      @player_worms_total_count = 0
     end
     respond_to do |format|
       format.html { render :game_board }
@@ -53,6 +54,9 @@ class GamesController < ApplicationController
         take_worm_params['value'].to_i
       )
       @grill_worms = GamesHelper.grill_worms_hash
+      @player_worms_total_count = GamesHelper.sum_player_worms(
+        PlayerWormSet.last.all_player_worm_values
+      )
     end
     # Verify frozen dice has worm
     # Verify forzen dice total is equal to or greater
