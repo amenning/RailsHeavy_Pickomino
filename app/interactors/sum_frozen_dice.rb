@@ -9,9 +9,8 @@ class SumFrozenDice
   private
 
   def frozen_dice_sum
-    @frozen_dice_set.frozen_dice.all.to_a.reduce(0) do |sum, frozen_dice|
-      value = frozen_dice.dice.last.value.to_i
-      sum + (value == 6 ? 5 : value)
+    @frozen_dice_set.all_frozen_dice.reduce(0) do |sum, frozen_dice|
+      sum + frozen_dice.dice_value
     end
   end
 end
