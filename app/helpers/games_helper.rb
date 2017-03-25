@@ -15,8 +15,8 @@ module GamesHelper
     FrozenDicesHelper.frozen_dice_hash_after_freeze(dice_value)
   end
 
-  def self.frozen_dice_sum(frozen_dice_set)
-    result = SumFrozenDice.call(frozen_dice_set: frozen_dice_set)
+  def self.frozen_dice_sum(frozen_dice_values)
+    result = SumFrozenDice.call(frozen_dice_values: frozen_dice_values)
     result.frozen_dice_sum
   end
 

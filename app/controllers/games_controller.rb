@@ -31,7 +31,9 @@ class GamesController < ApplicationController
         freeze_dice_params['value'].to_i
       )
       @active_dice = GamesHelper.active_dice_hash_after_freeze
-      @frozen_dice_sum = GamesHelper.frozen_dice_sum(FrozenDiceSet.last)
+      @frozen_dice_sum = GamesHelper.frozen_dice_sum(
+        FrozenDiceSet.last.all_frozen_dice_values
+      )
     end
     # Verify dice number grouping not already frozen
     # Move dice from active set to frozen set
