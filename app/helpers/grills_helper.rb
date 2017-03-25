@@ -1,12 +1,11 @@
 module GrillsHelper
   def self.grill_worms_hash(is_new_game = false)
-    @is_new_game = is_new_game
     @grill = is_new_game ? new_grill : Grill.last
     create_grill_worm_hash
   end
 
   private_class_method def self.new_grill
-    result = call_setup_grill_interactor if @is_new_game
+    result = call_setup_grill_interactor
     result.grill
   end
 
