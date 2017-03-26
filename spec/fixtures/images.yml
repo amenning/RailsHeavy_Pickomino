@@ -1,0 +1,64 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  target: '1 pip die face'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+two:
+  target: '2 pip die face'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+three:
+  target: '3 pip die face'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+four:
+  target: '4 pip die face'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+five:
+  target: '5 pip die face'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+six:
+  target: '6 pip die face, 4 worm tile'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+seven:
+  target: '1 worm tile'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+eight:
+  target: '2 worm tile'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1
+
+nine:
+  target: '3 worm tile'
+  filename: MyString
+  filetype: MyString
+  description: MyString
+  theme_id: 1

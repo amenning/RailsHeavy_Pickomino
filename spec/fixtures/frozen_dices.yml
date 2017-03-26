@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  frozen_dice_set_id: 
+
+two:
+  frozen_dice_set_id:

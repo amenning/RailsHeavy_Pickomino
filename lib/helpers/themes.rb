@@ -1,6 +1,6 @@
 module Helpers
-  module Themes
-    def self.theme
+  class Themes
+    def theme
       Theme.find(1)
     end
   end

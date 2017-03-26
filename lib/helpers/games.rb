@@ -1,33 +1,31 @@
 module Helpers
-  module Games
-    def self.grill_worms_hash(is_new_game = false)
-      Helpers::Grills.grill_worms_hash(is_new_game)
+  class Games < Helpers::BaseHelper
+    def grill_worms_hash(is_new_game = false)
+      @grills_helper.grill_worms_hash(is_new_game)
     end
 
-    def self.new_active_dice_hash(is_new_game = false)
-      Helpers::ActiveDices.new_active_dice_hash(is_new_game)
+    def new_active_dice_hash(is_new_game = false)
+      @active_dices_helper.new_active_dice_hash(is_new_game)
     end
 
-    def self.active_dice_hash_after_freeze
-      Helpers::ActiveDices.active_dice_hash_after_freeze
+    def active_dice_hash_after_freeze
+      @active_dices_helper.active_dice_hash_after_freeze
     end
 
-    def self.frozen_dice_hash_after_freeze(dice_value)
-      Helpers::FrozenDices.frozen_dice_hash_after_freeze(dice_value)
+    def frozen_dice_hash_after_freeze(dice_value)
+      @frozen_dices_helper.frozen_dice_hash_after_freeze(dice_value)
     end
 
-    def self.frozen_dice_sum(frozen_dice_values)
-      result = SumFrozenDice.call(frozen_dice_values: frozen_dice_values)
-      result.frozen_dice_sum
+    def frozen_dice_sum(frozen_dice_values)
+      @frozen_dices_helper.frozen_dice_sum(frozen_dice_values)
     end
 
-    def self.player_worms_hash_after_claim(worm_value)
-      Helpers::PlayerWorms.player_worms_hash_after_claim(worm_value)
+    def player_worms_hash_after_claim(worm_value)
+      @player_worms_helper.player_worms_hash_after_claim(worm_value)
     end
 
-    def self.sum_player_worms(player_worm_values)
-      result = SumPlayerWorms.call(player_worm_values: player_worm_values)
-      result.player_worms_total_count
+    def sum_player_worms(player_worm_values)
+      @player_worms_helper.sum_player_worms(player_worm_values)
     end
   end
 end
