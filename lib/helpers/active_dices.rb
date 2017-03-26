@@ -1,5 +1,5 @@
 module Helpers
-  module ActiveDicesHelper
+  module ActiveDices
     def self.new_active_dice_hash(is_new_game = false)
       @is_new_game = is_new_game
       @active_dice_set = new_active_dice_set
@@ -40,7 +40,7 @@ module Helpers
         .where('id' => @active_dice_set.id).map do |dice|
           {
             value: dice.value,
-            image: ImagesHelper.get_dice_image(dice.value),
+            image: Helpers::Images.get_dice_image(dice.value),
             canFreeze: dice.can_freeze
           }
         end

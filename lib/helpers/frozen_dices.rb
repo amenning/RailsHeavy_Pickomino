@@ -1,5 +1,5 @@
 module Helpers
-  module FrozenDicesHelper
+  module FrozenDices
     def self.frozen_dice_hash_after_freeze(dice_value)
       @frozen_dice_set = FrozenDiceSet.last
       FreezeDice.call(dice_value: dice_value, frozen_dice_set: @frozen_dice_set)
@@ -13,7 +13,7 @@ module Helpers
         .where('id' => @frozen_dice_set.id).map do |dice|
           {
             value: dice.value,
-            image: Helpers::ImagesHelper.get_dice_image(dice.value)
+            image: Helpers::Images.get_dice_image(dice.value)
           }
         end
       frozen_dice_hash.compact

@@ -1,19 +1,19 @@
 module Helpers
-  module GamesHelper
+  module Games
     def self.grill_worms_hash(is_new_game = false)
-      Helpers::GrillsHelper.grill_worms_hash(is_new_game)
+      Helpers::Grills.grill_worms_hash(is_new_game)
     end
 
     def self.new_active_dice_hash(is_new_game = false)
-      Helpers::ActiveDicesHelper.new_active_dice_hash(is_new_game)
+      Helpers::ActiveDices.new_active_dice_hash(is_new_game)
     end
 
     def self.active_dice_hash_after_freeze
-      Helpers::ActiveDicesHelper.active_dice_hash_after_freeze
+      Helpers::ActiveDices.active_dice_hash_after_freeze
     end
 
     def self.frozen_dice_hash_after_freeze(dice_value)
-      Helpers::FrozenDicesHelper.frozen_dice_hash_after_freeze(dice_value)
+      Helpers::FrozenDices.frozen_dice_hash_after_freeze(dice_value)
     end
 
     def self.frozen_dice_sum(frozen_dice_values)
@@ -22,7 +22,7 @@ module Helpers
     end
 
     def self.player_worms_hash_after_claim(worm_value)
-      Helpers::PlayerWormsHelper.player_worms_hash_after_claim(worm_value)
+      Helpers::PlayerWorms.player_worms_hash_after_claim(worm_value)
     end
 
     def self.sum_player_worms(player_worm_values)

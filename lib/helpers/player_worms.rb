@@ -1,5 +1,5 @@
 module Helpers
-  module PlayerWormsHelper
+  module PlayerWorms
     def self.player_worms_hash_after_claim(worm_value)
       @player_worm_set = PlayerWormSet.last
       TakeWorm.call(worm_value: worm_value, player_worm_set: @player_worm_set)
@@ -11,7 +11,7 @@ module Helpers
         worm_count = player_worm.worm.last.worm_count
         {
           value: player_worm.worm.last.value,
-          image: Helpers::ImagesHelper.get_worm_tile_image(worm_count)
+          image: Helpers::Images.get_worm_tile_image(worm_count)
         }
       end
       player_worm_hash.compact

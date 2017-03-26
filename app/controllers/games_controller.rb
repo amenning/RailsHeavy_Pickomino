@@ -1,10 +1,10 @@
 class GamesController < ApplicationController
   def play
     ActiveRecord::Base.transaction do
-      @active_dice = Helpers::GamesHelper.new_active_dice_hash(true)
+      @active_dice = Helpers::Games.new_active_dice_hash(true)
       @frozen_dice = {}
       @frozen_dice_sum = 0
-      @grill_worms = Helpers::GamesHelper.grill_worms_hash(true)
+      @grill_worms = Helpers::Games.grill_worms_hash(true)
       PlayerWormSet.create
       @player_worms = {}
       @player_worms_total_count = 0
@@ -16,7 +16,7 @@ class GamesController < ApplicationController
 
   def roll
     ActiveRecord::Base.transaction do
-      @active_dice = Helpers::GamesHelper.new_active_dice_hash
+      @active_dice = Helpers::Games.new_active_dice_hash
     end
     # Check if bunk
     # Disable roll button
@@ -28,11 +28,11 @@ class GamesController < ApplicationController
 
   def freeze_dice
     ActiveRecord::Base.transaction do
-      @frozen_dice = Helpers::GamesHelper.frozen_dice_hash_after_freeze(
+      @frozen_dice = Helpers::Games.frozen_dice_hash_after_freeze(
         freeze_dice_params['value'].to_i
       )
-      @active_dice = Helpers::GamesHelper.active_dice_hash_after_freeze
-      @frozen_dice_sum = Helpers::GamesHelper.frozen_dice_sum(
+      @active_dice = Helpers::Games.active_dice_hash_after_freeze
+      @frozen_dice_sum = Helpers::Games.frozen_dice_sum(
         FrozenDiceSet.last.all_frozen_dice_values
       )
     end
@@ -50,11 +50,11 @@ class GamesController < ApplicationController
 
   def take_worm
     ActiveRecord::Base.transaction do
-      @player_worms = Helpers::GamesHelper.player_worms_hash_after_claim(
+      @player_worms = Helpers::Games.player_worms_hash_after_claim(
         take_worm_params['value'].to_i
       )
-      @grill_worms = Helpers::GamesHelper.grill_worms_hash
-      @player_worms_total_count = Helpers::GamesHelper.sum_player_worms(
+      @grill_worms = Helpers::Games.grill_worms_hash
+      @player_worms_total_count = Helpers::Games.sum_player_worms(
         PlayerWormSet.last.all_player_worm_values
       )
     end

@@ -1,5 +1,5 @@
 module Helpers
-  module ThemesHelper
+  module Themes
     def self.theme
       Theme.find(1)
     end

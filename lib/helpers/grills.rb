@@ -1,5 +1,5 @@
 module Helpers
-  module GrillsHelper
+  module Grills
     def self.grill_worms_hash(is_new_game = false)
       @grill = is_new_game ? new_grill : Grill.last
       create_grill_worm_hash
@@ -27,7 +27,7 @@ module Helpers
         .where('id' => @grill.id).map do |worm|
           {
             value: worm.value,
-            image: Helpers::ImagesHelper.get_worm_tile_image(worm.worm_count),
+            image: Helpers::Images.get_worm_tile_image(worm.worm_count),
             canTake: worm.can_take == 1 ? true : false,
             isDead: worm.is_dead == 1 ? true : false
           }
