@@ -6,6 +6,16 @@ one:
   active_dice_id: 1
 
 two:
-  value: 2
+  value: 3
   frozen_dice_id:
-  active_dice_id: 1
+  active_dice_id: 2
+
+three:
+  value: 4
+  frozen_dice_id: 3
+  active_dice_id:
+
+four:
+  value: 5
+  frozen_dice_id: 3
+  active_dice_id:

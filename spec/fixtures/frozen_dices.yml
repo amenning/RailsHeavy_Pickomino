@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  frozen_dice_set_id: 
+  id: 4
+  frozen_dice_set_id: 3
 
 two:
-  frozen_dice_set_id:
+  id: 5
+  frozen_dice_set_id: 3
