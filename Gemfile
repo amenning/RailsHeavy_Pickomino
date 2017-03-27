@@ -36,6 +36,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop'
+  gem 'factory_girl_rails'
 end
 
 group :development do
