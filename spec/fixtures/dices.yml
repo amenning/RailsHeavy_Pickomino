@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   value: 1
   frozen_dice_id:
   active_dice_id: 1
 
 two:
+  id: 2
   value: 3
   frozen_dice_id:
   active_dice_id: 2
