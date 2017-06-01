@@ -35,7 +35,7 @@ class GamesController < ApplicationController
       )
       @active_dice = @games_helper.active_dice_hash_after_freeze
       @frozen_dice_sum = @games_helper.frozen_dice_sum(
-        FrozenDiceSet.last.all_frozen_dice_values
+        FrozenDiceSet.last.all_frozen_dice_values_with_worms_converted
       )
     end
     # Verify dice number grouping not already frozen
