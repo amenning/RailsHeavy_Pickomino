@@ -3,11 +3,13 @@ module Helpers
     def new_active_dice_hash(is_new_game = false)
       @is_new_game = is_new_game
       @active_dice_set = new_active_dice_set
+      check_if_active_dice_can_be_frozen
       create_active_dice_hash
     end
 
     def active_dice_hash_after_freeze
       @active_dice_set = ActiveDiceSet.last
+      check_if_active_dice_can_be_frozen
       create_active_dice_hash
     end
 
@@ -33,6 +35,15 @@ module Helpers
         active_dice_set: ActiveDiceSet.create,
         number_of_active_dice: number_of_active_dice
       )
+    end
+
+    def check_if_active_dice_can_be_frozen
+      frozen_dice_values = FrozenDiceSet.last.all_raw_frozen_dice_values
+      ActiveDiceSet.last.active_dice.map do |active_dice|
+        already_frozen = frozen_dice_values.include? active_dice.dice.last.value
+        active_dice.can_freeze = !already_frozen
+        active_dice.save
+      end
     end
 
     def create_active_dice_hash
