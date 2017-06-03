@@ -71,7 +71,7 @@
    background: white;
    height: 70px;
    width: 50px;
-   /*margin: 0 auto;*/
+   margin: 5px;
    padding: 0px 0px 0px 0px;
    border-color: #215f1e;
    border-style: solid;
@@ -250,6 +250,14 @@
   margin: 5px;
  }
 
+ .activeWormHighlight{
+  border: 5px solid #78FA89;
+  border-radius: 6px;
+  margin: 5px 2px 5px 2px;
+  width: 56px;
+  height: 76px;
+ }
+
  .frozenHighlight{
   border: 5px solid #78FAFE;
   border-radius: 10px;
@@ -260,6 +268,12 @@
   border-radius: 15px;
   margin: 5px;
  }
+
+ .inactiveWormHighlight{
+ margin: 7px 5px 7px 5px;
+ width: 50px;
+ height: 70px;
+}
 
  .dead{
   border: 5px solid #FF0000;
