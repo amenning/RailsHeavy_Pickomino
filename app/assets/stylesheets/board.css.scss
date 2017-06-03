@@ -10,11 +10,11 @@
  }
 
  .container-game {
-	background: image-url("BackgroundImage.png") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+  background: image-url("BackgroundImage.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
  }
  .header {
    border: 2px solid #fff;
@@ -59,11 +59,11 @@
    padding: 5px;
  }
  .twoPlayerWidth{
- 	width: 49%;
+   width: 49%;
  }
  .twoPlayerContainer{
- 	display: flex;
- 	justify-content: space-around;
+   display: flex;
+   justify-content: space-around;
     flex-wrap: wrap;
  }
  .worm{
@@ -144,14 +144,14 @@
    padding: 20px;
  }
  .login input{
- 	color: #000000;
+   color: #000000;
  }
  .login a{
- 	color: #FFFFFF;
+   color: #FFFFFF;
  }
  .login .loginBtn {
- 	color: #FFFFFF;
- 	width: 200px;
+   color: #FFFFFF;
+   width: 200px;
  }
  .setup{
    text-align: center;
@@ -241,7 +241,7 @@
  }
 
  .activePlayerHighlight{
-	background: #000;
+  background: #000;
  }
 
  .activeHighlight{
@@ -256,36 +256,36 @@
  }
 
   .inactiveHighlight{
-	border: 5px solid #FFF;
-	border-radius: 15px;
+  border: 5px solid #FFF;
+  border-radius: 15px;
   margin: 5px;
  }
 
  .dead{
-	border: 5px solid #FF0000;
-	border-radius: 15px;
-	position: relative;
+  border: 5px solid #FF0000;
+  border-radius: 15px;
+  position: relative;
  }
  .cross{
-  	left: -4px;
-  	position: absolute;
-  	top: 13px;
-  	text-align: center;
-  	font-size: 100px;
-  	color: red;
+    left: -4px;
+    position: absolute;
+    top: 13px;
+    text-align: center;
+    font-size: 100px;
+    color: red;
  }
 
  .redText{
- 	background-color: #770000;
- 	color: #FF0000;
+   background-color: #770000;
+   color: #FF0000;
  }
 
 .activeButtonHighlight{
-	border: 5px solid #78FA89;
-	border-radius: 15px;
+  border: 5px solid #78FA89;
+  border-radius: 15px;
  }
 
 .bunkButtonHighlight{
-	border: 5px solid #FF0000;
-	border-radius: 15px;
+  border: 5px solid #FF0000;
+  border-radius: 15px;
  }
