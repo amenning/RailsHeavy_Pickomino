@@ -26,7 +26,8 @@ module Helpers
     def create_grill_worm_hash
       grill_worm_hash = Grill.select(:value, :worm_count, :can_take, :is_dead)
         .joins(grill_worm: :worm)
-        .where('id' => @grill.id).map do |worm|
+        .where('id' => @grill.id)
+        .order('worms.value ASC').map do |worm|
           {
             value: worm.value,
             image: images_helper.get_worm_tile_image(worm.worm_count),
