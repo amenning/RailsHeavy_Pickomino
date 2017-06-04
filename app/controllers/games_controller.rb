@@ -57,14 +57,18 @@ class GamesController < ApplicationController
       @player_worms = @games_helper.player_worms_hash_after_claim(
         take_worm_params['value'].to_i
       )
-      @grill_worms = @games_helper.grill_worms_hash
       @player_worms_total_count = @games_helper.sum_player_worms(
         PlayerWormSet.last.all_player_worm_values
       )
+      @active_dice = @games_helper.new_active_dice_hash(true)
+      @frozen_dice = {}
+      FrozenDiceStatus.create(total: 0, has_worm: false)
+      @frozen_dice_sum = 0
+      @grill_worms = @games_helper.grill_worms_hash
     end
-    # Verify frozen dice has worm
-    # Verify forzen dice total is equal to or greater
-    # Move worm from grill set to player worm set
+    # Verify frozen dice has worm - Done
+    # Verify forzen dice total is equal to or greater - Done
+    # Move worm from grill set to player worm set - Done
     # Move frozen dice to active dice
     # Check for game end
     # Enable roll button
