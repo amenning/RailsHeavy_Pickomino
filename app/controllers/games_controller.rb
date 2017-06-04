@@ -5,6 +5,7 @@ class GamesController < ApplicationController
     ActiveRecord::Base.transaction do
       @active_dice = @games_helper.new_active_dice_hash(true)
       @frozen_dice = {}
+      FrozenDiceStatus.create(total: 0, has_worm: false)
       @frozen_dice_sum = 0
       @grill_worms = @games_helper.grill_worms_hash(true)
       PlayerWormSet.create
@@ -37,6 +38,7 @@ class GamesController < ApplicationController
       @frozen_dice_sum = @games_helper.frozen_dice_sum(
         FrozenDiceSet.last.all_frozen_dice_values_with_worms_converted
       )
+      @grill_worms = @games_helper.grill_worms_hash()
     end
     # Verify dice number grouping not already frozen - Done
     # Move dice from active set to frozen set - Done

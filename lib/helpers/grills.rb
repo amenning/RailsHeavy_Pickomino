@@ -2,6 +2,7 @@ module Helpers
   class Grills
     def grill_worms_hash(is_new_game = false)
       @grill = is_new_game ? new_grill : Grill.last
+      determine_which_grill_worms_can_be_taken unless is_new_game
       create_grill_worm_hash
     end
 
@@ -21,6 +22,16 @@ module Helpers
         worm_count_increment: game_parameters['worm_count_increment'],
         grill: Grill.create
       )
+    end
+
+    def determine_which_grill_worms_can_be_taken
+      frozen_dice_sum = FrozenDiceStatus.last.total
+      Grill.last.grill_worm.each do |grill_worm|
+        if grill_worm.worm.last.value <= frozen_dice_sum
+          grill_worm.can_take = true
+          grill_worm.save
+        end
+      end
     end
 
     def create_grill_worm_hash
