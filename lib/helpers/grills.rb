@@ -25,13 +25,16 @@ module Helpers
     end
 
     def determine_which_grill_worms_can_be_taken
-      return unless FrozenDiceStatus.last.has_worm
-      frozen_dice_sum = FrozenDiceStatus.last.total
+      frozen_dice_status = FrozenDiceStatus.last
+      frozen_dice_sum = frozen_dice_status.total
+      has_worm = frozen_dice_status.has_worm == 1
       Grill.last.grill_worm.each do |grill_worm|
-        if grill_worm.worm.last.value <= frozen_dice_sum
+        if has_worm && grill_worm.worm.last.value <= frozen_dice_sum
           grill_worm.can_take = true
-          grill_worm.save
+        else
+          grill_worm.can_take = false
         end
+        grill_worm.save
       end
     end
 
