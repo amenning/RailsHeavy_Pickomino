@@ -3,7 +3,7 @@ module Helpers
     def new_active_dice_hash(is_new_game = false)
       @is_new_game = is_new_game
       @active_dice_set = new_active_dice_set
-      check_if_active_dice_can_be_frozen
+      check_if_active_dice_can_be_frozen unless @is_new_game
       create_active_dice_hash
     end
 

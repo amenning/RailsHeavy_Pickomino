@@ -38,8 +38,8 @@ class GamesController < ApplicationController
         FrozenDiceSet.last.all_frozen_dice_values_with_worms_converted
       )
     end
-    # Verify dice number grouping not already frozen
-    # Move dice from active set to frozen set
+    # Verify dice number grouping not already frozen - Done
+    # Move dice from active set to frozen set - Done
     # Enable worm take action
     # Enable roll button
     # @active_dice
