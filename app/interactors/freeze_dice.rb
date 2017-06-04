@@ -7,6 +7,11 @@ class FreezeDice
     @active_dice_set = ActiveDiceSet.last
     if verify_active_dice_set_has_value && verify_frozen_dice_set_does_not_have_value
       move_dice_from_active_to_frozen
+      if @dice_value == 6
+        frozen_dice_status = FrozenDiceStatus.last
+        frozen_dice_status.has_worm = true
+        frozen_dice_status.save
+      end
     end
   end
 
