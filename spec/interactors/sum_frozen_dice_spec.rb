@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe SumFrozenDice, type: :Interactor do
   before(:each) do
     @mock_dice_set_array = mock_dice_set_array
+    create(:frozen_dice_status)
   end
 
   context 'when given valid frozen_dice_set' do

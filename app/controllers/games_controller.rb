@@ -23,7 +23,7 @@ class GamesController < ApplicationController
     end
     # Check if bunk
     # Disable roll button
-    # @player_options = { roll: false, clearnBunk: true?, message: message }
+    # @player_options = { roll: false, clearBunk: true?, message: message }
     respond_to do |format|
       format.js { render 'roll' }
     end

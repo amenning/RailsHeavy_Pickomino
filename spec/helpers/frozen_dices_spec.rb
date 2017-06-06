@@ -4,6 +4,7 @@ RSpec.describe Helpers::FrozenDices, type: :Helper do
 
   before(:each) do
     @frozen_dices_helper = Helpers::FrozenDices.new
+    create(:frozen_dice_status)
     inject_mock_images_helper
   end
 
