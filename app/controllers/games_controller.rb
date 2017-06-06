@@ -55,18 +55,21 @@ class GamesController < ApplicationController
   def take_worm
     worm_value = take_worm_params['value'].to_i
     status = FrozenDiceStatus.last
-    if status.has_worm && status.total >= worm_value
-      ActiveRecord::Base.transaction do
-        @player_worms = @games_helper.player_worms_hash_after_claim(worm_value)
-        @player_worms_total_count = @games_helper.sum_player_worms(
-          PlayerWormSet.last.all_player_worm_values
-        )
-        @active_dice = @games_helper.new_active_dice_hash(true)
-        @frozen_dice = {}
-        FrozenDiceStatus.create(total: 0, has_worm: false)
-        @frozen_dice_sum = 0
-        @grill_worms = @games_helper.grill_worms_hash
-      end
+    if !status.has_worm || status.total < worm_value
+      render nothing: true, status: 204
+      return
+    end
+
+    ActiveRecord::Base.transaction do
+      @player_worms = @games_helper.player_worms_hash_after_claim(worm_value)
+      @player_worms_total_count = @games_helper.sum_player_worms(
+        PlayerWormSet.last.all_player_worm_values
+      )
+      @active_dice = @games_helper.new_active_dice_hash(true)
+      @frozen_dice = {}
+      FrozenDiceStatus.create(total: 0, has_worm: false)
+      @frozen_dice_sum = 0
+      @grill_worms = @games_helper.grill_worms_hash
     end
     # Verify frozen dice has worm - Done
     # Verify forzen dice total is equal to or greater - Done
