@@ -9,10 +9,11 @@ module Helpers
 
     def initialize
       @grills_helper = Helpers::Grills.new
+      @player_options_helper = Helpers::PlayerOptions.new
       @active_dices_helper =  Helpers::ActiveDices.new
       @frozen_dices_helper =  Helpers::FrozenDices.new
       @player_worms_helper =  Helpers::PlayerWorms.new
-      @themes_helper =  Helpers::Themes.new
+      @themes_helper = Helpers::Themes.new
       @images_helper = Helpers::Images.new
     end
   end

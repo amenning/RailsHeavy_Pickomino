@@ -8,6 +8,7 @@ class GamesController < ApplicationController
       FrozenDiceStatus.create(total: 0, has_worm: false)
       @frozen_dice_sum = 0
       @grill_worms = @games_helper.grill_worms_hash(true)
+      @player_options = @games_helper.player_options_hash(true)
       PlayerWormSet.create
       @player_worms = {}
       @player_worms_total_count = 0
