@@ -21,6 +21,7 @@ class GamesController < ApplicationController
   def roll
     ActiveRecord::Base.transaction do
       @active_dice = @games_helper.new_active_dice_hash
+      @player_options = @games_helper.update_roll_option_state(false)
       @player_options = @games_helper.player_options_hash
     end
     # Check if bunk
@@ -37,6 +38,7 @@ class GamesController < ApplicationController
         freeze_dice_params['value'].to_i
       )
       @active_dice = @games_helper.active_dice_hash_after_freeze
+      @player_options = @games_helper.update_roll_option_state(true)
       @player_options = @games_helper.player_options_hash
       @frozen_dice_sum = @games_helper.frozen_dice_sum(
         FrozenDiceSet.last.all_frozen_dice_values_with_worms_converted

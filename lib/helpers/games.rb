@@ -8,6 +8,10 @@ module Helpers
       @player_options_helper.player_options_hash(is_new_game)
     end
 
+    def update_roll_option_state(state)
+      @player_options_helper.update_roll_option_state(state)
+    end
+
     def new_active_dice_hash(is_new_game = false)
       @active_dices_helper.new_active_dice_hash(is_new_game)
     end

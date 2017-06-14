@@ -5,6 +5,12 @@ module Helpers
       create_player_options_hash
     end
 
+    def update_roll_option_state(state)
+      player_option = PlayerOption.last
+      player_option.can_roll = state
+      player_option.save
+    end
+
     private
 
     def new_option
