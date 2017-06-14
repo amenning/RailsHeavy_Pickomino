@@ -4,12 +4,14 @@ module Helpers
       @is_new_game = is_new_game
       @active_dice_set = new_active_dice_set
       check_if_active_dice_can_be_frozen unless @is_new_game
+      update_roll_option_state(false)
       create_active_dice_hash
     end
 
     def active_dice_hash_after_freeze
       @active_dice_set = ActiveDiceSet.last
       check_if_active_dice_can_be_frozen
+      update_roll_option_state(true)
       create_active_dice_hash
     end
 
@@ -44,6 +46,12 @@ module Helpers
         active_dice.can_freeze = !already_frozen
         active_dice.save
       end
+    end
+
+    def update_roll_option_state(state)
+      player_option = PlayerOption.last
+      player_option.can_roll = state
+      player_option.save
     end
 
     def create_active_dice_hash

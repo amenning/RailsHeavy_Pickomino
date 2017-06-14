@@ -21,6 +21,7 @@ class GamesController < ApplicationController
   def roll
     ActiveRecord::Base.transaction do
       @active_dice = @games_helper.new_active_dice_hash
+      @player_options = @games_helper.player_options_hash
     end
     # Check if bunk
     # Disable roll button
