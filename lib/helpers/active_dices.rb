@@ -9,7 +9,7 @@ module Helpers
 
     def active_dice_hash_after_freeze
       @active_dice_set = ActiveDiceSet.last
-      check_if_active_dice_can_be_frozen
+      disable_all_active_dice
       create_active_dice_hash
     end
 
@@ -42,6 +42,13 @@ module Helpers
       ActiveDiceSet.last.active_dice.map do |active_dice|
         already_frozen = frozen_dice_values.include? active_dice.dice.last.value
         active_dice.can_freeze = !already_frozen
+        active_dice.save
+      end
+    end
+
+    def disable_all_active_dice
+      ActiveDiceSet.last.active_dice.map do |active_dice|
+        active_dice.can_freeze = false
         active_dice.save
       end
     end
