@@ -73,6 +73,8 @@ class GamesController < ApplicationController
       )
       @active_dice = @games_helper.new_active_dice_hash(true)
       @frozen_dice = {}
+      @player_options = @games_helper.update_roll_option_state(true)
+      @player_options = @games_helper.player_options_hash
       FrozenDiceStatus.create(total: 0, has_worm: false)
       @frozen_dice_sum = 0
       @grill_worms = @games_helper.grill_worms_hash
