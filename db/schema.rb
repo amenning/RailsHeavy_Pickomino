@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20_170_223_023_203) do
   create_table 'player_options', force: :cascade do |t|
     t.integer  'game_id'
     t.integer  'can_roll'
+    t.integer  'bunk'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end

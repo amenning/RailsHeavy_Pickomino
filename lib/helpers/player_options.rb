@@ -11,6 +11,12 @@ module Helpers
       player_option.save
     end
 
+    def check_for_bunk
+      player_option = PlayerOption.last
+      player_option.bunk = true
+      player_option.save
+    end
+
     private
 
     def new_option
@@ -18,7 +24,10 @@ module Helpers
     end
 
     def create_player_options_hash
-      { canRoll: @player_options.can_roll == 1 }
+      {
+        bunk: @player_options.bunk == 1,
+        canRoll: @player_options.can_roll == 1
+      }
     end
   end
 end
