@@ -11,16 +11,23 @@ module Helpers
       player_option.save
     end
 
-    def check_for_bunk
+    def check_for_bunk(active_dice_hash)
       player_option = PlayerOption.last
-      player_option.bunk = true
-      player_option.save
+      player_option.update(
+        bunk: !are_any_active_dice_freezable(active_dice_hash)
+      )
     end
 
     private
 
     def new_option
       PlayerOption.create(can_roll: true)
+    end
+
+    def are_any_active_dice_freezable(active_dice_hash)
+      active_dice_hash.reduce(false) do |can_freeze_one, dice|
+        can_freeze_one || (dice[:canFreeze] == 1)
+      end
     end
 
     def create_player_options_hash

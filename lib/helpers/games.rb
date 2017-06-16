@@ -12,8 +12,8 @@ module Helpers
       @player_options_helper.update_roll_option_state(state)
     end
 
-    def check_for_bunk
-      @player_options_helper.check_for_bunk
+    def check_for_bunk(active_dice_hash)
+      @player_options_helper.check_for_bunk(active_dice_hash)
     end
 
     def new_active_dice_hash(is_new_game = false)

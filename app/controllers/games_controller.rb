@@ -22,7 +22,7 @@ class GamesController < ApplicationController
     ActiveRecord::Base.transaction do
       @active_dice = @games_helper.new_active_dice_hash
       @games_helper.update_roll_option_state(false)
-      @games_helper.check_for_bunk
+      @games_helper.check_for_bunk(@active_dice)
       @player_options = @games_helper.player_options_hash
     end
     # Check if bunk
