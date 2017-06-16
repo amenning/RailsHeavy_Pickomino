@@ -1,7 +1,7 @@
 Pickomino
 ======================
 
-A Rails project 
+A Rails project
 
 This project is an implementation of Pickomino dice game using Rails and Angular
 
@@ -23,7 +23,9 @@ $>bin/bundle install
 
 $>bin/rake db:create
 
-$>bin/rake db:migrate RAILS_ENV=development
+$>bin/rake db:schema:load
+
+$>bin/rake db:seed
 
 $>bin/rails server
 
