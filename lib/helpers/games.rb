@@ -4,6 +4,10 @@ module Helpers
       @grills_helper.grill_worms_hash(is_new_game)
     end
 
+    def grill_worms_hash_with_all_inactive
+      @grills_helper.grill_worms_hash_with_all_inactive
+    end
+
     def player_options_hash(is_new_game = false)
       @player_options_helper.player_options_hash(is_new_game)
     end

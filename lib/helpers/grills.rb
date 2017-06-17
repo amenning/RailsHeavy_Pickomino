@@ -6,6 +6,12 @@ module Helpers
       create_grill_worm_hash
     end
 
+    def grill_worms_hash_with_all_inactive
+      @grill = Grill.last
+      make_all_worms_inactive
+      create_grill_worm_hash
+    end
+
     private
 
     def new_grill
@@ -30,11 +36,16 @@ module Helpers
       has_worm = frozen_dice_status.has_worm == 1
       Grill.last.grill_worm.each do |grill_worm|
         if has_worm && grill_worm.worm.last.value <= frozen_dice_sum
-          grill_worm.can_take = true
+          grill_worm.update(can_take: true)
         else
-          grill_worm.can_take = false
+          grill_worm.update(can_take: false)
         end
-        grill_worm.save
+      end
+    end
+
+    def make_all_worms_inactive
+      Grill.last.grill_worm.each do |grill_worm|
+       grill_worm.update(can_take: false)
       end
     end
 
