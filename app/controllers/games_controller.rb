@@ -23,7 +23,7 @@ class GamesController < ApplicationController
       @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
       @active_dice = @games_helper.new_active_dice_hash
       @games_helper.update_roll_option_state(false)
-      @games_helper.check_for_bunk(@active_dice)
+      @games_helper.check_for_bunk_after_roll(@active_dice)
       @player_options = @games_helper.player_options_hash
     end
     # Check if bunk
@@ -41,11 +41,17 @@ class GamesController < ApplicationController
       )
       @active_dice = @games_helper.active_dice_hash_after_freeze
       @player_options = @games_helper.update_roll_option_state(true) unless @active_dice.empty?
-      @player_options = @games_helper.player_options_hash
       @frozen_dice_sum = @games_helper.frozen_dice_sum(
         FrozenDiceSet.last.all_frozen_dice_values_with_worms_converted
       )
       @grill_worms = @games_helper.grill_worms_hash
+      @games_helper.check_for_bunk_after_dice_freeze(
+        @grill_worms,
+        @active_dice,
+        FrozenDiceSet.last.all_raw_frozen_dice_values,
+        @frozen_dice_sum
+      )
+      @player_options = @games_helper.player_options_hash
     end
     # Verify dice number grouping not already frozen - Done
     # Move dice from active set to frozen set - Done

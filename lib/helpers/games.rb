@@ -16,8 +16,22 @@ module Helpers
       @player_options_helper.update_roll_option_state(state)
     end
 
-    def check_for_bunk(active_dice_hash)
-      @player_options_helper.check_for_bunk(active_dice_hash)
+    def check_for_bunk_after_roll(active_dice)
+      @player_options_helper.check_for_bunk_after_roll(active_dice)
+    end
+
+    def check_for_bunk_after_dice_freeze(
+      grill_worms,
+      active_dice,
+      frozen_dice,
+      frozen_dice_sum
+    )
+      @player_options_helper.check_for_bunk_after_dice_freeze(
+        grill_worms,
+        active_dice,
+        frozen_dice,
+        frozen_dice_sum
+      )
     end
 
     def new_active_dice_hash(is_new_game = false)
