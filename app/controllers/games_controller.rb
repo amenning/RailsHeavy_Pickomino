@@ -102,7 +102,21 @@ class GamesController < ApplicationController
     end
   end
 
-  def bunk
+  def clear_bunk
+    ActiveRecord::Base.transaction do
+      @player_worms = @games_helper.player_worms_hash_after_bunk_clear
+      @player_worms_total_count = @games_helper.sum_player_worms(
+        PlayerWormSet.last.all_player_worm_values
+      )
+      @grill_worms = @games_helper.grill_worms_hash_after_bunk
+      @active_dice = @games_helper.new_active_dice_hash(true)
+      @frozen_dice = {}
+      @games_helper.clear_bunk_option
+      @player_options = @games_helper.update_roll_option_state(true)
+      @player_options = @games_helper.player_options_hash
+      FrozenDiceStatus.create(total: 0, has_worm: false)
+      @frozen_dice_sum = 0
+    end
     # Check if player has any worm tiles
     # If player has worm, make largest grill worm tile dead
     # Move player worm to grill set
