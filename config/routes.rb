@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
   resources :games, only: [:none] do
     collection do
+      post 'clear_bunk'
+      post 'freeze_dice'
       get 'play'
       get 'roll'
-      post 'freeze_dice'
       post 'take_worm'
     end
   end

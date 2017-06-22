@@ -4,7 +4,7 @@
   </div>
   <div class = 'playeroptions outset'>
     <% if @player_options[:bunk] %>
-      <%= link_to "Bunk", { controller: :games, action: :roll }, method: :get, remote: true, id: 'bunk_button', class: "btn btn-danger buttons inset"%>
+      <%= link_to "Bunk", { controller: :games, action: :clear_bunk }, method: :post, remote: true, id: 'bunk_button', class: "btn btn-danger buttons inset"%>
     <% elsif @player_options[:canRoll] %>
       <%= link_to "Roll", { controller: :games, action: :roll }, method: :get, remote: true, id: 'roll_button', class: "btn btn-default buttons inset activeButtonHighlight"%>
     <% else %>

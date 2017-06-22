@@ -13,9 +13,7 @@ module Helpers
 
     def check_for_bunk_after_roll(active_dice)
       player_option = PlayerOption.last
-      player_option.update(
-        bunk: !are_any_active_dice_freezable(active_dice)
-      )
+      player_option.update(bunk: !are_any_active_dice_freezable(active_dice))
     end
 
     def check_for_bunk_after_dice_freeze(
@@ -28,6 +26,11 @@ module Helpers
       return unless (frozen_dice.exclude? 6) || (grill_worms[0][:value] > frozen_dice_sum)
       player_option = PlayerOption.last
       player_option.update(bunk: true)
+    end
+
+    def clear_bunk_option
+      player_option = PlayerOption.last
+      player_option.update(bunk: false)
     end
 
     private

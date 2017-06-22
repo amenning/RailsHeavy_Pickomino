@@ -104,15 +104,16 @@ class GamesController < ApplicationController
 
   def clear_bunk
     ActiveRecord::Base.transaction do
+      ClearBunk.call(player_worm_set: PlayerWormSet.last)
       @player_worms = @games_helper.player_worms_hash_after_bunk_clear
       @player_worms_total_count = @games_helper.sum_player_worms(
         PlayerWormSet.last.all_player_worm_values
       )
-      @grill_worms = @games_helper.grill_worms_hash_after_bunk
+      @grill_worms = @games_helper.grill_worms_hash
       @active_dice = @games_helper.new_active_dice_hash(true)
       @frozen_dice = {}
       @games_helper.clear_bunk_option
-      @player_options = @games_helper.update_roll_option_state(true)
+      @games_helper.update_roll_option_state(true)
       @player_options = @games_helper.player_options_hash
       FrozenDiceStatus.create(total: 0, has_worm: false)
       @frozen_dice_sum = 0
@@ -127,7 +128,7 @@ class GamesController < ApplicationController
     # @frozen_dice
     # @player_options = { roll: true, message: message }
     respond_to do |format|
-      format.js { render 'bunk' }
+      format.js { render 'clear_bunk' }
     end
   end
 

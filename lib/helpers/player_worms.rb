@@ -11,6 +11,11 @@ module Helpers
       result.player_worms_total_count
     end
 
+    def player_worms_hash_after_bunk_clear
+      @player_worm_set = PlayerWormSet.last
+      create_player_worm_hash
+    end
+
     private
 
     def create_player_worm_hash

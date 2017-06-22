@@ -34,6 +34,10 @@ module Helpers
       )
     end
 
+    def clear_bunk_option
+      @player_options_helper.clear_bunk_option
+    end
+
     def new_active_dice_hash(is_new_game = false)
       @active_dices_helper.new_active_dice_hash(is_new_game)
     end
@@ -52,6 +56,10 @@ module Helpers
 
     def player_worms_hash_after_claim(worm_value)
       @player_worms_helper.player_worms_hash_after_claim(worm_value)
+    end
+
+    def player_worms_hash_after_bunk_clear
+      @player_worms_helper.player_worms_hash_after_bunk_clear
     end
 
     def sum_player_worms(player_worm_values)
