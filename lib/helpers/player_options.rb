@@ -36,7 +36,7 @@ module Helpers
     private
 
     def new_option
-      PlayerOption.create(can_roll: true)
+      PlayerOption.create(can_roll: true, bunk: false)
     end
 
     def are_any_active_dice_freezable(active_dice_hash)
