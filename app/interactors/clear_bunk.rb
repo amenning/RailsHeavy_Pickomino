@@ -6,8 +6,8 @@ class ClearBunk
     @grill = Grill.last
     p @bunk_player_worm
     return nil if @bunk_player_worm.nil?
-    kill_highest_value_worm_on_grill unless @grill.grill_worm.last.nil?
     move_worm_from_player_to_grill
+    kill_highest_value_worm_on_grill unless @grill.grill_worm.last.nil?
   end
 
   private
