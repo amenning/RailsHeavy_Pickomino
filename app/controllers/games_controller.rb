@@ -26,9 +26,6 @@ class GamesController < ApplicationController
       @games_helper.check_for_bunk_after_roll(@active_dice)
       @player_options = @games_helper.player_options_hash
     end
-    # Check if bunk
-    # Disable roll button
-    # @player_options = { roll: false, clearBunk: true?, message: message }
     respond_to do |format|
       format.js { render 'roll' }
     end
@@ -53,13 +50,6 @@ class GamesController < ApplicationController
       )
       @player_options = @games_helper.player_options_hash
     end
-    # Verify dice number grouping not already frozen - Done
-    # Move dice from active set to frozen set - Done
-    # Enable worm take action
-    # Enable roll button
-    # @active_dice
-    # @frozen_dice
-    # @player_options = { roll: true, message: message }
     respond_to do |format|
       format.js { render 'freeze_dice' }
     end
@@ -86,17 +76,6 @@ class GamesController < ApplicationController
       @frozen_dice_sum = 0
       @grill_worms = @games_helper.grill_worms_hash
     end
-    # Verify frozen dice has worm - Done
-    # Verify forzen dice total is equal to or greater - Done
-    # Move worm from grill set to player worm set - Done
-    # Move frozen dice to active dice
-    # Check for game end
-    # Enable roll button
-    # @grill_worms
-    # @player_worms
-    # @active_dice
-    # @frozen_dice
-    # @player_options = { roll: true, message: message }
     respond_to do |format|
       format.js { render 'take_worm' }
     end
@@ -116,17 +95,8 @@ class GamesController < ApplicationController
       @player_options = @games_helper.player_options_hash
       FrozenDiceStatus.create(total: 0, has_worm: false)
       @frozen_dice_sum = 0
-      @grill_worms = @games_helper.grill_worms_hash
+      @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
     end
-    # Check if player has any worm tiles
-    # If player has worm, make largest grill worm tile dead
-    # Move player worm to grill set
-    # Enable roll button
-    # @grill_worms
-    # @player_worms
-    # @active_dice
-    # @frozen_dice
-    # @player_options = { roll: true, message: message }
     respond_to do |format|
       format.js { render 'clear_bunk' }
     end
