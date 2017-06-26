@@ -929,11 +929,10 @@ img {
 /* line 285, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .dead {
   border: 5px solid #FF0000;
-  border-radius: 15px;
   position: relative;
 }
 
-/* line 290, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 289, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .cross {
   left: -4px;
   position: absolute;
@@ -943,13 +942,13 @@ img {
   color: red;
 }
 
-/* line 299, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 298, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .redText {
   background-color: #770000;
   color: #FF0000;
 }
 
-/* line 304, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
+/* line 303, /home/amenning/Workspace/RailsHeavy_Pickomino/app/assets/stylesheets/board.css.scss */
 .bunkButtonHighlight {
   border: 5px solid #FF0000;
   border-radius: 15px;
