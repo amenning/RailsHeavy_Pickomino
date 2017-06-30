@@ -33,10 +33,16 @@ module Helpers
       player_option.update(bunk: false)
     end
 
+    def check_for_game_end
+      return unless no_live_grill_worms_left
+      player_option = PlayerOption.last
+      player_option.update(is_game_over: true)
+    end
+
     private
 
     def new_option
-      PlayerOption.create(can_roll: true, bunk: false)
+      PlayerOption.create(can_roll: true, bunk: false, is_game_over: false)
     end
 
     def are_any_active_dice_freezable(active_dice_hash)
@@ -48,8 +54,17 @@ module Helpers
     def create_player_options_hash
       {
         bunk: @player_options.bunk == 1,
-        canRoll: @player_options.can_roll == 1
+        canRoll: @player_options.can_roll == 1,
+        isGameOver: @player_options.is_game_over == 1
       }
+    end
+
+    def no_live_grill_worms_left
+      Grill.select(:id, :is_dead)
+        .joins(:grill_worm)
+        .where('id' => Grill.last.id, 'grill_worms.is_dead' => 0)
+        .map(&:is_dead)
+        .empty?
     end
   end
 end

@@ -38,6 +38,10 @@ module Helpers
       @player_options_helper.clear_bunk_option
     end
 
+    def check_for_game_end
+      @player_options_helper.check_for_game_end
+    end
+
     def new_active_dice_hash(is_new_game = false)
       @active_dices_helper.new_active_dice_hash(is_new_game)
     end

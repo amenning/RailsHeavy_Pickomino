@@ -26,7 +26,7 @@ class ClearBunk
   def move_worm_from_player_to_grill
     bunk_worm = @bunk_player_worm.worm.last
     @bunk_value = bunk_worm.value
-    grill_worm = @grill.grill_worm.create
+    grill_worm = @grill.grill_worm.create(can_take: 0, is_dead: 0)
     bunk_worm.update(player_worm_id: nil, grill_worm_id: grill_worm.id)
     @bunk_player_worm.destroy
   end

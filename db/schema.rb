@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20_170_223_023_203) do
     t.integer  'game_id'
     t.integer  'can_roll'
     t.integer  'bunk'
+    t.integer  'is_game_over'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end
