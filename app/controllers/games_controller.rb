@@ -19,7 +19,7 @@ class GamesController < ApplicationController
   end
 
   def roll
-    unless PlayerOption.last.can_roll
+    if PlayerOption.last.can_roll.zero?
       render nothing: true, status: 204
       return
     end
@@ -87,6 +87,10 @@ class GamesController < ApplicationController
   end
 
   def clear_bunk
+    if PlayerOption.last.bunk.zero?
+      render nothing: true, status: 204
+      return
+    end
     ActiveRecord::Base.transaction do
       ClearBunk.call(player_worm_set: PlayerWormSet.last)
       @player_worms = @games_helper.player_worms_hash_after_bunk_clear
