@@ -45,7 +45,7 @@ module Helpers
 
     def make_all_worms_inactive
       Grill.last.grill_worm.each do |grill_worm|
-       grill_worm.update(can_take: false)
+        grill_worm.update(can_take: false)
       end
     end
 
@@ -53,7 +53,7 @@ module Helpers
       grill_worm_hash = Grill.select(:value, :worm_count, :can_take, :is_dead)
         .joins(grill_worm: :worm)
         .where('id' => @grill.id)
-        .order('worms.value ASC').map do |worm|
+        .order('grill_worms.is_dead ASC, worms.value ASC').map do |worm|
           {
             value: worm.value,
             image: images_helper.get_worm_tile_image(worm.worm_count),
