@@ -19,6 +19,10 @@ class GamesController < ApplicationController
   end
 
   def roll
+    unless PlayerOption.last.can_roll
+      render nothing: true, status: 204
+      return
+    end
     ActiveRecord::Base.transaction do
       @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
       @active_dice = @games_helper.new_active_dice_hash
