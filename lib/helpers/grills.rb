@@ -35,7 +35,9 @@ module Helpers
       frozen_dice_sum = frozen_dice_status.total
       has_worm = frozen_dice_status.has_worm == 1
       Grill.last.grill_worm.each do |grill_worm|
-        if has_worm && grill_worm.worm.last.value <= frozen_dice_sum
+        if has_worm &&
+           grill_worm.worm.last.value <= frozen_dice_sum &&
+           grill_worm.is_dead.zero?
           grill_worm.update(can_take: true)
         else
           grill_worm.update(can_take: false)
