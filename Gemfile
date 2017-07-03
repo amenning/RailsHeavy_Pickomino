@@ -12,11 +12,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'responders'
 gem 'bcrypt', '~> 3.1.7'
-gem 'puma'
 gem 'interactor-rails', '~> 2.0'
 gem 'jquery-rails'
+gem 'puma'
+gem 'responders'
 
 ruby '2.3.1'
 
@@ -33,10 +33,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Use sqlite3 as the database for Active Recor
-  gem 'sqlite3'
+  gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop'
-  gem 'factory_girl_rails'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -45,8 +45,8 @@ group :development do
 end
 
 group :production do
-  gem 'rails_12factor'
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
