@@ -26,5 +26,7 @@ module Wormdice
     config.x.game_parameters = config_for(:game_parameters)
 
     config.autoload_paths << Rails.root.join('lib')
+
+    config.serve_static_assets = true
   end
 end
