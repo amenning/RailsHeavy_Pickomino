@@ -13,8 +13,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap-social-rails'
 gem 'devise'
 gem 'figaro' # Simple Rails app configuration
+gem 'font-awesome-rails'
 gem 'interactor-rails', '~> 2.0'
 gem 'jquery-rails'
 gem 'omniauth-facebook'

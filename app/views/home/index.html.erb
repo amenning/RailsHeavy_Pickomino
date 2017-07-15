@@ -3,6 +3,11 @@
     Welcome to Pickomino!
   </div>
   <div class = 'playeroptions outset'>
-    <p><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></p>
+    <%= link_to user_facebook_omniauth_authorize_path do %>
+      <div class="btn btn-block btn-social btn-facebook">
+        <span class="fa fa-facebook"></span>
+        Sign in with Facebook
+      </div>
+    <% end %>
   </div>
 </div>
