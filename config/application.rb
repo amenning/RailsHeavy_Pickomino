@@ -27,6 +27,6 @@ module Wormdice
 
     config.autoload_paths << Rails.root.join('lib')
 
-    config.serve_static_assets = true
+    config.serve_static_files = true
   end
 end

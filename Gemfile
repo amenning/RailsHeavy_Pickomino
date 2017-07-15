@@ -14,8 +14,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem 'figaro' # Simple Rails app configuration
 gem 'interactor-rails', '~> 2.0'
 gem 'jquery-rails'
+gem 'omniauth-facebook'
 gem 'puma'
 gem 'responders'
 
