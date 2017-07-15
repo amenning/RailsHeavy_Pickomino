@@ -35,6 +35,7 @@ group :development, :test do
   gem 'byebug'
   # Use sqlite3 as the database for Active Recor
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop'
   gem 'sqlite3'

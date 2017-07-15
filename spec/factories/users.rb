@@ -4,10 +4,10 @@ FactoryGirl.define do
   end
 
   factory :user do
-    firstname 'Testfirstname'
-    lastname 'Testlastname'
+    firstname Faker::Name.first_name
+    lastname Faker::Name.last_name
     username { generate :username }
-    password_digest 'Testpassworddigest'
+    password Faker::Name.name
     email 'test@test.com'
     created_at Time.now
     updated_at nil
