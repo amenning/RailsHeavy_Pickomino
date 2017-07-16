@@ -3,9 +3,14 @@ require 'pp'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+  devise :database_authenticatable,
+    :registerable,
+    :recoverable,
+    :rememberable,
+    :trackable,
+    :validatable,
+    :omniauthable,
+    omniauth_providers: [:facebook, :google_oauth2, :github, :linkedin]
   validates :username, presence: true, uniqueness: true
   has_many :player, dependent: :restrict_with_error
 

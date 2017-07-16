@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-linkedin'
 gem 'puma'
 gem 'responders'
 
