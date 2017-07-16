@@ -1,6 +1,6 @@
 <div id="homepage_options">
   <div class = 'titles-box'>
-    Welcome to Pickomino!
+    Welcome to Pickomino!  Sign In Via Social Account
   </div>
   <div class = 'homeoptions outset'>
     <div>
@@ -29,6 +29,29 @@
         <div class="btn btn-block btn-social btn-linkedin btn-signin">
           <span class="fa fa-linkedin"></span>
           Sign in with Linkedin
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div id="homepage_options">
+  <div class = 'titles-box'>
+    Traditional Sign In
+  </div>
+  <div class = 'homeoptions outset'>
+    <div>
+      <%= link_to new_user_session_path do %>
+        <div class="btn btn-block btn-primary btn-signin">
+          Login
+        </div>
+      <% end %>
+
+      <%= link_to new_user_registration_path do %>
+        <div class="btn btn-block btn-primary btn-signin">
+          Register
         </div>
       <% end %>
     </div>
