@@ -1,3 +1,20 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.homeoptions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #457f86;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0px 2px 2px 2px;
+  border-radius: 0px 0px 6px 6px;
+  min-height: 55px;
+}
+
+.btn-signin{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
