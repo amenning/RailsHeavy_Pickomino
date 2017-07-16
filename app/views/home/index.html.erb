@@ -9,10 +9,18 @@
         Sign in with Facebook
       </div>
     <% end %>
+
     <%= link_to user_google_oauth2_omniauth_authorize_path do %>
       <div class="btn btn-block btn-social btn-google">
         <span class="fa fa-google"></span>
         Sign in with Google
+      </div>
+    <% end %>
+
+    <%= link_to user_github_omniauth_authorize_path do %>
+      <div class="btn btn-block btn-social btn-github">
+        <span class="fa fa-github"></span>
+        Sign in with Github
       </div>
     <% end %>
   </div>
