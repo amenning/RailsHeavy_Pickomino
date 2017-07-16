@@ -256,6 +256,11 @@ Devise.setup do |config|
     ENV['facebook_secret_key'],
     info_fields: 'first_name,last_name,email'
 
+  config.omniauth :google_oauth2,
+    ENV['google_client_id'],
+    ENV['google_client_secret'],
+    {}
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
