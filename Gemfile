@@ -46,6 +46,8 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop'
+  gem 'spinach'
+  gem 'spinach-rails'
   gem 'sqlite3'
 end
 
