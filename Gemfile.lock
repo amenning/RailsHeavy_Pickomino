@@ -98,6 +98,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.6)
     jwt (1.5.6)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -268,6 +270,7 @@ DEPENDENCIES
   interactor-rails (~> 2.0)
   jbuilder (~> 2.0)
   jquery-rails
+  launchy
   omniauth-facebook
   omniauth-github
   omniauth-google-oauth2

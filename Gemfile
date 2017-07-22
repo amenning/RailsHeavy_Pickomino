@@ -44,6 +44,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'launchy'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop'
   gem 'spinach'

@@ -1,9 +1,9 @@
 ENV['RAILS_ENV'] = 'test'
 require './config/environment'
-
+require 'capybara/rspec'
+require 'database_cleaner'
 require 'rspec/rails'
 
-require 'database_cleaner'
 DatabaseCleaner.strategy = :truncation
 
 Spinach.hooks.before_scenario { DatabaseCleaner.clean }
