@@ -2,44 +2,49 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   include Features::SessionHelpers
 
   step 'I do not exist as a user' do
-    unless User.find_by(email: 'test@example.com').nil?
+    @user = User.new(email: 'test@example.com', password: 'please123')
+    unless User.find_by(email: @user.email).nil?
       raise 'Example email should not exist in DB for this test'
     end
   end
 
   step 'I sign in with valid credentials' do
-    signin('test@example.com', 'please123')
+    signin(@user.email, @user.password)
   end
 
   step 'I see an invalid credentials message' do
-    pending 'step not implemented'
+    expect(page).to have_content('Invalid Email or password.')
   end
 
   step 'I exist as a user' do
-    pending 'step not implemented'
+    # Need to load constants stored in DB for post signin redirect
+    load Rails.root + 'db/seeds.rb'
+    @user = FactoryGirl.create(:user)
+    @user.confirm
   end
 
   step 'I am not signed in' do
-    pending 'step not implemented'
+    raise 'User was signed in already.' unless @user.sign_in_count.zero?
   end
 
   step 'I see a success message' do
-    pending 'step not implemented'
+    expect(current_path).to eq(play_games_path)
+    expect(page).to have_content('Signed in successfully.')
   end
 
   step 'I sign in with a wrong email' do
-    pending 'step not implemented'
+    signin('wrongemail@wrong.com', @user.password)
   end
 
   step 'I see an invalid email message' do
-    pending 'step not implemented'
+    expect(page).to have_content('Invalid Email or password.')
   end
 
   step 'I sign in with a wrong password' do
-    pending 'step not implemented'
+    signin(@user.email, 'wrongpassword')
   end
 
   step 'I see an invalid password message' do
-    pending 'step not implemented'
+    expect(page).to have_content('Invalid Email or password.')
   end
 end
