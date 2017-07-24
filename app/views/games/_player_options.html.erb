@@ -4,7 +4,7 @@
   </div>
   <div class = 'playeroptions outset'>
     <% if @player_options[:isGameOver] %>
-      <%= link_to "Game Over", { controller: :games, action: :play }, method: :get, remote: true, id: 'game_over_button', class: "btn btn-success buttons inset"%>
+      <%= link_to "Game Over", { controller: :games, action: :play }, method: :get, id: 'game_over_button', class: "btn btn-success buttons inset"%>
     <% elsif @player_options[:bunk] %>
       <%= link_to "Bunk", { controller: :games, action: :clear_bunk }, method: :post, remote: true, id: 'bunk_button', class: "btn btn-danger buttons inset"%>
     <% elsif @player_options[:canRoll] %>
