@@ -15,6 +15,7 @@ class Spinach::Features::SignOut < Spinach::FeatureSteps
   end
 
   step 'I see a signed out message' do
+    expect(current_path).to eq(root_path)
     expect(page).to have_content('Signed out successfully.')
   end
 end
