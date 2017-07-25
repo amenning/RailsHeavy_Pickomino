@@ -3,35 +3,7 @@
     Welcome to Pickomino!  Sign In Via Social Account
   </div>
   <div class = 'homeoptions outset'>
-    <div>
-      <%= link_to user_facebook_omniauth_authorize_path do %>
-        <div class="btn btn-block btn-social btn-facebook btn-signin">
-          <span class="fa fa-facebook"></span>
-          Sign in with Facebook
-        </div>
-      <% end %>
-
-      <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-        <div class="btn btn-block btn-social btn-google btn-signin">
-          <span class="fa fa-google"></span>
-          Sign in with Google
-        </div>
-      <% end %>
-
-      <%= link_to user_github_omniauth_authorize_path do %>
-        <div class="btn btn-block btn-social btn-github btn-signin">
-          <span class="fa fa-github"></span>
-          Sign in with Github
-        </div>
-      <% end %>
-
-      <%= link_to user_linkedin_omniauth_authorize_path do %>
-        <div class="btn btn-block btn-social btn-linkedin btn-signin">
-          <span class="fa fa-linkedin"></span>
-          Sign in with Linkedin
-        </div>
-      <% end %>
-    </div>
+    <%= render "social_login_buttons" %>
   </div>
 </div>
 
