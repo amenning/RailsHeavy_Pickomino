@@ -1,7 +1,9 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   before_action { @games_helper = Helpers::Games.new }
 
   def play
+    authorize Game.new
     ActiveRecord::Base.transaction do
       @active_dice = @games_helper.new_active_dice_hash(true)
       @frozen_dice = {}

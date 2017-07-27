@@ -24,6 +24,7 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
 gem 'puma'
+gem "pundit"
 gem 'responders'
 
 ruby '2.3.1'

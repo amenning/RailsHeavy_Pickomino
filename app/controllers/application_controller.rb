@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+  #after_action :verify_authorized
+  #after_action :verify_policy_scoped
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
 
@@ -18,5 +23,19 @@ class ApplicationController < ActionController::Base
         :email
       ]
     )
+  end
+
+  def authenticate_user!(options = {})
+    if user_signed_in?
+      super(options)
+    else
+      flash[:alert] = 'You need to sign in or sign up before continuing.'
+      redirect_to root_path
+    end
+  end
+
+  def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to root_path
   end
 end

@@ -149,6 +149,8 @@ GEM
     powerpack (0.1.1)
     public_suffix (2.0.5)
     puma (3.8.2)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -277,6 +279,7 @@ DEPENDENCIES
   omniauth-linkedin
   pg
   puma
+  pundit
   rails (= 4.2.5.1)
   rails_12factor
   responders
