@@ -7,55 +7,61 @@ RSpec.describe GamesController, type: :controller do
     generate_minimum_game_objects
   end
 
-  context 'actions should respond to expected format type' do
-    it 'play action should accept html format' do
+  context 'play action' do
+    it 'should accept html format' do
       call_play_action
       expect(response).to be_success
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq Mime::HTML
     end
 
-    it 'play action should assign new grill worms and active dice' do
+    it 'should assign new grill worms and active dice' do
       call_play_action
       expect(assigns(:grill_worms)).not_to be_nil
       expect(assigns(:active_dice)).not_to be_nil
       expect(assigns(:frozen_dice)).to be_empty
       expect(assigns(:player_worms)).to be_empty
     end
+  end
 
-    it 'roll action should accept js format' do
+  context 'roll action' do
+    it 'should accept js format' do
       call_roll_action
       expect(response).to be_success
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq Mime::JS
     end
 
-    it 'roll action should assign new active_dice hash' do
+    it 'should assign new active_dice hash' do
       call_roll_action
       expect(assigns(:active_dice)).not_to be_nil
     end
+  end
 
-    it 'freeze_dice action should accept js format' do
+  context 'freeze_dice action' do
+    it 'should accept js format' do
       call_freeze_dice_action
       expect(response).to be_success
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq Mime::JS
     end
 
-    it 'freeze_dice action should assign new frozen_dice and active_dice hashes' do
+    it 'should assign new frozen_dice and active_dice hashes' do
       call_freeze_dice_action
       expect(assigns(:active_dice)).not_to be_nil
       expect(assigns(:frozen_dice)).not_to be_nil
     end
+  end
 
-    it 'take_worm action should accept js format' do
+  context 'take_worm action' do
+    it 'should accept js format' do
       call_take_worm_action
       expect(response).to be_success
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq Mime::JS
     end
 
-    it 'take_worm action should assign new grill_worms and player_worms hashes' do
+    it 'should assign new grill_worms and player_worms hashes' do
       call_take_worm_action
       expect(assigns(:grill_worms)).not_to be_nil
       expect(assigns(:player_worms)).not_to be_nil
