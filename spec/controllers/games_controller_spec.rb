@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe GamesController, type: :controller do
   before(:each) do
-    # Need to load constants stored in DB for post signin redirect
-    load Rails.root + 'db/seeds.rb'
     mock_signed_in_user
     mock_games_helper
     generate_minimum_game_objects
@@ -80,8 +78,6 @@ RSpec.describe GamesController, type: :controller do
     PlayerOption.create(can_roll: 1)
     FrozenDiceStatus.create(has_worm: 1, total: 30)
     PlayerWormSet.create
-    FactoryGirl.build(:worm)
-    FactoryGirl.build(:dice)
     FactoryGirl.build(:frozen_dice)
   end
 
