@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
-  before_action { @games_helper = Helpers::Games.new }
+  before_action :load_games_helper_service
 
   def play
     authorize Game.new
@@ -122,6 +122,10 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.js { render 'game_over' }
     end
+  end
+
+  def load_games_helper_service(service = Helpers::Games.new)
+    @games_helper ||= service
   end
 
   private
