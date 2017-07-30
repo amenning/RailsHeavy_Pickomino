@@ -23,6 +23,8 @@ module Wormdice
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.generators.test_framework :rspec
+
     config.x.game_parameters = config_for(:game_parameters)
 
     config.autoload_paths << Rails.root.join('lib')
