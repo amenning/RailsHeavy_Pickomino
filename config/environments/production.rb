@@ -5,6 +5,22 @@ Rails.application.configure do
   config.cache_classes = true
   config.secret_key_base = ENV["SECRET_KEY_BASE"]
   config.secret_token = ENV["SECRET_KEY_BASE"]
+
+
+  config.action_mailer.default_url_options = { host: ENV['host_url'] }
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address: ENV['email_address'],
+    port: 587,
+    domain: ENV['email_domain'],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: ENV['email_username'],
+    password: ENV['email_password']
+  }
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
