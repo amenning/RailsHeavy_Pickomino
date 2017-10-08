@@ -1,3 +1,3 @@
 class Phase < ActiveRecord::Base
-  has_many :gamestate, dependent: :restrict_with_error
+  has_many :gamestate, dependent: :destroy
 end

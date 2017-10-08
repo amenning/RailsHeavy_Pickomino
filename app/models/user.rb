@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     :omniauthable,
     omniauth_providers: [:facebook, :google_oauth2, :github, :linkedin]
   validates :username, presence: true, uniqueness: true
-  has_many :player, dependent: :restrict_with_error
+  has_many :player, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_create! do |user|

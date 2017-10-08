@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
   belongs_to :user
-  has_many :game, dependent: :restrict_with_error
-  has_many :player_worm_set, dependent: :restrict_with_error
-  has_many :player_status, dependent: :restrict_with_error
-  has_many :gamestate, dependent: :restrict_with_error
+  has_many :game, dependent: :destroy
+  has_many :player_worm_set, dependent: :destroy
+  has_many :player_status, dependent: :destroy
+  has_many :gamestate, dependent: :destroy
 end
