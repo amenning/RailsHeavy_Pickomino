@@ -54,6 +54,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    coderay (1.1.1)
     colorize (0.8.1)
     concurrent-ruby (1.0.5)
     database_cleaner (1.6.1)
@@ -104,6 +105,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -147,6 +149,14 @@ GEM
       ast (~> 2.2)
     pg (0.20.0)
     powerpack (0.1.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-nav (0.2.4)
+      pry (>= 0.9.10, < 0.11.0)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     public_suffix (2.0.5)
     puma (3.8.2)
     pundit (1.1.0)
@@ -188,6 +198,10 @@ GEM
     rdoc (4.3.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rspec-activemodel-mocks (1.0.3)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -222,6 +236,7 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    slop (3.6.0)
     spinach (0.10.0)
       colorize
       gherkin-ruby (>= 0.3.2)
@@ -279,11 +294,15 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-linkedin
   pg
+  pry
+  pry-nav
+  pry-rails (~> 0.3.2)
   puma
   pundit
   rails (= 4.2.5.1)
   rails_12factor
   responders
+  rspec-activemodel-mocks
   rspec-rails (~> 3.5)
   rubocop
   sass-rails (~> 5.0)

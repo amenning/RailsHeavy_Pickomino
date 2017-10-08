@@ -2,9 +2,10 @@ class FreezeDice
   include Interactor
 
   def call
+    @game = context.game
     @dice_value = context.dice_value
     @frozen_dice_set = context.frozen_dice_set
-    @active_dice_set = ActiveDiceSet.last
+    @active_dice_set = current_active_dice_set
     if verify_active_dice_set_has_value && verify_frozen_dice_set_does_not_have_value
       move_dice_from_active_to_frozen
       update_frozen_dice_status_if_freezing_worm if @dice_value == 6
@@ -12,6 +13,10 @@ class FreezeDice
   end
 
   private
+
+  def current_active_dice_set
+    ActiveDiceSet.joins(:game).where(games: { id: @game }).last
+  end
 
   def verify_active_dice_set_has_value
     0 < @active_dice_set.active_dice.all.to_a.reduce(0) do |count, active_dice|

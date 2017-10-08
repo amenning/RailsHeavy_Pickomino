@@ -26,22 +26,24 @@ RSpec.describe Helpers::Games, type: :Helper do
     end
 
     it 'should call the Helper::ActiveDices to get active_dice_after_freeze' do
+      mock_game = double('Game')
       mock_active_dices_helper = double(
         'Helpers::ActiveDices',
         active_dice_hash_after_freeze: { test: [1, 2, 3] }
       )
       @games_helper.active_dices_helper = mock_active_dices_helper
-      result = @games_helper.active_dice_hash_after_freeze
+      result = @games_helper.active_dice_hash_after_freeze(mock_game)
       expect(result).to eq(test: [1, 2, 3])
     end
 
     it 'should call the Helper::FrozenDices to get frozen_dice_after_freeze' do
+      mock_game = double('Game')
       mock_frozen_dices_helper = double(
         'Helpers::FrozenDices',
         frozen_dice_hash_after_freeze: { test: [1, 2, 3] }
       )
       @games_helper.frozen_dices_helper = mock_frozen_dices_helper
-      result = @games_helper.frozen_dice_hash_after_freeze(dice_value: 1)
+      result = @games_helper.frozen_dice_hash_after_freeze(mock_game, dice_value: 1)
       expect(result).to eq(test: [1, 2, 3])
     end
 

@@ -42,16 +42,16 @@ module Helpers
       @player_options_helper.check_for_game_end
     end
 
-    def new_active_dice_hash(is_new_game = false)
-      @active_dices_helper.new_active_dice_hash(is_new_game)
+    def new_active_dice_hash(game, is_new_game = false)
+      @active_dices_helper.new_active_dice_hash(game, is_new_game)
     end
 
-    def active_dice_hash_after_freeze
-      @active_dices_helper.active_dice_hash_after_freeze
+    def active_dice_hash_after_freeze(game)
+      @active_dices_helper.active_dice_hash_after_freeze(game)
     end
 
-    def frozen_dice_hash_after_freeze(dice_value)
-      @frozen_dices_helper.frozen_dice_hash_after_freeze(dice_value)
+    def frozen_dice_hash_after_freeze(game, dice_value)
+      @frozen_dices_helper.frozen_dice_hash_after_freeze(game, dice_value)
     end
 
     def frozen_dice_sum(frozen_dice_values)

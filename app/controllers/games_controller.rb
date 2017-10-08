@@ -1,11 +1,14 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
   before_action :load_games_helper_service
+  before_action :set_game, except: [:play]
 
   def play
     authorize Game.new
     ActiveRecord::Base.transaction do
-      @active_dice = @games_helper.new_active_dice_hash(true)
+      @player = Player.create(user: current_user)
+      @game = Game.create(player: @player)
+      @active_dice = @games_helper.new_active_dice_hash(@game, true)
       @frozen_dice = {}
       FrozenDiceStatus.create(total: 0, has_worm: false)
       @frozen_dice_sum = 0
@@ -27,7 +30,7 @@ class GamesController < ApplicationController
     end
     ActiveRecord::Base.transaction do
       @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
-      @active_dice = @games_helper.new_active_dice_hash
+      @active_dice = @games_helper.new_active_dice_hash(@game)
       @games_helper.update_roll_option_state(false)
       @games_helper.check_for_bunk_after_roll(@active_dice)
       @player_options = @games_helper.player_options_hash
@@ -40,18 +43,19 @@ class GamesController < ApplicationController
   def freeze_dice
     ActiveRecord::Base.transaction do
       @frozen_dice = @games_helper.frozen_dice_hash_after_freeze(
+        @game,
         freeze_dice_params['value'].to_i
       )
-      @active_dice = @games_helper.active_dice_hash_after_freeze
+      @active_dice = @games_helper.active_dice_hash_after_freeze(@game)
       @player_options = @games_helper.update_roll_option_state(true) unless @active_dice.empty?
       @frozen_dice_sum = @games_helper.frozen_dice_sum(
-        FrozenDiceSet.last.all_frozen_dice_values_with_worms_converted
+        current_frozen_dice_set.all_frozen_dice_values_with_worms_converted
       )
       @grill_worms = @games_helper.grill_worms_hash
       @games_helper.check_for_bunk_after_dice_freeze(
         @grill_worms,
         @active_dice,
-        FrozenDiceSet.last.all_raw_frozen_dice_values,
+        current_frozen_dice_set.all_raw_frozen_dice_values,
         @frozen_dice_sum
       )
       @player_options = @games_helper.player_options_hash
@@ -68,13 +72,12 @@ class GamesController < ApplicationController
       render nothing: true, status: 204
       return
     end
-
     ActiveRecord::Base.transaction do
       @player_worms = @games_helper.player_worms_hash_after_claim(worm_value)
       @player_worms_total_count = @games_helper.sum_player_worms(
         PlayerWormSet.last.all_player_worm_values
       )
-      @active_dice = @games_helper.new_active_dice_hash(true)
+      @active_dice = @games_helper.new_active_dice_hash(@game, true)
       @frozen_dice = {}
       @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
       @games_helper.check_for_game_end
@@ -99,7 +102,7 @@ class GamesController < ApplicationController
       @player_worms_total_count = @games_helper.sum_player_worms(
         PlayerWormSet.last.all_player_worm_values
       )
-      @active_dice = @games_helper.new_active_dice_hash(true)
+      @active_dice = @games_helper.new_active_dice_hash(@game, true)
       @frozen_dice = {}
       @games_helper.clear_bunk_option
       @games_helper.update_roll_option_state(true)
@@ -130,6 +133,10 @@ class GamesController < ApplicationController
 
   private
 
+  def current_frozen_dice_set
+    FrozenDiceSet.joins(:game).where(games: { id: @game }).last
+  end
+
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def freeze_dice_params
@@ -138,5 +145,9 @@ class GamesController < ApplicationController
 
   def take_worm_params
     params.require(:worm).permit(:value)
+  end
+
+  def set_game
+    @game = Game.joins(player: :user).where(users: {id: current_user}).last
   end
 end

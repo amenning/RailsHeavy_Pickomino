@@ -6,9 +6,9 @@ module Helpers
       @images_helper = Helpers::Images.new
     end
 
-    def frozen_dice_hash_after_freeze(dice_value)
-      @frozen_dice_set = FrozenDiceSet.last
-      FreezeDice.call(dice_value: dice_value, frozen_dice_set: @frozen_dice_set)
+    def frozen_dice_hash_after_freeze(game, dice_value)
+      @frozen_dice_set = current_frozen_dice_set(game)
+      FreezeDice.call(game: game, dice_value: dice_value, frozen_dice_set: @frozen_dice_set)
       create_frozen_dice_hash
     end
 
@@ -18,6 +18,10 @@ module Helpers
     end
 
     private
+
+    def current_frozen_dice_set(game)
+      FrozenDiceSet.joins(:game).where(games: { id: game }).last
+    end
 
     def create_frozen_dice_hash
       return [] if @frozen_dice_set.frozen_dice.nil?

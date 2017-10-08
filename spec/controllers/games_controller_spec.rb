@@ -71,16 +71,20 @@ RSpec.describe GamesController, type: :controller do
   private
 
   def mock_signed_in_user
-    user = double('user')
-    allow(request.env['warden']).to receive(:authenticate!).and_return(user)
-    allow(controller).to receive(:current_user).and_return(user)
+    @user = FactoryGirl.build(:user)
+    allow(request.env['warden']).to receive(:authenticate!).and_return(@user)
+    allow(controller).to receive(:current_user).and_return(@user)
   end
 
   def generate_minimum_game_objects
+    player = Player.create(user: @user)
+    game = Game.create(player: player)
     PlayerOption.create(can_roll: 1)
     FrozenDiceStatus.create(has_worm: 1, total: 30)
+    frozen_dice_set = FrozenDiceSet.create(game: game)
     PlayerWormSet.create
-    FactoryGirl.build(:frozen_dice)
+    frozen_dice = FactoryGirl.build(:frozen_dice, frozen_dice_set: frozen_dice_set)
+    FactoryGirl.build(:dice, frozen_dice: frozen_dice)
   end
 
   def call_play_action

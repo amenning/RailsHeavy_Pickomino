@@ -10,13 +10,15 @@ RSpec.describe Helpers::FrozenDices, type: :Helper do
 
   context 'when frozen_dice_hash_after_freeze is called' do
     it 'should return an array of hashes' do
-      frozen_dice_hash = @frozen_dices_helper.frozen_dice_hash_after_freeze(3)
+      create_dice_for_game
+      frozen_dice_hash = @frozen_dices_helper.frozen_dice_hash_after_freeze(@game, 3)
       expect(frozen_dice_hash).to be_a(Array)
       expect(frozen_dice_hash[0]).to be_a(Hash)
     end
 
     it 'should find the correct frozen dice' do
-      frozen_dice_hash = @frozen_dices_helper.frozen_dice_hash_after_freeze(3)
+      create_dice_for_game
+      frozen_dice_hash = @frozen_dices_helper.frozen_dice_hash_after_freeze(@game, 3)
       expect(frozen_dice_hash).to eq([{ value: 3, image: 'dice_image.png' }])
     end
   end
@@ -37,5 +39,11 @@ RSpec.describe Helpers::FrozenDices, type: :Helper do
       get_dice_image: 'dice_image.png'
     )
     @frozen_dices_helper.images_helper = mock_images_helper
+  end
+
+  def create_dice_for_game
+    dice = FactoryGirl.create(:dice)
+    @game = dice.active_dice.active_dice_set.game
+    FactoryGirl.create(:frozen_dice_set, game: @game)
   end
 end
