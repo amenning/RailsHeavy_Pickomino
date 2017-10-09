@@ -79,10 +79,10 @@ RSpec.describe GamesController, type: :controller do
   def generate_minimum_game_objects
     player = Player.create(user: @user)
     game = Game.create(player: player)
-    PlayerOption.create(can_roll: 1)
-    FrozenDiceStatus.create(has_worm: 1, total: 30)
+    PlayerOption.create(game: game, can_roll: 1)
+    FrozenDiceStatus.create(game: game, has_worm: 1, total: 30)
     frozen_dice_set = FrozenDiceSet.create(game: game)
-    PlayerWormSet.create
+    PlayerWormSet.create(game: game)
     frozen_dice = FactoryGirl.build(:frozen_dice, frozen_dice_set: frozen_dice_set)
     FactoryGirl.build(:dice, frozen_dice: frozen_dice)
   end

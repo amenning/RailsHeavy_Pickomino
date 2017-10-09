@@ -48,12 +48,13 @@ RSpec.describe Helpers::Games, type: :Helper do
     end
 
     it 'should call the Helper::FrozenDices to get frozen_dice_sum' do
+      mock_game = double('Game')
       mock_frozen_dices_helper = double(
         'Helpers::FrozenDices',
         frozen_dice_sum: 21
       )
       @games_helper.frozen_dices_helper = mock_frozen_dices_helper
-      result = @games_helper.frozen_dice_sum(dice_value: [10, 11])
+      result = @games_helper.frozen_dice_sum(mock_game, dice_value: [10, 11])
       expect(result).to eq(21)
     end
 

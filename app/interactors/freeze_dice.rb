@@ -54,7 +54,7 @@ class FreezeDice
   end
 
   def update_frozen_dice_status_if_freezing_worm
-    frozen_dice_status = FrozenDiceStatus.last
+    frozen_dice_status = FrozenDiceStatus.joins(:game).where(games: { id: @game }).last
     frozen_dice_status.has_worm = true
     frozen_dice_status.save
   end

@@ -7,7 +7,8 @@ RSpec.describe Helpers::PlayerOptions, type: :Helper do
 
     context 'when player_options_hash is called' do
       it 'should return can_roll true for new game' do
-        player_option_hash = @player_options_helper.player_options_hash(true)
+        game = FactoryGirl.create(:game)
+        player_option_hash = @player_options_helper.player_options_hash(game, true)
         expect(player_option_hash).to be_a(Hash)
         expect(player_option_hash[:canRoll]).to equal(true)
       end

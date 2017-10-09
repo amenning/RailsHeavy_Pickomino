@@ -25,7 +25,8 @@ RSpec.describe Helpers::FrozenDices, type: :Helper do
 
   context 'when frozen_dice_sum is called' do
     it 'should return an integer' do
-      frozen_dice_sum = @frozen_dices_helper.frozen_dice_sum([1, 2, 3])
+      @game = FactoryGirl.create(:frozen_dice_status).game
+      frozen_dice_sum = @frozen_dices_helper.frozen_dice_sum(@game, [1, 2, 3])
       expect(frozen_dice_sum).to be_a(Integer)
       expect(frozen_dice_sum).to eq(6)
     end
