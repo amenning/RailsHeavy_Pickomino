@@ -58,12 +58,13 @@ RSpec.describe Helpers::Games, type: :Helper do
     end
 
     it 'should call the Helper::PlayerWorms to get player_worms_hash_after_claim' do
+      mock_game = double('Game')
       mock_player_worms_helper = double(
         'Helpers::PlayerWorms',
         player_worms_hash_after_claim: { test: [1, 2, 3] }
       )
       @games_helper.player_worms_helper = mock_player_worms_helper
-      result = @games_helper.player_worms_hash_after_claim(worm_value: 1)
+      result = @games_helper.player_worms_hash_after_claim(mock_game, worm_value: 1)
       expect(result).to eq(test: [1, 2, 3])
     end
 

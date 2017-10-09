@@ -1,11 +1,11 @@
 module Helpers
   class Games < Helpers::BaseHelper
-    def grill_worms_hash(is_new_game = false)
-      @grills_helper.grill_worms_hash(is_new_game)
+    def grill_worms_hash(game, is_new_game = false)
+      @grills_helper.grill_worms_hash(game, is_new_game)
     end
 
-    def grill_worms_hash_with_all_inactive
-      @grills_helper.grill_worms_hash_with_all_inactive
+    def grill_worms_hash_with_all_inactive(game)
+      @grills_helper.grill_worms_hash_with_all_inactive(game)
     end
 
     def player_options_hash(is_new_game = false)
@@ -58,8 +58,8 @@ module Helpers
       @frozen_dices_helper.frozen_dice_sum(frozen_dice_values)
     end
 
-    def player_worms_hash_after_claim(worm_value)
-      @player_worms_helper.player_worms_hash_after_claim(worm_value)
+    def player_worms_hash_after_claim(game, worm_value)
+      @player_worms_helper.player_worms_hash_after_claim(game, worm_value)
     end
 
     def player_worms_hash_after_bunk_clear

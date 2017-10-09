@@ -10,11 +10,11 @@ class GamesController < ApplicationController
       @game = Game.create(player: @player)
       @active_dice = @games_helper.new_active_dice_hash(@game, true)
       @frozen_dice = {}
-      FrozenDiceStatus.create(total: 0, has_worm: false)
+      FrozenDiceStatus.create(game: @game, total: 0, has_worm: false)
       @frozen_dice_sum = 0
-      @grill_worms = @games_helper.grill_worms_hash(true)
+      @grill_worms = @games_helper.grill_worms_hash(@game, true)
       @player_options = @games_helper.player_options_hash(true)
-      PlayerWormSet.create
+      PlayerWormSet.create(game: @game)
       @player_worms = {}
       @player_worms_total_count = 0
     end
@@ -29,7 +29,7 @@ class GamesController < ApplicationController
       return
     end
     ActiveRecord::Base.transaction do
-      @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
+      @grill_worms = @games_helper.grill_worms_hash_with_all_inactive(@game)
       @active_dice = @games_helper.new_active_dice_hash(@game)
       @games_helper.update_roll_option_state(false)
       @games_helper.check_for_bunk_after_roll(@active_dice)
@@ -51,7 +51,7 @@ class GamesController < ApplicationController
       @frozen_dice_sum = @games_helper.frozen_dice_sum(
         current_frozen_dice_set.all_frozen_dice_values_with_worms_converted
       )
-      @grill_worms = @games_helper.grill_worms_hash
+      @grill_worms = @games_helper.grill_worms_hash(@game)
       @games_helper.check_for_bunk_after_dice_freeze(
         @grill_worms,
         @active_dice,
@@ -73,17 +73,17 @@ class GamesController < ApplicationController
       return
     end
     ActiveRecord::Base.transaction do
-      @player_worms = @games_helper.player_worms_hash_after_claim(worm_value)
+      @player_worms = @games_helper.player_worms_hash_after_claim(@game, worm_value)
       @player_worms_total_count = @games_helper.sum_player_worms(
         PlayerWormSet.last.all_player_worm_values
       )
       @active_dice = @games_helper.new_active_dice_hash(@game, true)
       @frozen_dice = {}
-      @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
+      @grill_worms = @games_helper.grill_worms_hash_with_all_inactive(@game)
       @games_helper.check_for_game_end
       @player_options = @games_helper.update_roll_option_state(true)
       @player_options = @games_helper.player_options_hash
-      FrozenDiceStatus.create(total: 0, has_worm: false)
+      FrozenDiceStatus.create(game: @game, total: 0, has_worm: false)
       @frozen_dice_sum = 0
     end
     respond_to do |format|
@@ -107,9 +107,9 @@ class GamesController < ApplicationController
       @games_helper.clear_bunk_option
       @games_helper.update_roll_option_state(true)
       @player_options = @games_helper.player_options_hash
-      FrozenDiceStatus.create(total: 0, has_worm: false)
+      FrozenDiceStatus.create(game: @game, total: 0, has_worm: false)
       @frozen_dice_sum = 0
-      @grill_worms = @games_helper.grill_worms_hash_with_all_inactive
+      @grill_worms = @games_helper.grill_worms_hash_with_all_inactive(@game)
     end
     respond_to do |format|
       format.js { render 'clear_bunk' }

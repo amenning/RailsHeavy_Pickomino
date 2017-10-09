@@ -1,8 +1,8 @@
 module Helpers
   class PlayerWorms
-    def player_worms_hash_after_claim(worm_value)
+    def player_worms_hash_after_claim(game, worm_value)
       @player_worm_set = PlayerWormSet.last
-      TakeWorm.call(worm_value: worm_value, player_worm_set: @player_worm_set)
+      TakeWorm.call(game: game, worm_value: worm_value, player_worm_set: @player_worm_set)
       create_player_worm_hash
     end
 

@@ -1,18 +1,24 @@
 module Helpers
   class Grills
-    def grill_worms_hash(is_new_game = false)
-      @grill = is_new_game ? new_grill : Grill.last
+    def grill_worms_hash(game, is_new_game = false)
+      @game = game
+      @grill = is_new_game ? new_grill : current_grill
       determine_which_grill_worms_can_be_taken unless is_new_game
       create_grill_worm_hash
     end
 
-    def grill_worms_hash_with_all_inactive
-      @grill = Grill.last
+    def grill_worms_hash_with_all_inactive(game)
+      @game = game
+      @grill = current_grill
       make_all_worms_inactive
       create_grill_worm_hash
     end
 
     private
+
+    def current_grill
+      Grill.joins(:game).where(games: { id: @game }).last
+    end
 
     def new_grill
       result = call_setup_grill_interactor
@@ -26,7 +32,7 @@ module Helpers
         max_worm_tile: game_parameters['max_worm_tile'],
         min_worm_count: game_parameters['min_worm_count'],
         worm_count_increment: game_parameters['worm_count_increment'],
-        grill: Grill.create
+        grill: Grill.create(game: @game)
       )
     end
 
@@ -34,7 +40,7 @@ module Helpers
       frozen_dice_status = FrozenDiceStatus.last
       frozen_dice_sum = frozen_dice_status.total
       has_worm = frozen_dice_status.has_worm == 1
-      Grill.last.grill_worm.each do |grill_worm|
+      @grill.grill_worm.each do |grill_worm|
         if has_worm &&
            grill_worm.worm.last.value <= frozen_dice_sum &&
            grill_worm.is_dead.zero?
@@ -46,7 +52,7 @@ module Helpers
     end
 
     def make_all_worms_inactive
-      Grill.last.grill_worm.each do |grill_worm|
+      @grill.grill_worm.each do |grill_worm|
         grill_worm.update(can_take: false)
       end
     end

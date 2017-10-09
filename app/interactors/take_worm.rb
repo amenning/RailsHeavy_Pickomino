@@ -2,9 +2,10 @@ class TakeWorm
   include Interactor
 
   def call
+    @game = context.game
     @worm_value = context.worm_value
     @player_worm_set = context.player_worm_set
-    @grill = Grill.last
+    @grill = Grill.joins(:game).where(games: { id: @game }).last
     move_worm_from_grill_to_player
   end
 
