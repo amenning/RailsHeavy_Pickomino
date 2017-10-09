@@ -6,6 +6,7 @@ class GamesController < ApplicationController
   def play
     authorize Game.new
     ActiveRecord::Base.transaction do
+      delete_previous_games
       @player = Player.create(user: current_user)
       @game = Game.create(player: @player)
       @active_dice = @games_helper.new_active_dice_hash(@game, true)
@@ -163,5 +164,13 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.joins(player: :user).where(users: {id: current_user}).last
+  end
+
+  def delete_previous_games
+    Game.joins(player: :user)
+      .where(users: {id: current_user})
+      .all
+      .to_a
+      .map { |game| game.destroy }
   end
 end
